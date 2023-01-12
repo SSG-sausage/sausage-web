@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
+import CartShareDetailPage from './pages/CartShareDetailPage';
+import CartSharePage from './pages/CartSharePage';
 import MainPage from './pages/MainPage';
 
 const GlobalStyle = createGlobalStyle`
@@ -19,6 +21,8 @@ function App() {
             <GlobalStyle />
             <Routes>
                 <Route path="/" element={<MainPage />} />
+                <Route path="/cart-share" element={<CartSharePage />} />
+                <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
             </Routes>
         </>
     );
