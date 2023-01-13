@@ -6,3 +6,10 @@ export const findCartShareList = async () =>
             mbrId: 1,
         },
     });
+
+export const findCartShare = async cartShareId =>
+    await axios.get(`/api/cart-share/${cartShareId}`, {
+        headers: {
+            mbrId: 1,
+        },
+    });
