@@ -3,18 +3,15 @@ import styled from 'styled-components';
 import { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import Item from './Item';
+import SearchBox from './SearchBox';
 
-const ItemList = ({ itemList }) => {
+const ItemList = ({ itemList, onClickItem }) => {
 
     return (
         <Main>
             <Container>
 
-                <SearchContainer>
-                    <img id='logo' src='sausage-logo.png' />
-                    <div id='search-box'></div>
-                    <img id='cart-share' src='cart-share.png' />
-                </SearchContainer>
+                <SearchBox/>
 
                 <ItemRankingTitle>상품 랭킹</ItemRankingTitle>
 
@@ -27,6 +24,7 @@ const ItemList = ({ itemList }) => {
                             itemNm={it.itemNm}
                             itemImgUrl={it.itemImgUrl}
                             itemAmt={it.itemAmt}
+                            onClickItem={() => onClickItem(it.id)}
                             brandNm='test'
                         />
                     ))}
@@ -62,36 +60,6 @@ const Container = styled.div`
   background: white;
   font-family: 'line';
 `;
-
-const SearchContainer = styled.div`
-
-  display: flex;
-
-  flex-direction: row;
-
-  justify-content: space-around;
-
-  margin-top: 20px;
-
-  #logo {
-    height: 18px;
-    align-self: center;
-  }
-
-  #search-box {
-    width: 200px;
-    height: 30px;
-    border-radius: 20px;
-
-    background-color: #f2f2f2;
-  }
-
-  #cart-share {
-    width: 28px;
-    height: 28px;
-  }
-`;
-
 
 const ItemRankingTitle = styled.p`
 

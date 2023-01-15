@@ -6,6 +6,7 @@ import CartSharePage from './pages/CartSharePage';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import ItemListPage from './pages/ItemListPage';
+import ItemDetailPage from './pages/ItemDetailPage';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -27,6 +28,8 @@ function App() {
                 <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
                 <Route path="/login" element={<LoginPage/>} />
                 <Route path="/item-list" element={<ItemListPage/>} />
+                <Route path="/item/:itemId" element={<ItemDetailPage />} />
+
 
             </Routes>
         </>

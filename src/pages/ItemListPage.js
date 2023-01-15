@@ -1,9 +1,8 @@
 
-import LoginContainer from '../containers/mbr/LoginContainer';
 import ItemListContainer from '../containers/item/ItemContainer';
 
-const LoginPage = () => {
+const ItemListPage = () => {
   return <ItemListContainer/>
 }
 
-export default LoginPage
+export default ItemListPage

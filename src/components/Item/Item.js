@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
-const Item = ({index, itemNm, brandNm, itemAmt, itemImgUrl, shppType}) => {
+const Item = ({index, itemNm, brandNm, itemAmt, itemImgUrl, onClickItem, shppType}) => {
 
     return (
-        <Container>
+        <Container onClick={onClickItem}>
 
             <p id='index'>{index}</p>
             <img id='item' src={itemImgUrl} />
 
-            <ItemCategory>
+            <ShppCategory>
                 <div>
                     쓱배송
                 </div>
                 <img src='cart.png' />
-            </ItemCategory>
+            </ShppCategory>
 
             <ItemLine />
 
@@ -58,10 +58,12 @@ const Container = styled.div`
     height: 130px;
     border-radius: 15px;
   }
+  
+  cursor: pointer;
 
 `;
 
-const ItemCategory = styled.div`
+const ShppCategory = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
