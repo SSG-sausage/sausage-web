@@ -3,9 +3,12 @@ import { login } from '../../api/login';
 import { useState } from 'react';
 import {useCookies} from 'react-cookie'
 import { axiosInstance } from '../../api/instance';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginContainer = () => {
+
+    const navigate = useNavigate();
 
     const [mbr, setMbr] = useState({
         id: "",
@@ -27,6 +30,7 @@ const LoginContainer = () => {
             setMbrCookie('mbrId', mbr.id)
             axiosInstance.defaults.headers.common['mbrId'] = mbr.id
             alert("로그인 성공")
+            navigate(`/item-list`);
 
         }).catch(() => {
             alert("로그인 실패")

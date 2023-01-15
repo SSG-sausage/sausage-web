@@ -1,39 +1,51 @@
-
 import styled from 'styled-components';
 import SearchBox from './SearchBox';
+import PurchaseModal from './PurchaseModal';
 
-const ItemDetail = ({itemImgUrl, brandNm, itemNm, itemAmt}) => {
+const ItemDetail = ({
+                        itemImgUrl, brandNm, itemNm, itemAmt
+                        , isPurchaseModalOn, setPurchaseModalOn, itemQty, setItemQty,
+                    }) => {
 
     return (
         <Main>
             <Container>
 
-                <SearchBox/>
+                <div>
+                    <SearchBox />
 
-                <ItemImg src={itemImgUrl}/>
+                    <ItemImg src={itemImgUrl} />
 
-                <ShppCategory>
+                    <ShppCategory>
                         쓱배송
-                </ShppCategory>
+                    </ShppCategory>
 
-                <ItemTitle>
+                    <ItemTitle>
 
-                    <div>
-                        test
-                    </div>
-                    <div>
-                        {itemNm}
-                    </div>
+                        <div>
+                            test
+                        </div>
+                        <div>
+                            {itemNm}
+                        </div>
 
-                </ItemTitle>
+                    </ItemTitle>
 
-                <ItemAmt>
-                    <b>{itemAmt}</b> 원
-                </ItemAmt>
+                    <ItemAmt>
+                        <b>{itemAmt}</b> 원
+                    </ItemAmt>
+                </div>
 
-                <PurchaseButton>
-                    구매하기
-                </PurchaseButton>
+                {
+                    isPurchaseModalOn ?
+                        <PurchaseModal itemNm={itemNm} itemBrandNm='test' itemAmt={itemAmt}
+                                       itemQty={itemQty} setItemQty={setItemQty} /> :
+
+                        <PurchaseButton onClick={setPurchaseModalOn}>
+                            구매하기
+                        </PurchaseButton>
+                }
+
 
             </Container>
         </Main>
@@ -53,7 +65,9 @@ const Main = styled.div`
 `;
 
 const Container = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: 20px;
   width: 380px;
   height: 880px;
@@ -64,7 +78,7 @@ const Container = styled.div`
 const ItemImg = styled.img`
   width: 100%;
   margin-top: 30px;
-`
+`;
 
 const ShppCategory = styled.div`
 
@@ -85,12 +99,12 @@ const ItemTitle = styled.div`
   margin-top: 20px;
   margin-left: 20px;
   font-size: 13px;
-  
-  div:first-child{
+
+  div:first-child {
     font-weight: bold;
     margin-bottom: 10px;
   }
-  
+
 `;
 
 const ItemAmt = styled.div`
@@ -98,8 +112,8 @@ const ItemAmt = styled.div`
   font-size: 20px;
   margin-left: 20px;
   margin-top: 20px;
-  
-`
+
+`;
 
 const PurchaseButton = styled.button`
   width: 380px;
@@ -108,8 +122,8 @@ const PurchaseButton = styled.button`
   border: none;
   cursor: pointer;
   color: white;
-  position: absolute;
-  bottom: 43px;
+  //position: absolute;
+  //bottom: 43px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 
@@ -117,6 +131,6 @@ const PurchaseButton = styled.button`
     background-color: #ff3905;
   }
 
-`
+`;
 
 export default ItemDetail;

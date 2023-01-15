@@ -10,7 +10,8 @@ const ItemDetailContainer = () => {
     const [itemImgUrl, setItemImgUrl] = useState();
     const [itemNm, setItemNm] = useState()
     const [itemAmt, setIteAmt] = useState();
-
+    const [itemQty, setItemQty] = useState(2);
+    const [isPurchaseModalOn, setPurchaseModalOn] = useState(false);
 
 
     useEffect(() => {
@@ -30,7 +31,9 @@ const ItemDetailContainer = () => {
     }, []);
 
 
-    return <ItemDetail itemImgUrl={itemImgUrl} itemNm={itemNm} itemAmt={itemAmt} itemBrandNm = 'test'/>;
+    return <ItemDetail itemImgUrl={itemImgUrl} itemNm={itemNm} itemAmt={itemAmt} itemBrandNm = 'test'
+                       isPurchaseModalOn={isPurchaseModalOn} setPurchaseModalOn={setPurchaseModalOn}
+                       itemQty = {itemQty} setItemQty = {setItemQty}/>;
 };
 
 export default ItemDetailContainer;

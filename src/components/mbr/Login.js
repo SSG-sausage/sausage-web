@@ -84,8 +84,7 @@ const LoginBox = styled.button`
   width: 280px;
   line-height: 40px;
   height: 40px;
-  background: #ff755d;
-  color: darkgray;
+  background: #EB4F47;
   color: white;
   text-align: center;
   border: none;
