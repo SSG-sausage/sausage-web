@@ -60,7 +60,7 @@ const SearchContainer = styled.div`
   }
   
   #search-box{
-    width: 180px;
+    width: 200px;
     height: 30px;
     border-radius: 20px;
     
