@@ -2,6 +2,7 @@ import Login from '../../components/mbr/Login';
 import { login } from '../../api/login';
 import { useState } from 'react';
 import {useCookies} from 'react-cookie'
+import { axios } from 'axios';
 
 const LoginContainer = () => {
 
@@ -23,6 +24,7 @@ const LoginContainer = () => {
         login(mbr.id, mbr.pwd).then(response => {
 
             setMbrCookie('mbrId', mbr.id)
+            axios.defaults.headers.common['mbrId'] = mbr.id
             alert("로그인 성공")
 
         }).catch(() => {
