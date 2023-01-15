@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { axiosInstance } from './instance';
 
 export const login = (id, pwd) =>
@@ -6,6 +5,4 @@ export const login = (id, pwd) =>
             mbrLoginId: id,
             mbrPwd: pwd,
         }
-    ).then(
-
     );
