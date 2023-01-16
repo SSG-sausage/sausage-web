@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import { Cookies } from "react-cookie";
 import CartShareDetailPage from './pages/order/CartShareDetailPage';
 import CartSharePage from './pages/order/CartSharePage';
 import MainPage from './pages/MainPage';
@@ -13,25 +14,48 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+
   body {
     word-break: keep-all;
+    width: auto;
+    height: 100vh;
+    background: #f2f2f2;
+    font-family: 'line';
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
+const Container = styled.div`
+  
+  border-radius: 20px;
+  width: 380px;
+  height: 880px;
+  background: white;
+  font-family: 'line';
+`;
+
+
 function App() {
+
     return (
         <>
             <GlobalStyle />
-            <Routes>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/cart-share" element={<CartSharePage />} />
-                <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
-                <Route path="/login" element={<LoginPage/>} />
-                <Route path="/item-list" element={<ItemListPage/>} />
-                <Route path="/item/:itemId" element={<ItemDetailPage />} />
+
+            <Container>
+                <Routes>
+                    <Route path='/' element={<MainPage />} />
+                    <Route path='/cart-share' element={<CartSharePage />} />
+                    <Route path='/cart-share/:cartShareId' element={<CartShareDetailPage />} />
+                    <Route path='/login' element={<LoginPage />} />
+                    <Route path='/item-list' element={<ItemListPage />} />
+                    <Route path='/item/:itemId' element={<ItemDetailPage />} />
 
 
-            </Routes>
+                </Routes>
+            </Container>
         </>
     );
 }

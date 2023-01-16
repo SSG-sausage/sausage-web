@@ -18,8 +18,8 @@ const SearchContainer = styled.div`
   flex-direction: row;
 
   justify-content: space-around;
-
-  margin-top: 20px;
+  
+  padding-top: 20px;
 
   #logo {
     height: 18px;

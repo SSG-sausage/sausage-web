@@ -8,34 +8,34 @@ const ItemDetail = ({
                     }) => {
 
     return (
-        <Main>
-            <Container>
+        <ItemDetailContainer>
 
-                <div>
-                    <SearchBox />
+            <div>
+                <SearchBox />
 
-                    <ItemImg src={itemImgUrl} />
+                <ItemImg src={itemImgUrl} />
 
-                    <ShppCategory>
-                        쓱배송
-                    </ShppCategory>
+                <ShppCategory>
+                    쓱배송
+                </ShppCategory>
 
-                    <ItemTitle>
+                <ItemTitle>
 
-                        <div>
-                            test
-                        </div>
-                        <div>
-                            {itemNm}
-                        </div>
+                    <div>
+                        test
+                    </div>
+                    <div>
+                        {itemNm}
+                    </div>
 
-                    </ItemTitle>
+                </ItemTitle>
 
-                    <ItemAmt>
-                        <b>{itemAmt.toLocaleString()}</b> 원
-                    </ItemAmt>
-                </div>
+                <ItemAmt>
+                    <b>{itemAmt.toLocaleString()}</b> 원
+                </ItemAmt>
+            </div>
 
+            <ButtonContainer>
                 {
                     isPurchaseModalOn ?
                         <ItemPurchaseModal itemNm={itemNm} itemBrandNm='test' itemAmt={itemAmt}
@@ -45,34 +45,22 @@ const ItemDetail = ({
                             구매하기
                         </PurchaseButton>
                 }
-
-
-            </Container>
-        </Main>
+            </ButtonContainer>
+        </ItemDetailContainer>
     );
 };
 
-const Main = styled.div`
-  width: auto;
-  height: 100vh;
-  background: #f2f2f2;
-  font-family: 'line';
-  align-content: center;
+const ItemDetailContainer = styled.div`
+
   display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 
 `;
 
-const Container = styled.div`
+const ButtonContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 20px;
-  width: 380px;
-  height: 880px;
-  background: white;
-  font-family: 'line';
 `;
 
 const ItemImg = styled.img`
@@ -112,7 +100,7 @@ const ItemAmt = styled.div`
   font-size: 20px;
   margin-left: 20px;
   margin-top: 20px;
-  
+
 
 `;
 
@@ -123,8 +111,6 @@ const PurchaseButton = styled.button`
   border: none;
   cursor: pointer;
   color: white;
-  //position: absolute;
-  //bottom: 43px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 
