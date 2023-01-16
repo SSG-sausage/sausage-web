@@ -16,8 +16,11 @@ const ItemListContainer = () => {
 
     useEffect(() => {
         getAllItemList().then(response => {
-            console.log(response.data.data.itemList);
-            setItemList(response.data.data.itemList);
+            const map = new Map(Object.entries(response.data.data.itemMap));
+            const values = Array.from(map.values());
+
+            console.log(values);
+            setItemList(values);
         });
     }, []);
 

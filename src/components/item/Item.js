@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Item = ({ index, itemNm, brandNm, itemAmt, itemImgUrl, onClickItem, shppType }) => {
+const Item = ({ index, itemNm, itemBrandNm, itemAmt, itemImgUrl, onClickItem, shppType }) => {
     return (
         <Container onClick={onClickItem}>
             <p id="index">{index}</p>
@@ -15,7 +15,7 @@ const Item = ({ index, itemNm, brandNm, itemAmt, itemImgUrl, onClickItem, shppTy
 
             <ItemTitle>
                 <div>
-                    <b>{brandNm}</b> {itemNm}
+                    <b>{itemBrandNm}</b> {itemNm}
                 </div>
             </ItemTitle>
 

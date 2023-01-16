@@ -8,6 +8,7 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/mbr/LoginPage';
 import ItemListPage from './pages/item/ItemListPage';
 import ItemDetailPage from './pages/item/ItemDetailPage';
+import AuthLayout from './containers/mbr/AuthLayout';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -43,12 +44,15 @@ function App() {
 
             <Container>
                 <Routes>
-                    <Route path="/" element={<MainPage />} />
                     <Route path="/cart-share" element={<CartSharePage />} />
                     <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/item-list" element={<ItemListPage />} />
-                    <Route path="/item/:itemId" element={<ItemDetailPage />} />
+
+                    <Route element={<AuthLayout />}>
+                        <Route path="/" element={<ItemListPage />} />
+                        <Route path="/item-list" element={<ItemListPage />} />
+                        <Route path="/item/:itemId" element={<ItemDetailPage />} />
+                    </Route>
                 </Routes>
             </Container>
         </>

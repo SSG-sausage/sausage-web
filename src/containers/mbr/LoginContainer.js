@@ -25,8 +25,9 @@ const LoginContainer = () => {
     const onClickLoginBnt = () => {
         login(mbr.id, mbr.pwd)
             .then(response => {
-                setMbrCookie('mbrId', mbr.id);
-                axiosInstance.defaults.headers.common['mbrId'] = mbr.id;
+                console.log();
+                setMbrCookie('mbrId', response.data.data.mbrId);
+                axiosInstance.defaults.headers.common['mbrId'] = response.data.data.mbrId;
                 alert('로그인 성공');
                 navigate(`/item-list`);
             })

@@ -1,7 +1,15 @@
 import styled from 'styled-components';
 import CartShare from '../order/CartShare';
 
-const ItemPurchaseModal = ({ itemBrandNm, itemNm, itemAmt, itemQty, plusItemQty, minusItemQty }) => {
+const ItemPurchaseModal = ({
+    itemBrandNm,
+    itemNm,
+    itemAmt,
+    itemQty,
+    plusItemQty,
+    minusItemQty,
+    onClickSaveCartShareButton,
+}) => {
     return (
         <Modal>
             <Item>
@@ -31,7 +39,7 @@ const ItemPurchaseModal = ({ itemBrandNm, itemNm, itemAmt, itemQty, plusItemQty,
             </TotalAmt>
 
             <Buttons>
-                <CartShareButton>장바구니</CartShareButton>
+                <CartShareButton onClick={onClickSaveCartShareButton}>장바구니</CartShareButton>
                 <PurchaseButton>바로구매</PurchaseButton>
             </Buttons>
         </Modal>
