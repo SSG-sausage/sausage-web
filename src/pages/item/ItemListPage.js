@@ -1,5 +1,5 @@
 
-import ItemListContainer from '../containers/item/ItemContainer';
+import ItemListContainer from '../../containers/item/ItemContainer';
 
 const ItemListPage = () => {
   return <ItemListContainer/>

@@ -1,5 +1,5 @@
 
-import LoginContainer from '../containers/mbr/LoginContainer';
+import LoginContainer from '../../containers/mbr/LoginContainer';
 
 const LoginPage = () => {
   return <LoginContainer/>

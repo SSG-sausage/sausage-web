@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import CartShare from '../CartShare';
+import CartShare from '../order/CartShare';
 
-const PurchaseModal = ({itemBrandNm ,itemNm, itemAmt, itemQty, setItemQty}) => {
+const ItemPurchaseModal = ({itemBrandNm ,itemNm, itemAmt, itemQty, plusItemQty, minusItemQty}) => {
 
     return (
 
@@ -17,7 +17,7 @@ const PurchaseModal = ({itemBrandNm ,itemNm, itemAmt, itemQty, setItemQty}) => {
 
                     <div>
 
-                        <MinusBox>
+                        <MinusBox onClick={minusItemQty}>
                             -
                         </MinusBox>
 
@@ -25,13 +25,13 @@ const PurchaseModal = ({itemBrandNm ,itemNm, itemAmt, itemQty, setItemQty}) => {
                             {itemQty}
                         </QtyBox>
 
-                        <PlusBox>
+                        <PlusBox onClick={plusItemQty}>
                             +
                         </PlusBox>
                     </div>
 
                     <div>
-                        {itemAmt} 원
+                        {itemAmt.toLocaleString()} 원
                     </div>
 
                 </ItemAmtBox>
@@ -45,7 +45,7 @@ const PurchaseModal = ({itemBrandNm ,itemNm, itemAmt, itemQty, setItemQty}) => {
                 </p>
 
                 <p>
-                    {itemAmt * itemQty}
+                    {(itemAmt * itemQty).toLocaleString()}
                 </p>
 
                 <p>
@@ -215,4 +215,4 @@ const PurchaseButton = styled.button`
 
 `;
 
-export default PurchaseModal;
+export default ItemPurchaseModal;

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 const searchBox = () => {
-  return(
-      <SearchContainer>
-          <img id='logo' src='/sausage-logo.png' />
-          <div id='search-box'></div>
-          <img id='cart-share' src='/cart-share.png' />
-      </SearchContainer>
-  )
-}
+    return (
+        <SearchContainer>
+            <img id='logo' src={require('../../assets/sausage-logo.png')} />
+            <div id='search-box'></div>
+            <img id='cart-share' src={require('../../assets/cart-share.png')} />
+        </SearchContainer>
+    );
+};
 
 
 const SearchContainer = styled.div`
@@ -41,4 +41,4 @@ const SearchContainer = styled.div`
 `;
 
 
-export default searchBox
+export default searchBox;

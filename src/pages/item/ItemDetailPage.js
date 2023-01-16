@@ -1,5 +1,5 @@
 
-import ItemDetailContainer from '../containers/item/ItemDetailContainer';
+import ItemDetailContainer from '../../containers/item/ItemDetailContainer';
 
 const ItemDetailPage = () => {
   return <ItemDetailContainer/>

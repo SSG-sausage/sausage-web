@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import SearchBox from './SearchBox';
-import PurchaseModal from './PurchaseModal';
+import ItemPurchaseModal from './ItemPurchaseModal';
 
 const ItemDetail = ({
                         itemImgUrl, brandNm, itemNm, itemAmt
-                        , isPurchaseModalOn, setPurchaseModalOn, itemQty, setItemQty,
+                        , isPurchaseModalOn, setPurchaseModalOn, itemQty, plusItemQty, minusItemQty,
                     }) => {
 
     return (
@@ -32,14 +32,14 @@ const ItemDetail = ({
                     </ItemTitle>
 
                     <ItemAmt>
-                        <b>{itemAmt}</b> 원
+                        <b>{itemAmt.toLocaleString()}</b> 원
                     </ItemAmt>
                 </div>
 
                 {
                     isPurchaseModalOn ?
-                        <PurchaseModal itemNm={itemNm} itemBrandNm='test' itemAmt={itemAmt}
-                                       itemQty={itemQty} setItemQty={setItemQty} /> :
+                        <ItemPurchaseModal itemNm={itemNm} itemBrandNm='test' itemAmt={itemAmt}
+                                           itemQty={itemQty} plusItemQty={plusItemQty} minusItemQty={minusItemQty} /> :
 
                         <PurchaseButton onClick={setPurchaseModalOn}>
                             구매하기
@@ -112,6 +112,7 @@ const ItemAmt = styled.div`
   font-size: 20px;
   margin-left: 20px;
   margin-top: 20px;
+  
 
 `;
 

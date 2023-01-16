@@ -1,5 +1,5 @@
 import Login from '../../components/mbr/Login';
-import { login } from '../../api/login';
+import { login } from '../../api/mbr/login';
 import { useState } from 'react';
 import {useCookies} from 'react-cookie'
 import { axiosInstance } from '../../api/instance';

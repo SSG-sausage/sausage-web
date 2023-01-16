@@ -12,7 +12,7 @@ const Item = ({index, itemNm, brandNm, itemAmt, itemImgUrl, onClickItem, shppTyp
                 <div>
                     쓱배송
                 </div>
-                <img src='cart.png' />
+                <img src={require('../../assets/cart.png')} />
             </ShppCategory>
 
             <ItemLine />
@@ -26,7 +26,7 @@ const Item = ({index, itemNm, brandNm, itemAmt, itemImgUrl, onClickItem, shppTyp
 
             <ItemAmt>
                 <p>
-                    {itemAmt}
+                    {itemAmt.toLocaleString()}
                 </p>
                 <p>
                     원

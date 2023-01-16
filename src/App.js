@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import CartShareDetailPage from './pages/CartShareDetailPage';
-import CartSharePage from './pages/CartSharePage';
+import CartShareDetailPage from './pages/order/CartShareDetailPage';
+import CartSharePage from './pages/order/CartSharePage';
 import MainPage from './pages/MainPage';
-import LoginPage from './pages/LoginPage';
-import ItemListPage from './pages/ItemListPage';
-import ItemDetailPage from './pages/ItemDetailPage';
+import LoginPage from './pages/mbr/LoginPage';
+import ItemListPage from './pages/item/ItemListPage';
+import ItemDetailPage from './pages/item/ItemDetailPage';
 
 const GlobalStyle = createGlobalStyle`
   * {

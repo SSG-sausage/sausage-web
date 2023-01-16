@@ -23,7 +23,7 @@ const ItemList = ({ itemList, onClickItem }) => {
                             index={index + 1}
                             itemNm={it.itemNm}
                             itemImgUrl={it.itemImgUrl}
-                            itemAmt={it.itemAmt}
+                            itemAmt={it.itemAmt.toLocaleString()}
                             onClickItem={() => onClickItem(it.id)}
                             brandNm='test'
                         />

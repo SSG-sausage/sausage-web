@@ -1,13 +1,13 @@
-import { axiosInstance } from './instance';
+import { axiosInstance } from '../instance';
 
 export const getAllItemList = () =>
-    axiosInstance.get('http://localhost:8000/item/api/item',
+    axiosInstance.get('/item/api/item',
     ).catch(() => {
         alert('상품 리스트 조회 실패');
     });
 
 export const getItem = (itemId) =>
-    axiosInstance.get('http://localhost:8000/item/api/item/' + itemId,
+    axiosInstance.get('/item/api/item/' + itemId,
     ).catch(() => {
         alert('상품 조회 실패');
     });

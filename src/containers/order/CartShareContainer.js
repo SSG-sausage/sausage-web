@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { findCartShareList } from '../api/cart-share';
-import CartShare from '../components/CartShare';
+import { findCartShareList } from '../../api/order/cart-share';
+import CartShare from '../../components/order/CartShare';
 
 const CartShareContainer = () => {
     const navigate = useNavigate();
