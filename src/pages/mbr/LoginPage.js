@@ -1,8 +1,7 @@
-
 import LoginContainer from '../../containers/mbr/LoginContainer';
 
 const LoginPage = () => {
-  return <LoginContainer/>
-}
+    return <LoginContainer />;
+};
 
-export default LoginPage
+export default LoginPage;

@@ -8,25 +8,19 @@ import { getAllItemList } from '../../api/item/item';
 import { useNavigate } from 'react-router-dom';
 
 const ItemListContainer = () => {
-
     const navigate = useNavigate();
     const [itemList, setItemList] = useState([]);
 
-    const onClickItem = (itemId) => {
+    const onClickItem = itemId => {
         navigate(`/item/${itemId}`);
     };
 
     useEffect(() => {
-
         getAllItemList().then(response => {
-
-                console.log(response.data.data.itemList);
-                setItemList(response.data.data.itemList);
-            },
-        );
-
+            console.log(response.data.data.itemList);
+            setItemList(response.data.data.itemList);
+        });
     }, []);
-
 
     return <ItemList itemList={itemList} onClickItem={onClickItem} />;
 };

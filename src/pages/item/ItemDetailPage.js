@@ -1,8 +1,7 @@
-
 import ItemDetailContainer from '../../containers/item/ItemDetailContainer';
 
 const ItemDetailPage = () => {
-  return <ItemDetailContainer/>
-}
+    return <ItemDetailContainer />;
+};
 
-export default ItemDetailPage
+export default ItemDetailPage;

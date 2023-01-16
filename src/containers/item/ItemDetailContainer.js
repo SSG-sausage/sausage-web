@@ -4,10 +4,9 @@ import { getAllItemList, getItem } from '../../api/item/item';
 import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
-
     let { itemId } = useParams();
-    const [itemImgUrl, setItemImgUrl] = useState("");
-    const [itemNm, setItemNm] = useState("");
+    const [itemImgUrl, setItemImgUrl] = useState('');
+    const [itemNm, setItemNm] = useState('');
     const [itemAmt, setIteAmt] = useState(0);
     const [itemQty, setItemQty] = useState(1);
     const [isPurchaseModalOn, setPurchaseModalOn] = useState(false);
@@ -23,24 +22,29 @@ const ItemDetailContainer = () => {
     };
 
     useEffect(() => {
-
         console.log(itemId);
 
         getItem(itemId).then(response => {
-
-                console.log(response.data.data);
-                setItemImgUrl(response.data.data.itemImgUrl);
-                setItemNm(response.data.data.itemNm);
-                setIteAmt(response.data.data.itemAmt);
-            },
-        );
-
+            console.log(response.data.data);
+            setItemImgUrl(response.data.data.itemImgUrl);
+            setItemNm(response.data.data.itemNm);
+            setIteAmt(response.data.data.itemAmt);
+        });
     }, []);
 
-
-    return <ItemDetail itemImgUrl={itemImgUrl} itemNm={itemNm} itemAmt={itemAmt} itemBrandNm='test'
-                       isPurchaseModalOn={isPurchaseModalOn} setPurchaseModalOn={setPurchaseModalOn}
-                       itemQty={itemQty} plusItemQty={plusItemQty} minusItemQty = {minusItemQty}/>;
+    return (
+        <ItemDetail
+            itemImgUrl={itemImgUrl}
+            itemNm={itemNm}
+            itemAmt={itemAmt}
+            itemBrandNm="test"
+            isPurchaseModalOn={isPurchaseModalOn}
+            setPurchaseModalOn={setPurchaseModalOn}
+            itemQty={itemQty}
+            plusItemQty={plusItemQty}
+            minusItemQty={minusItemQty}
+        />
+    );
 };
 
 export default ItemDetailContainer;

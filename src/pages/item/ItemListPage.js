@@ -1,8 +1,7 @@
-
 import ItemListContainer from '../../containers/item/ItemContainer';
 
 const ItemListPage = () => {
-  return <ItemListContainer/>
-}
+    return <ItemListContainer />;
+};
 
-export default ItemListPage
+export default ItemListPage;
