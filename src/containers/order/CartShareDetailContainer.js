@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import CartShareDetail from '../components/CartShareDetail';
+import CartShareDetail from '../../components/order/CartShareDetail';
 import { useParams } from 'react-router-dom';
 import * as stompjs from '@stomp/stompjs';
-import { findCartShare } from '../api/cartShare';
+import { findCartShare } from '../../api/order/cartShare';
 
 const CartShareDetailContainer = () => {
     const { cartShareId } = useParams();
