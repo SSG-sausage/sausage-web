@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Cookies } from 'react-cookie';
-import CartShareDetailPage from './pages/order/CartShareDetailPage';
-import CartSharePage from './pages/order/CartSharePage';
+import CartShareDetailPage from './pages/cartshare/CartShareDetailPage';
+import CartSharePage from './pages/cartshare/CartSharePage';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/mbr/LoginPage';
 import ItemListPage from './pages/item/ItemListPage';
@@ -30,10 +30,14 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
     border-radius: 20px;
-    width: 380px;
-    height: 880px;
+    width: 390px;
+    height: 844px;
     background: white;
     font-family: 'line';
+
+    #status-bar {
+        border-radius: 20px 20px 0px 0px;
+    }
 `;
 
 function App() {
@@ -42,6 +46,7 @@ function App() {
             <GlobalStyle />
 
             <Container>
+                <img id="status-bar" src={require('./assets/status-bar.png')} />
                 <Routes>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/cart-share" element={<CartSharePage />} />
