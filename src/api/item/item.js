@@ -13,8 +13,8 @@ export const getItem = itemId =>
 export const saveCartShareItem = (cartShareId, itemId, itemQty) =>
     axiosInstance
         .post('/order/api/cart-share/' + cartShareId + '/cart-share-item', {
-            itemId: { itemId },
-            itemQty: { itemQty },
+            itemId: itemId,
+            itemQty: itemQty,
         })
         .catch(() => {
             alert('공유 장바구니 담기 실패');

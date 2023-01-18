@@ -31,8 +31,8 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
     border-radius: 20px;
-    width: 380px;
-    height: 880px;
+    width: 390px;
+    height: 844px;
     background: white;
     font-family: 'line';
 `;
