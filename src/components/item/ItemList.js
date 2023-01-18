@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
-import { Component } from 'react';
-import * as PropTypes from 'prop-types';
 import Item from './Item';
 import SearchBox from './SearchBox';
 
@@ -15,13 +13,14 @@ const ItemList = ({ itemList, onClickItem }) => {
             <RankingContainer>
                 {itemList.map((it, index) => (
                     <Item
-                        key={it.id}
+                        key={it.itemId}
                         index={index + 1}
                         itemNm={it.itemNm}
+                        itemBrandNm={it.itemBrandNm}
                         itemImgUrl={it.itemImgUrl}
                         itemAmt={it.itemAmt.toLocaleString()}
-                        onClickItem={() => onClickItem(it.id)}
-                        brandNm="test"
+                        onClickItem={() => onClickItem(it.itemId)}
+                        brandNm={it.itemBrandNm}
                     />
                 ))}
             </RankingContainer>

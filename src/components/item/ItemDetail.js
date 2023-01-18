@@ -4,7 +4,7 @@ import ItemPurchaseModal from './ItemPurchaseModal';
 
 const ItemDetail = ({
     itemImgUrl,
-    brandNm,
+    itemBrandNm,
     itemNm,
     itemAmt,
     isPurchaseModalOn,
@@ -12,6 +12,7 @@ const ItemDetail = ({
     itemQty,
     plusItemQty,
     minusItemQty,
+    onClickSaveCartShareButton,
 }) => {
     return (
         <ItemDetailContainer>
@@ -23,7 +24,7 @@ const ItemDetail = ({
                 <ShppCategory>쓱배송</ShppCategory>
 
                 <ItemTitle>
-                    <div>test</div>
+                    <div>{itemBrandNm}</div>
                     <div>{itemNm}</div>
                 </ItemTitle>
 
@@ -36,11 +37,12 @@ const ItemDetail = ({
                 {isPurchaseModalOn ? (
                     <ItemPurchaseModal
                         itemNm={itemNm}
-                        itemBrandNm="test"
+                        itemBrandNm={itemBrandNm}
                         itemAmt={itemAmt}
                         itemQty={itemQty}
                         plusItemQty={plusItemQty}
                         minusItemQty={minusItemQty}
+                        onClickSaveCartShareButton={onClickSaveCartShareButton}
                     />
                 ) : (
                     <PurchaseButton onClick={setPurchaseModalOn}>구매하기</PurchaseButton>

@@ -1,6 +1,6 @@
 import ItemDetail from '../../components/item/ItemDetail';
 import { useEffect, useState } from 'react';
-import { getAllItemList, getItem } from '../../api/item/item';
+import { getItem, saveCartShareItem } from '../../api/item/item';
 import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
@@ -9,6 +9,7 @@ const ItemDetailContainer = () => {
     const [itemNm, setItemNm] = useState('');
     const [itemAmt, setIteAmt] = useState(0);
     const [itemQty, setItemQty] = useState(1);
+    const [itemBrandNm, setItemBrandNm] = useState('');
     const [isPurchaseModalOn, setPurchaseModalOn] = useState(false);
 
     const plusItemQty = () => {
@@ -21,6 +22,12 @@ const ItemDetailContainer = () => {
         }
     };
 
+    const onClickSaveCartShareButton = () => {
+        saveCartShareItem(1, parseInt(itemId), itemQty).then(response => {
+            alert('장바구니 추가 성공');
+        });
+    };
+
     useEffect(() => {
         console.log(itemId);
 
@@ -29,6 +36,7 @@ const ItemDetailContainer = () => {
             setItemImgUrl(response.data.data.itemImgUrl);
             setItemNm(response.data.data.itemNm);
             setIteAmt(response.data.data.itemAmt);
+            setItemBrandNm(response.data.data.itemBrandNm);
         });
     }, []);
 
@@ -37,12 +45,13 @@ const ItemDetailContainer = () => {
             itemImgUrl={itemImgUrl}
             itemNm={itemNm}
             itemAmt={itemAmt}
-            itemBrandNm="test"
+            itemBrandNm={itemBrandNm}
             isPurchaseModalOn={isPurchaseModalOn}
             setPurchaseModalOn={setPurchaseModalOn}
             itemQty={itemQty}
             plusItemQty={plusItemQty}
             minusItemQty={minusItemQty}
+            onClickSaveCartShareButton={onClickSaveCartShareButton}
         />
     );
 };
