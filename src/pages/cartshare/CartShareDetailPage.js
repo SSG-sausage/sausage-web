@@ -1,5 +1,5 @@
 import React from 'react';
-import CartShareDetailContainer from '../../containers/order/CartShareDetailContainer';
+import CartShareDetailContainer from '../../containers/cartshare/CartShareDetailContainer';
 
 const CartShareDetailPage = () => {
     return <CartShareDetailContainer />;

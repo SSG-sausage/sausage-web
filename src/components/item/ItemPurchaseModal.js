@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CartShare from '../order/CartShare';
+import CartShare from '../cartshare/CartShare';
 
 const ItemPurchaseModal = ({
     itemBrandNm,
