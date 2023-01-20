@@ -7,10 +7,10 @@ const DutchPayContainer = () => {
     const navigate = useNavigate();
     let { cartShareOrdId } = useParams();
 
-    const onClickCreate = () => {
-        navigate(`/item`);
+    const onClickCreate = cartShareOrdId => {
+        navigate(`/cart-share-ord/${cartShareOrdId}/dutch-pay/create`);
     };
-    return <DutchPay />;
+    return <DutchPay onClickCreate={onClickCreate} cartShareOrdId={cartShareOrdId} />;
 };
 
 export default DutchPayContainer;

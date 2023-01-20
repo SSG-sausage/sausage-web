@@ -25,6 +25,7 @@ const OrdMenu = styled.div`
     font-size: 20px;
     color: #6c78f1;
     font-weight: bold;
+    cursor: pointer;
 `;
 
 const DutchPayMenu = styled.div`
@@ -34,5 +35,6 @@ const DutchPayMenu = styled.div`
     font-size: 20px;
     color: #3994fa;
     font-weight: bold;
+    cursor: pointer;
 `;
 export default DutchPayNavigationBar;
