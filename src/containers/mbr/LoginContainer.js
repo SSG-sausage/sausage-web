@@ -25,7 +25,6 @@ const LoginContainer = () => {
     const onClickLoginBnt = () => {
         login(mbr.id, mbr.pwd)
             .then(response => {
-                console.log();
                 setMbrCookie('mbrId', response.data.data.mbrId);
                 axiosInstance.defaults.headers.common['mbrId'] = response.data.data.mbrId;
                 alert('로그인 성공');
