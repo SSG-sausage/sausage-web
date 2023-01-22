@@ -3,7 +3,12 @@ import CartShareDetail from '../../components/cartshare/CartShareDetail';
 import { useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import * as stompjs from '@stomp/stompjs';
-import { findCartShare, updateCartShareItemQty, updateCartShareMbrProg } from '../../api/cartshare/cartShare';
+import {
+    findCartShare,
+    updateCartShareItemComm,
+    updateCartShareItemQty,
+    updateCartShareMbrProg,
+} from '../../api/cartshare/cartShare';
 
 const CartShareDetailContainer = () => {
     const { cartShareId } = useParams();
@@ -73,6 +78,10 @@ const CartShareDetailContainer = () => {
         await updateCartShareItemQty(cookies.mbrId, cartShareId, cartShareItemId, qty);
     };
 
+    const onClickCommOrMy = async (cartShareItemId, commYn) => {
+        await updateCartShareItemComm(cookies.mbrId, cartShareId, cartShareItemId, commYn);
+    };
+
     const fetchCartShare = async () => {
         const response = await findCartShare(cookies.mbrId, cartShareId);
         const data = response.data.data;
@@ -92,6 +101,7 @@ const CartShareDetailContainer = () => {
             cartShareData={cartShareData}
             onClickDone={onClickDone}
             onClickPlusOrMinus={onClickPlusOrMinus}
+            onClickCommOrMy={onClickCommOrMy}
         />
     );
 };

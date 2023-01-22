@@ -12,6 +12,7 @@ const CartShareItem = ({
     commYn,
     mastrYn,
     onClickPlusOrMinus,
+    onClickCommOrMy,
 }) => {
     return (
         <Container>
@@ -39,9 +40,23 @@ const CartShareItem = ({
                 </ItemInfoWrapper>
                 {editYn ? (
                     <ItemEditWrapper>
-                        {commYn ? <img class="common" id="my" src={require('../../assets/my.png')}></img> : <></>}
+                        {commYn ? (
+                            <img
+                                class="common"
+                                id="my"
+                                src={require('../../assets/my.png')}
+                                onClick={() => onClickCommOrMy(cartShareItemId, false)}
+                            ></img>
+                        ) : (
+                            <></>
+                        )}
                         {mastrYn ? (
-                            <img class="common" id="common" src={require('../../assets/common.png')}></img>
+                            <img
+                                class="common"
+                                id="common"
+                                src={require('../../assets/common.png')}
+                                onClick={() => onClickCommOrMy(cartShareItemId, true)}
+                            ></img>
                         ) : (
                             <></>
                         )}
