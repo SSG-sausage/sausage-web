@@ -9,9 +9,12 @@ import PersonalSection from './PersonalSection';
 const CartShareDetail = ({ cartShareData }) => {
     return (
         <>
+            <NavigationBar nm={cartShareData.cartShareNm} itemQty={cartShareData.cartShareItemQty} />
             <CartShareContainer>
-                <NavigationBar nm={cartShareData.cartShareNm} itemQty={cartShareData.cartShareItemQty} />
-                <BackGround />
+                <BackGround>
+                    <div id="blue"></div>
+                    <div id="white"></div>
+                </BackGround>
                 <CartShareInfo>
                     <div id="cartShareNm">{cartShareData.cartShareNm}</div>
                     <div id="memberInfo">
@@ -64,7 +67,7 @@ const CartShareDetail = ({ cartShareData }) => {
 
 const CartShareContainer = styled.div`
     width: 390px;
-    height: 737px;
+    height: 690px;
     position: relative;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -104,7 +107,6 @@ const CheckBoxContainer = styled.div`
 const OptionContainer = styled.div`
     width: 390px;
     height: 58px;
-    margin-top: 72px;
 
     .option {
         float: left;
@@ -139,19 +141,24 @@ const OptionContainer = styled.div`
 `;
 
 const BackGround = styled.div`
-    float: left;
-    height: 76px;
-    width: 390px;
-    top: 47px;
-    background-color: #6c78f0;
+    #blue {
+        height: 76px;
+        width: 390px;
+        background-color: #6c78f0;
+    }
+
+    #white {
+        height: 160px;
+        width: 390px;
+    }
 `;
 
 const CartShareInfo = styled.div`
-    position: relative;
+    position: absolute;
     height: 216px;
     width: 334px;
     left: 28px;
-    top: 71px;
+    top: 21px;
     background: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
