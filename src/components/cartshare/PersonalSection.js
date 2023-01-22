@@ -1,16 +1,41 @@
 import styled from 'styled-components';
+import CartShareItem from './CartShareItem';
 
-const PersonalSection = ({ flag }) => {
-    return flag ? (
-        <Container>
-            <div id="name">전미림</div>
-            <img id="master" src={require('../../assets/master.png')} />
-            {/* <img id="inprogress" src={require('../../assets/inprogress.png')} /> */}
-            {/* <img id="done" src={require('../../assets/done.png')} /> */}
-            <div id="amount">5,000</div>
-        </Container>
-    ) : (
-        <></>
+const PersonalSection = ({ personalItemInfo }) => {
+    return (
+        <>
+            <Container>
+                <div id="name">{personalItemInfo.mbrNm}</div>
+                {personalItemInfo.mastrYn ? (
+                    <img id="master" src={require('../../assets/master.png')} />
+                ) : (
+                    <>
+                        {personalItemInfo.progStatCd === 'DONE' ? (
+                            <img id="done" src={require('../../assets/done.png')} />
+                        ) : (
+                            <img id="inprogress" src={require('../../assets/inprogress.png')} />
+                        )}
+                    </>
+                )}
+                <div id="amount">{personalItemInfo.personalAmt.toLocaleString()}</div>
+            </Container>
+            {personalItemInfo.cartShareItemList.map(it => {
+                return (
+                    <CartShareItem
+                        key={it.cartShareItemId}
+                        itemBrandNm={it.itemBrandNm}
+                        itemNm={it.itemNm}
+                        shppCd={it.shppCd}
+                        itemImgUrl={it.itemImgUrl}
+                        itemAmt={it.itemAmt.toLocaleString()}
+                        itemQty={it.itemQty}
+                        editYn={personalItemInfo.editYn}
+                        commYn={false}
+                        mastrYn={personalItemInfo.mastrYn}
+                    />
+                );
+            })}
+        </>
     );
 };
 
@@ -21,19 +46,21 @@ const Container = styled.div`
 
     #master {
         margin-top: 13px;
+        margin-left: 10px;
     }
 
     #inprogress {
         margin-top: 17px;
+        margin-left: 10px;
     }
 
     #done {
         margin-top: 17px;
+        margin-left: 10px;
     }
 
     #name {
         float: left;
-        width: 60px;
         height: 35px;
         display: flex;
         justify-content: left;

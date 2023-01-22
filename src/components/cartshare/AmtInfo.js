@@ -1,26 +1,55 @@
 import styled from 'styled-components';
 
-const AmtInfo = ({ flag }) => {
-    return flag ? (
+const AmtInfo = ({ cartShareAmtInfo }) => {
+    return cartShareAmtInfo.itemQty > 0 ? (
         <Container>
-            <div class="freeShppInfo">
-                <p>5,000 + 배송비 3,000원 = 8,000원</p>
-                <p id="ssgShpp">쓱배송 35,000원 추가하면 무료배송</p>
-                <p>5,000 + 배송비 4,000원 = 9,000원</p>
-                <p id="tradersShpp">트레이더스 115,000원 추가하면 무료배송</p>
-            </div>
+            {cartShareAmtInfo.ssgOrdAmt > 0 || cartShareAmtInfo.tradersOrdAmt > 0 ? (
+                <div class="freeShppInfo">
+                    {cartShareAmtInfo.ssgOrdAmt > 0 ? (
+                        <>
+                            <p>
+                                {cartShareAmtInfo.ssgOrdAmt.toLocaleString()} + 배송비{' '}
+                                {cartShareAmtInfo.ssgShppAmt.toLocaleString()}원 ={' '}
+                                {cartShareAmtInfo.ssgTotalAmt.toLocaleString()}원
+                            </p>
+                            <p id="ssgShpp">
+                                쓱배송 {cartShareAmtInfo.ssgFreeShppRemainAmt.toLocaleString()}원 추가하면 무료배송
+                            </p>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                    {cartShareAmtInfo.tradersOrdAmt > 0 ? (
+                        <>
+                            <p>
+                                {cartShareAmtInfo.tradersOrdAmt.toLocaleString()} + 배송비{' '}
+                                {cartShareAmtInfo.tradersShppAmt.toLocaleString()}원 ={' '}
+                                {cartShareAmtInfo.tradersTotalAmt.toLocaleString()}원
+                            </p>
+                            <p id="tradersShpp">
+                                트레이더스 {cartShareAmtInfo.tradersFreeShppRemainAmt.toLocaleString()}원 추가하면
+                                무료배송
+                            </p>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                </div>
+            ) : (
+                <></>
+            )}
             <div id="title">결제 예정금액</div>
             <div id="ordAmt">
                 <p class="description">주문금액</p>
-                <p class="price">+10,000원</p>
+                <p class="price">+{cartShareAmtInfo.ordAmt.toLocaleString()}원</p>
             </div>
             <div id="discountAmt">
                 <p class="description">상품할인</p>
-                <p class="price">-0원</p>
+                <p class="price">-{cartShareAmtInfo.discountAmt.toLocaleString()}원</p>
             </div>
             <div id="shppAmt">
                 <p class="description">배송비</p>
-                <p class="price">+7,000원</p>
+                <p class="price">+{cartShareAmtInfo.shppAmt.toLocaleString()}원</p>
             </div>
             <div id="line"></div>
             <div id="totalAmt">
@@ -28,7 +57,7 @@ const AmtInfo = ({ flag }) => {
                     총 결제예정금액
                 </p>
                 <p class="price" id="totalAmtPrice">
-                    17,000원
+                    {cartShareAmtInfo.totalAmt.toLocaleString()}원
                 </p>
             </div>
         </Container>

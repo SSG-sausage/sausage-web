@@ -1,11 +1,30 @@
 import styled from 'styled-components';
+import CartShareItem from './CartShareItem';
 
-const CommonSection = ({ flag }) => {
-    return flag ? (
-        <CommonSectionContainer>
-            <div id="common">공동</div>
-            <div id="amount">5,000</div>
-        </CommonSectionContainer>
+const CommonSection = ({ mastrYn, commonItemInfo }) => {
+    return commonItemInfo.cartShareItemList.length > 0 ? (
+        <>
+            <CommonSectionContainer>
+                <div id="common">공동</div>
+                <div id="amount">{commonItemInfo.commonAmt.toLocaleString()}</div>
+            </CommonSectionContainer>
+            {commonItemInfo.cartShareItemList.map(it => {
+                return (
+                    <CartShareItem
+                        key={it.cartShareItemId}
+                        itemBrandNm={it.itemBrandNm}
+                        itemNm={it.itemNm}
+                        shppCd={it.shppCd}
+                        itemImgUrl={it.itemImgUrl}
+                        itemAmt={it.itemAmt.toLocaleString()}
+                        itemQty={it.itemQty}
+                        editYn={mastrYn}
+                        commYn={true}
+                        mastrYn={false}
+                    />
+                );
+            })}
+        </>
     ) : (
         <></>
     );

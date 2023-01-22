@@ -1,37 +1,48 @@
 import styled from 'styled-components';
 
-const CartShareItem = ({}) => {
+const CartShareItem = ({ itemBrandNm, itemNm, shppCd, itemImgUrl, itemAmt, itemQty, editYn, commYn, mastrYn }) => {
     return (
         <Container>
             <ShppContainer>
-                <img id="ssgshpp" src={require('../../assets/ssgshpp.png')}></img>
-                {/* <img id="tradersshpp" src={require('../../assets/tradersshpp.png')}></img> */}
+                {shppCd === '이마트 트레이더스 배송' ? (
+                    <img id="tradersshpp" src={require('../../assets/tradersshpp.png')}></img>
+                ) : (
+                    <img id="ssgshpp" src={require('../../assets/ssgshpp.png')}></img>
+                )}
             </ShppContainer>
             <ImageContainer>
                 <div id="checkbox"></div>
-                <img id="image" src="https://sitem.ssgcdn.com/76/82/32/item/1000518328276_i1_1100.jpg" />
+                <img id="image" src={itemImgUrl} />
             </ImageContainer>
             <ItemContainer>
                 <ItemInfoWrapper>
                     <p id="item-info">
-                        <p id="brand">브랜드 이름</p>
-                        <p id="name">상품명</p>
+                        <p id="brand">{itemBrandNm}</p>
+                        <p id="name">{itemNm}</p>
                     </p>
                     <p id="item-price">
-                        <p id="price">5,000</p>
+                        <p id="price">{itemAmt}</p>
                         <p id="won">원</p>
                     </p>
                 </ItemInfoWrapper>
-                <ItemEditWrapper>
-                    <img class="common" id="common" src={require('../../assets/common.png')}></img>
-                    {/* <img class="common" id="my" src={require('../../assets/my.png')}></img> */}
-                    <img id="trash" src={require('../../assets/trash.png')}></img>
-                    <ItemQtyWrapper>
-                        <img id="minus" src={require('../../assets/minus.png')}></img>
-                        <p id="qty">1</p>
-                        <img id="plus" src={require('../../assets/plus.png')}></img>
-                    </ItemQtyWrapper>
-                </ItemEditWrapper>
+                {editYn ? (
+                    <ItemEditWrapper>
+                        {commYn ? <img class="common" id="my" src={require('../../assets/my.png')}></img> : <></>}
+                        {mastrYn ? (
+                            <img class="common" id="common" src={require('../../assets/common.png')}></img>
+                        ) : (
+                            <></>
+                        )}
+                        <img id="trash" src={require('../../assets/trash.png')}></img>
+                        <ItemQtyWrapper>
+                            <img id="minus" src={require('../../assets/minus.png')}></img>
+                            <p id="qty">{itemQty}</p>
+                            <img id="plus" src={require('../../assets/plus.png')}></img>
+                        </ItemQtyWrapper>
+                    </ItemEditWrapper>
+                ) : (
+                    <></>
+                )}
             </ItemContainer>
         </Container>
     );
