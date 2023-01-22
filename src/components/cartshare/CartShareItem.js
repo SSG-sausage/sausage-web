@@ -67,6 +67,7 @@ const CartShareItem = ({
                             onClick={() => onClickTrash(cartShareItemId)}
                         ></img>
                         <ItemQtyWrapper>
+                            <p id="description">수량</p>
                             <img
                                 id="minus"
                                 src={require('../../assets/minus.png')}
@@ -81,7 +82,12 @@ const CartShareItem = ({
                         </ItemQtyWrapper>
                     </ItemEditWrapper>
                 ) : (
-                    <></>
+                    <ItemEditWrapper>
+                        <ItemQtyWrapper>
+                            <p id="description">수량</p>
+                            <p id="qty">{itemQty}</p>
+                        </ItemQtyWrapper>
+                    </ItemEditWrapper>
                 )}
             </ItemContainer>
         </Container>
@@ -97,6 +103,17 @@ const ItemQtyWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    #description {
+        position: absolute;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 17px;
+        letter-spacing: -0.5px;
+        top: 5px;
+        right: 110px;
+    }
 
     #qty {
         font-weight: 700;
