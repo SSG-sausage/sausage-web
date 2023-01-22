@@ -6,7 +6,7 @@ import CommonSection from './CommonSection';
 import NavigationBar from './NavigationBar';
 import PersonalSection from './PersonalSection';
 
-const CartShareDetail = ({ cartShareData, onClickDone }) => {
+const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus }) => {
     return (
         <>
             <NavigationBar nm={cartShareData.cartShareNm} itemQty={cartShareData.cartShareItemQty} />
@@ -49,9 +49,15 @@ const CartShareDetail = ({ cartShareData, onClickDone }) => {
                     <div class="checkbox" id="allCheck"></div>
                     <div id="all">전체</div>
                 </CheckBoxContainer>
-                <CommonSection mastrYn={cartShareData.mastrYn} commonItemInfo={cartShareData.commonItemInfo} />
+                <CommonSection
+                    mastrYn={cartShareData.mastrYn}
+                    commonItemInfo={cartShareData.commonItemInfo}
+                    onClickPlusOrMinus={onClickPlusOrMinus}
+                />
                 {cartShareData.personalItemInfo.map(it => {
-                    return <PersonalSection key={it.mbrNm} personalItemInfo={it} />;
+                    return (
+                        <PersonalSection key={it.mbrNm} personalItemInfo={it} onClickPlusOrMinus={onClickPlusOrMinus} />
+                    );
                 })}
                 <AmtInfo cartShareAmtInfo={cartShareData.cartShareAmtInfo} />
             </CartShareContainer>

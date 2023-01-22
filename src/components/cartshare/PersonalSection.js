@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import CartShareItem from './CartShareItem';
 
-const PersonalSection = ({ personalItemInfo }) => {
+const PersonalSection = ({ personalItemInfo, onClickPlusOrMinus }) => {
     return (
         <>
             <Container>
@@ -23,6 +23,7 @@ const PersonalSection = ({ personalItemInfo }) => {
                 return (
                     <CartShareItem
                         key={it.cartShareItemId}
+                        cartShareItemId={it.cartShareItemId}
                         itemBrandNm={it.itemBrandNm}
                         itemNm={it.itemNm}
                         shppCd={it.shppCd}
@@ -32,6 +33,7 @@ const PersonalSection = ({ personalItemInfo }) => {
                         editYn={personalItemInfo.editYn}
                         commYn={false}
                         mastrYn={personalItemInfo.mastrYn}
+                        onClickPlusOrMinus={onClickPlusOrMinus}
                     />
                 );
             })}

@@ -38,3 +38,20 @@ export const updateCartShareMbrProg = (mbrId, cartShareId, cartShareMbrId, progS
         .catch(() => {
             alert('장바구니 멤버 진행 상태 변경 실패');
         });
+
+export const updateCartShareItemQty = (mbrId, cartShareId, cartShareItemId, qty) =>
+    axiosInstance
+        .patch(
+            `/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}/qty`,
+            {
+                qty: qty,
+            },
+            {
+                headers: {
+                    mbrId: mbrId,
+                },
+            },
+        )
+        .catch(() => {
+            alert('장바구니 상품 수량 변경 실패');
+        });

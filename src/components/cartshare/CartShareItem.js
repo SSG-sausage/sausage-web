@@ -1,6 +1,18 @@
 import styled from 'styled-components';
 
-const CartShareItem = ({ itemBrandNm, itemNm, shppCd, itemImgUrl, itemAmt, itemQty, editYn, commYn, mastrYn }) => {
+const CartShareItem = ({
+    cartShareItemId,
+    itemBrandNm,
+    itemNm,
+    shppCd,
+    itemImgUrl,
+    itemAmt,
+    itemQty,
+    editYn,
+    commYn,
+    mastrYn,
+    onClickPlusOrMinus,
+}) => {
     return (
         <Container>
             <ShppContainer>
@@ -35,9 +47,17 @@ const CartShareItem = ({ itemBrandNm, itemNm, shppCd, itemImgUrl, itemAmt, itemQ
                         )}
                         <img id="trash" src={require('../../assets/trash.png')}></img>
                         <ItemQtyWrapper>
-                            <img id="minus" src={require('../../assets/minus.png')}></img>
+                            <img
+                                id="minus"
+                                src={require('../../assets/minus.png')}
+                                onClick={() => onClickPlusOrMinus(cartShareItemId, -1)}
+                            ></img>
                             <p id="qty">{itemQty}</p>
-                            <img id="plus" src={require('../../assets/plus.png')}></img>
+                            <img
+                                id="plus"
+                                src={require('../../assets/plus.png')}
+                                onClick={() => onClickPlusOrMinus(cartShareItemId, 1)}
+                            ></img>
                         </ItemQtyWrapper>
                     </ItemEditWrapper>
                 ) : (
