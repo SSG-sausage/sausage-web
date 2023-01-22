@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import * as stompjs from '@stomp/stompjs';
 import {
+    deleteCartShareItem,
     findCartShare,
     updateCartShareItemComm,
     updateCartShareItemQty,
@@ -82,6 +83,10 @@ const CartShareDetailContainer = () => {
         await updateCartShareItemComm(cookies.mbrId, cartShareId, cartShareItemId, commYn);
     };
 
+    const onClickTrash = async cartShareItemId => {
+        await deleteCartShareItem(cookies.mbrId, cartShareId, cartShareItemId);
+    };
+
     const fetchCartShare = async () => {
         const response = await findCartShare(cookies.mbrId, cartShareId);
         const data = response.data.data;
@@ -102,6 +107,7 @@ const CartShareDetailContainer = () => {
             onClickDone={onClickDone}
             onClickPlusOrMinus={onClickPlusOrMinus}
             onClickCommOrMy={onClickCommOrMy}
+            onClickTrash={onClickTrash}
         />
     );
 };

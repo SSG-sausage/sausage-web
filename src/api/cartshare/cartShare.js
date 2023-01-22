@@ -72,3 +72,14 @@ export const updateCartShareItemComm = (mbrId, cartShareId, cartShareItemId, com
         .catch(() => {
             alert('장바구니 상품 공통 여부 변경 실패');
         });
+
+export const deleteCartShareItem = (mbrId, cartShareId, cartShareItemId) =>
+    axiosInstance
+        .delete(`/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}`, {
+            headers: {
+                mbrId: mbrId,
+            },
+        })
+        .catch(() => {
+            alert('장바구니 상품 삭제 실패');
+        });

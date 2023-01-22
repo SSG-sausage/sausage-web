@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import CartShareItem from './CartShareItem';
 
-const CommonSection = ({ mastrYn, commonItemInfo, onClickPlusOrMinus, onClickCommOrMy }) => {
+const CommonSection = ({ mastrYn, commonItemInfo, onClickPlusOrMinus, onClickCommOrMy, onClickTrash }) => {
     return commonItemInfo.cartShareItemList.length > 0 ? (
         <>
             <CommonSectionContainer>
@@ -24,6 +24,7 @@ const CommonSection = ({ mastrYn, commonItemInfo, onClickPlusOrMinus, onClickCom
                         mastrYn={false}
                         onClickPlusOrMinus={onClickPlusOrMinus}
                         onClickCommOrMy={onClickCommOrMy}
+                        onClickTrash={onClickTrash}
                     />
                 );
             })}

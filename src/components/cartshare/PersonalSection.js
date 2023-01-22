@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import CartShareItem from './CartShareItem';
 
-const PersonalSection = ({ personalItemInfo, onClickPlusOrMinus, onClickCommOrMy }) => {
+const PersonalSection = ({ personalItemInfo, onClickPlusOrMinus, onClickCommOrMy, onClickTrash }) => {
     return (
         <>
             <Container>
@@ -35,6 +35,7 @@ const PersonalSection = ({ personalItemInfo, onClickPlusOrMinus, onClickCommOrMy
                         mastrYn={personalItemInfo.mastrYn}
                         onClickPlusOrMinus={onClickPlusOrMinus}
                         onClickCommOrMy={onClickCommOrMy}
+                        onClickTrash={onClickTrash}
                     />
                 );
             })}

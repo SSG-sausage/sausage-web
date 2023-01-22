@@ -13,6 +13,7 @@ const CartShareItem = ({
     mastrYn,
     onClickPlusOrMinus,
     onClickCommOrMy,
+    onClickTrash,
 }) => {
     return (
         <Container>
@@ -60,7 +61,11 @@ const CartShareItem = ({
                         ) : (
                             <></>
                         )}
-                        <img id="trash" src={require('../../assets/trash.png')}></img>
+                        <img
+                            id="trash"
+                            src={require('../../assets/trash.png')}
+                            onClick={() => onClickTrash(cartShareItemId)}
+                        ></img>
                         <ItemQtyWrapper>
                             <img
                                 id="minus"

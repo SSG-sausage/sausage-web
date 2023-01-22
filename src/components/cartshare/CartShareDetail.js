@@ -6,7 +6,7 @@ import CommonSection from './CommonSection';
 import NavigationBar from './NavigationBar';
 import PersonalSection from './PersonalSection';
 
-const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onClickCommOrMy }) => {
+const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onClickCommOrMy, onClickTrash }) => {
     return (
         <>
             <NavigationBar nm={cartShareData.cartShareNm} itemQty={cartShareData.cartShareItemQty} />
@@ -54,6 +54,7 @@ const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onCli
                     commonItemInfo={cartShareData.commonItemInfo}
                     onClickPlusOrMinus={onClickPlusOrMinus}
                     onClickCommOrMy={onClickCommOrMy}
+                    onClickTrash={onClickTrash}
                 />
                 {cartShareData.personalItemInfo.map(it => {
                     return (
@@ -62,6 +63,7 @@ const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onCli
                             personalItemInfo={it}
                             onClickPlusOrMinus={onClickPlusOrMinus}
                             onClickCommOrMy={onClickCommOrMy}
+                            onClickTrash={onClickTrash}
                         />
                     );
                 })}
