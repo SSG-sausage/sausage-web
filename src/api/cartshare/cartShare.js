@@ -21,3 +21,20 @@ export const findCartShare = (mbrId, cartShareId) =>
         .catch(() => {
             alert('공유장바구니 조회 실패');
         });
+
+export const updateCartShareMbrProg = (mbrId, cartShareId, cartShareMbrId, progStatCd) =>
+    axiosInstance
+        .patch(
+            `/cart-share/api/cart-share/${cartShareId}/cart-share-mbr/${cartShareMbrId}/prog`,
+            {
+                progStatCd: progStatCd,
+            },
+            {
+                headers: {
+                    mbrId: mbrId,
+                },
+            },
+        )
+        .catch(() => {
+            alert('장바구니 멤버 진행 상태 변경 실패');
+        });

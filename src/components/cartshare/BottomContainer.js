@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const BottomContainer = ({ mastrYn, cartShareItemQty, progStatCd, editPsblYn }) => {
+const BottomContainer = ({ cartShareMbrId, mastrYn, cartShareItemQty, progStatCd, editPsblYn, onClickDone }) => {
     return (
         <>
             <Container>
@@ -20,9 +20,15 @@ const BottomContainer = ({ mastrYn, cartShareItemQty, progStatCd, editPsblYn }) 
                         {editPsblYn ? (
                             <>
                                 {progStatCd === 'IN_PROGRESS' ? (
-                                    <div class="right">담기 완료!</div>
+                                    <div class="right" onClick={() => onClickDone(cartShareMbrId, 'DONE')}>
+                                        담기 완료!
+                                    </div>
                                 ) : (
-                                    <div class="right" id="inactive">
+                                    <div
+                                        class="right"
+                                        id="inactive"
+                                        onClick={() => onClickDone(cartShareMbrId, 'IN_PROGRESS')}
+                                    >
                                         상품 더 담기
                                     </div>
                                 )}

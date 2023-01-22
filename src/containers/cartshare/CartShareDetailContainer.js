@@ -3,7 +3,7 @@ import CartShareDetail from '../../components/cartshare/CartShareDetail';
 import { useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import * as stompjs from '@stomp/stompjs';
-import { findCartShare } from '../../api/cartshare/cartShare';
+import { findCartShare, updateCartShareMbrProg } from '../../api/cartshare/cartShare';
 
 const CartShareDetailContainer = () => {
     const { cartShareId } = useParams();
@@ -11,6 +11,7 @@ const CartShareDetailContainer = () => {
     const [cookies, setCookie] = useCookies(['mbrId']);
     const [cartShareData, setCartShareData] = useState({
         cartShareId: 0,
+        cartShareMbrId: 0,
         mastrYn: false,
         cartShareNm: '',
         cartShareItemQty: 0,
@@ -64,6 +65,10 @@ const CartShareDetailContainer = () => {
         client.current.deactivate();
     };
 
+    const onClickDone = async (cartShareMbrId, progStatCd) => {
+        await updateCartShareMbrProg(cookies.mbrId, cartShareId, cartShareMbrId, progStatCd);
+    };
+
     const fetchCartShare = async () => {
         const response = await findCartShare(cookies.mbrId, cartShareId);
         const data = response.data.data;
@@ -78,7 +83,7 @@ const CartShareDetailContainer = () => {
         return () => disconnect();
     }, []);
 
-    return <CartShareDetail cartShareData={cartShareData} />;
+    return <CartShareDetail cartShareData={cartShareData} onClickDone={onClickDone} />;
 };
 
 export default CartShareDetailContainer;
