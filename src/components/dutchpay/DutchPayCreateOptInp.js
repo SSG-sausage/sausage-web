@@ -5,7 +5,7 @@ import DutchPayNavigationBar from './DutchPayNavigationBar';
 import Master from './Master';
 import Me from './Me';
 
-const DutchPayCreateOptInp = ({ dutchPay, inpInput, onChangeInpInput, onChangrInpRmd }) => {
+const DutchPayCreateOptInp = ({ dutchPay, inpInput, onChangeInpInput, onChangeInpRmd }) => {
     return (
         <OptSecContainer>
             {dutchPay.dutchPayDtlList?.map((info, index) => (
@@ -35,7 +35,7 @@ const DutchPayCreateOptInp = ({ dutchPay, inpInput, onChangeInpInput, onChangrIn
                 <div className="rmd-value">
                     <input
                         className="rmd-amt"
-                        onChange={onChangrInpRmd}
+                        onChange={onChangeInpRmd}
                         value={Number(inpInput.dtRmd).toString()}
                         type="number"
                     />

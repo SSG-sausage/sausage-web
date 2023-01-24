@@ -13,6 +13,10 @@ const DutchPayContainer = () => {
     const onClickCreate = () => {
         navigate(`/dutch-pay/${dutchPayId}/create`);
     };
+
+    const onClickUpdate = () => {
+        navigate(`/dutch-pay/${dutchPayId}/update`);
+    };
     const onClickCmplYn = (mbrId, dutchPayId) => {
         updateCmplYn(cookies.mbrId, dutchPayId, mbrId).then(() => {
             findDutchPay(cookies.mbrId, dutchPayId).then(response => {
@@ -26,7 +30,14 @@ const DutchPayContainer = () => {
             setDutchPay(response.data.data);
         });
     }, []);
-    return <DutchPay onClickCreate={onClickCreate} dutchPay={dutchPay} onClickCmplYn={onClickCmplYn} />;
+    return (
+        <DutchPay
+            onClickCreate={onClickCreate}
+            dutchPay={dutchPay}
+            onClickCmplYn={onClickCmplYn}
+            onClickUpdate={onClickUpdate}
+        />
+    );
 };
 
 export default DutchPayContainer;

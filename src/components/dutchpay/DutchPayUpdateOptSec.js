@@ -4,35 +4,17 @@ import NavigationBar from '../cartshare/NavigationBar';
 import DutchPayNavigationBar from './DutchPayNavigationBar';
 import Master from './Master';
 import Me from './Me';
-import MastrCmplYn from './MastrCmplYn';
-import MbrCmplYn from './MbrCmplYn';
 
-const DutchPayDetailOptSec = ({ dutchPay, onClickCmplYn }) => {
+const DutchPayUpdateOptSec = ({ dutchPay, calcResponse }) => {
     return (
         <OptSecContainer>
-            {dutchPay.dutchPayDtlList?.map((info, index) => (
+            {calcResponse.dutchPayDtlList?.map((info, index) => (
                 <DutchPayDtl key={info.mbrId}>
                     <div className="name-container">
                         {info.mastrYn && <Me />}
                         <div className="name">
                             {info.mbrNm}
                             {info.mastrYn && <Master />}
-                            {dutchPay.mastrYn && !info.mastrYn && (
-                                <MastrCmplYn
-                                    cmplYn={info.dutchPayCmplYn}
-                                    mbrId={info.mbrId}
-                                    dutchPayId={dutchPay.dutchPayId}
-                                    onClickCmplYn={onClickCmplYn}
-                                />
-                            )}
-                            {!dutchPay.mastrYn && !info.mastrYn && (
-                                <MbrCmplYn
-                                    cmplYn={info.dutchPayCmplYn}
-                                    mbrId={info.mbrId}
-                                    dutchPayId={dutchPay.dutchPayId}
-                                    onClickCmplYn={onClickCmplYn}
-                                />
-                            )}
                         </div>
                     </div>
                     <div className="dt-container">
@@ -61,7 +43,7 @@ const DutchPayDetailOptSec = ({ dutchPay, onClickCmplYn }) => {
             <div className="rmd">
                 <div className="rmd-label">나머지</div>
                 <div className="rmd-value">
-                    <div className="rmd-amt">{dutchPay.dutchPayRmd}</div>
+                    <div className="rmd-amt">{calcResponse.dutchPayRmd}</div>
                     <div className="rmd-unit">원</div>
                 </div>
             </div>
@@ -69,7 +51,7 @@ const DutchPayDetailOptSec = ({ dutchPay, onClickCmplYn }) => {
             <div className="sum-container">
                 <div className="sum-label">총 정산 금액</div>
                 <div className="sum-value">
-                    <div className="sum-amt">{dutchPay.dutchPayAmt}</div>
+                    <div className="sum-amt">{calcResponse.dutchPayAmt}</div>
                     <div className="sum-unit">원</div>
                 </div>
             </div>
@@ -223,4 +205,4 @@ const DutchPayDtl = styled.div`
     }
 `;
 
-export default DutchPayDetailOptSec;
+export default DutchPayUpdateOptSec;

@@ -6,7 +6,7 @@ import DutchPayDetailOptSec from './DutchPayDetailOptSec';
 import DutchPayDetailOptSpl from './DutchPayDetailOptSpl';
 import DutchPayNavigationBar from './DutchPayNavigationBar';
 
-const DutchPay = ({ onClickCreate, dutchPay, onClickCmplYn }) => {
+const DutchPay = ({ onClickCreate, dutchPay, onClickCmplYn, onClickUpdate }) => {
     return (
         <>
             <div>
@@ -46,7 +46,7 @@ const DutchPay = ({ onClickCreate, dutchPay, onClickCmplYn }) => {
                         <DutchPayDetailFooter>
                             {dutchPay.mastrYn && (
                                 <div>
-                                    <button className="edit-btn">
+                                    <button className="edit-btn" onClick={() => onClickUpdate()}>
                                         금액
                                         <br />
                                         수정

@@ -16,7 +16,7 @@ const DutchPayCreate = ({
     onChangeSplInput,
     inpInput,
     onChangeInpInput,
-    onChangrInpRmd,
+    onChangeInpRmd,
     onClickSave,
 }) => {
     return (
@@ -34,13 +34,25 @@ const DutchPayCreate = ({
                 <DutchPayOptSelect>
                     <div className="title">정산 옵션</div>
                     <div className="opt-container">
-                        <div className="opt-btn selected" id="SECTION" onClick={onClickOptBtn}>
+                        <div
+                            className={`opt-btn ${opt === 'SECTION' ? 'selected' : ''}`}
+                            id="SECTION"
+                            onClick={onClickOptBtn}
+                        >
                             섹션별 계산
                         </div>
-                        <div className="opt-btn" id="SPLIT" onClick={onClickOptBtn}>
+                        <div
+                            className={`opt-btn ${opt === 'SPLIT' ? 'selected' : ''}`}
+                            id="SPLIT"
+                            onClick={onClickOptBtn}
+                        >
                             1/N 계산
                         </div>
-                        <div className="opt-btn" id="INPUT" onClick={onClickOptBtn}>
+                        <div
+                            className={`opt-btn ${opt === 'INPUT' ? 'selected' : ''}`}
+                            id="INPUT"
+                            onClick={onClickOptBtn}
+                        >
                             직접 입력
                         </div>
                     </div>
@@ -59,7 +71,7 @@ const DutchPayCreate = ({
                             dutchPay={dutchPay}
                             inpInput={inpInput}
                             onChangeInpInput={onChangeInpInput}
-                            onChangrInpRmd={onChangrInpRmd}
+                            onChangeInpRmd={onChangeInpRmd}
                         />
                     )}
                 </DutchPayInput>

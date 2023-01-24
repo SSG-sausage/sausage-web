@@ -7,7 +7,6 @@ import { calcDutchPay, findDutchPay, updateDutchPay } from '../../api/dutchpay/d
 const DutchPayContainer = () => {
     const navigate = useNavigate();
     const { dutchPayId } = useParams();
-    const optList = ['SECTION', 'SPLIT', 'INPUT'];
 
     const [cookies, setCookie] = useCookies(['mbrId']);
 
@@ -33,11 +32,6 @@ const DutchPayContainer = () => {
     });
 
     const onClickOptBtn = e => {
-        const selectedClass = 'selected';
-        for (let i = 0; i < 3; i++) {
-            document.getElementById(optList[i]).classList.remove(selectedClass);
-        }
-        e.target.classList.add(selectedClass);
         setOpt(e.target.id);
     };
 
@@ -165,7 +159,7 @@ const DutchPayContainer = () => {
                 onChangeSplInput={onChangeSplInput}
                 inpInput={inpInput}
                 onChangeInpInput={onChangeInpInput}
-                onChangrInpRmd={onChangeInpRmd}
+                onChangeInpRmd={onChangeInpRmd}
                 onClickSave={onClickSave}
             />
         </div>

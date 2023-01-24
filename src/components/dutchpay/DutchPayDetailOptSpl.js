@@ -5,6 +5,7 @@ import DutchPayNavigationBar from './DutchPayNavigationBar';
 import Master from './Master';
 import MastrCmplYn from './MastrCmplYn';
 import Me from './Me';
+import MbrCmplYn from './MbrCmplYn';
 
 const DutchPayDetailOptSpl = ({ dutchPay, onClickCmplYn }) => {
     return (
@@ -18,6 +19,14 @@ const DutchPayDetailOptSpl = ({ dutchPay, onClickCmplYn }) => {
                             {info.mastrYn && <Master />}
                             {dutchPay.mastrYn && !info.mastrYn && (
                                 <MastrCmplYn
+                                    cmplYn={info.dutchPayCmplYn}
+                                    mbrId={info.mbrId}
+                                    dutchPayId={dutchPay.dutchPayId}
+                                    onClickCmplYn={onClickCmplYn}
+                                />
+                            )}
+                            {!dutchPay.mastrYn && !info.mastrYn && (
+                                <MbrCmplYn
                                     cmplYn={info.dutchPayCmplYn}
                                     mbrId={info.mbrId}
                                     dutchPayId={dutchPay.dutchPayId}
