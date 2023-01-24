@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
+import DutchPayDetailOptInp from './DutchPayDetailOptInp';
 import DutchPayDetailOptSec from './DutchPayDetailOptSec';
 import DutchPayDetailOptSpl from './DutchPayDetailOptSpl';
 import DutchPayNavigationBar from './DutchPayNavigationBar';
@@ -37,6 +38,9 @@ const DutchPay = ({ onClickCreate, dutchPay, onClickCmplYn }) => {
                             )}
                             {dutchPay.dutchPayOptCd === 'SPLIT' && (
                                 <DutchPayDetailOptSpl dutchPay={dutchPay} onClickCmplYn={onClickCmplYn} />
+                            )}
+                            {dutchPay.dutchPayOptCd === 'INPUT' && (
+                                <DutchPayDetailOptInp dutchPay={dutchPay} onClickCmplYn={onClickCmplYn} />
                             )}
                         </DutchPayDetailContent>
                         <DutchPayDetailFooter>
