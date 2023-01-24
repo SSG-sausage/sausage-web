@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
 import DutchPayDetailOptSec from './DutchPayDetailOptSec';
+import DutchPayDetailOptSpl from './DutchPayDetailOptSpl';
 import DutchPayNavigationBar from './DutchPayNavigationBar';
 
 const DutchPay = ({ onClickCreate, dutchPay, onClickCmplYn }) => {
@@ -33,6 +34,9 @@ const DutchPay = ({ onClickCreate, dutchPay, onClickCmplYn }) => {
                         <DutchPayDetailContent>
                             {dutchPay.dutchPayOptCd === 'SECTION' && (
                                 <DutchPayDetailOptSec dutchPay={dutchPay} onClickCmplYn={onClickCmplYn} />
+                            )}
+                            {dutchPay.dutchPayOptCd === 'SPLIT' && (
+                                <DutchPayDetailOptSpl dutchPay={dutchPay} onClickCmplYn={onClickCmplYn} />
                             )}
                         </DutchPayDetailContent>
                         <DutchPayDetailFooter>
