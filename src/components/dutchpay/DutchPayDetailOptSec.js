@@ -4,8 +4,9 @@ import NavigationBar from '../cartshare/NavigationBar';
 import DutchPayNavigationBar from './DutchPayNavigationBar';
 import Master from './Master';
 import Me from './Me';
+import MastrCmplYn from './MastrCmplYn';
 
-const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
+const DutchPayDetailOptSec = ({ dutchPay, onClickCmplYn }) => {
     return (
         <OptSecContainer>
             {dutchPay.dutchPayDtlList?.map((info, index) => (
@@ -15,12 +16,35 @@ const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
                         <div className="name">
                             {info.mbrNm}
                             {info.mastrYn && <Master />}
+                            {dutchPay.mastrYn && !info.mastrYn && (
+                                <MastrCmplYn
+                                    cmplYn={info.dutchPayCmplYn}
+                                    mbrId={info.mbrId}
+                                    dutchPayId={dutchPay.dutchPayId}
+                                    onClickCmplYn={onClickCmplYn}
+                                />
+                            )}
                         </div>
                     </div>
                     <div className="dt-container">
                         <div className="main-dt-container">
-                            <div className="dt-value">{splInput.dtDtlAmt}</div>
+                            <div className="dt-value">{info.dutchPayDtlAmt}</div>
                             <div className="dt-unit">원</div>
+                        </div>
+                        <div className="dtl-dt-container">
+                            <div className="dtl-dt-label">공동</div>
+                            <div className="dtl-dt-amt">{info.commAmt}</div>
+                            <div className="dtl-dt-unit">원</div>
+                        </div>
+                        <div className="dtl-dt-container">
+                            <div className="dtl-dt-label">개별</div>
+                            <div className="dtl-dt-amt">{info.prAmt}</div>
+                            <div className="dtl-dt-unit">원</div>
+                        </div>
+                        <div className="dtl-dt-container">
+                            <div className="dtl-dt-ship-label">배송비</div>
+                            <div className="dtl-dt-amt">{info.shppAmt}</div>
+                            <div className="dtl-dt-unit">원</div>
                         </div>
                     </div>
                 </DutchPayDtl>
@@ -28,7 +52,7 @@ const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
             <div className="rmd">
                 <div className="rmd-label">나머지</div>
                 <div className="rmd-value">
-                    <div className="rmd-amt">{splInput.dtRmd}</div>
+                    <div className="rmd-amt">{dutchPay.dutchPayRmd}</div>
                     <div className="rmd-unit">원</div>
                 </div>
             </div>
@@ -36,12 +60,7 @@ const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
             <div className="sum-container">
                 <div className="sum-label">총 정산 금액</div>
                 <div className="sum-value">
-                    <input
-                        className="sum-amt"
-                        onChange={onChangeSplInput}
-                        value={Number(splInput.dtAmt).toString()}
-                        type="number"
-                    />
+                    <div className="sum-amt">{dutchPay.dutchPayAmt}</div>
                     <div className="sum-unit">원</div>
                 </div>
             </div>
@@ -101,23 +120,14 @@ const OptSecContainer = styled.div`
         font-weight: 700;
         font-size: 20px;
     }
-    .sum-unit {
-        margin-right: 20px;
-        margin-left: 10px;
-    }
     .sum-amt {
         font-weight: 700;
         font-size: 24px;
-        border: none;
-        width: 80px;
-        text-align: right;
-        height: 24px;
-        border-bottom: 1px solid black;
         padding-right: 4px;
-        font-family: 'line';
     }
-    .sum-amt:focus {
-        outline: none;
+    .sum-unit {
+        margin-right: 20px;
+        margin-left: 10px;
     }
     .paymt-container {
         display: flex;
@@ -135,7 +145,6 @@ const OptSecContainer = styled.div`
         display: flex;
         font-size: 16px;
     }
-
     .paymt-amt {
         padding-right: 4px;
     }
@@ -143,20 +152,10 @@ const OptSecContainer = styled.div`
         margin-right: 20px;
         margin-left: 13px;
     }
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    /* Firefox */
-    input[type='number'] {
-        -moz-appearance: textfield;
-    }
 `;
 const DutchPayDtl = styled.div`
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
 
@@ -189,6 +188,30 @@ const DutchPayDtl = styled.div`
         margin-right: 14px;
         margin-left: 10px;
     }
+
+    .dtl-dt-container {
+        display: flex;
+        font-weight: 400;
+        font-size: 12px;
+        color: #888888;
+        height: 20px;
+    }
+    .dtl-dt-label {
+        position: absolute;
+        left: -15px;
+    }
+    .dtl-dt-ship-label {
+        position: absolute;
+        left: -25px;
+    }
+    .dtl-dt-amt {
+        position: absolute;
+        right: 26px;
+    }
+    .dtl-dt-unit {
+        position: absolute;
+        right: 14px;
+    }
 `;
 
-export default DutchPayCreateOptSpl;
+export default DutchPayDetailOptSec;

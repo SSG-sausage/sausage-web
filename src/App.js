@@ -10,7 +10,6 @@ import ItemListPage from './pages/item/ItemListPage';
 import ItemDetailPage from './pages/item/ItemDetailPage';
 import DutchPayPage from './pages/dutchpay/DutchPayPage';
 import DutchPayCreatePage from './pages/dutchpay/DutchPayCreatePage';
-import DutchPayDetailPage from './pages/dutchpay/DutchPayDetailPage';
 import AuthLayout from './containers/mbr/AuthLayout';
 import OrdListPage from './pages/ord/OrdListPage';
 import OrdSuccessPage from './pages/ord/OrdSuccessPage';
@@ -58,7 +57,6 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/dutch-pay/:dutchPayId" element={<DutchPayPage />} />
                     <Route path="/dutch-pay/:dutchPayId/create" element={<DutchPayCreatePage />} />
-                    <Route path="/dutch-pay/:dutchPayId/update" element={<DutchPayDetailPage />} />
 
                     <Route element={<AuthLayout />}>
                         <Route path="/" element={<ItemListPage />} />

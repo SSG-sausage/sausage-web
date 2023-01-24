@@ -5,7 +5,7 @@ import DutchPayNavigationBar from './DutchPayNavigationBar';
 import Master from './Master';
 import Me from './Me';
 
-const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
+const DutchPayCreateOptInp = ({ dutchPay, inpInput, onChangeInpInput, onChangrInpRmd }) => {
     return (
         <OptSecContainer>
             {dutchPay.dutchPayDtlList?.map((info, index) => (
@@ -19,7 +19,12 @@ const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
                     </div>
                     <div className="dt-container">
                         <div className="main-dt-container">
-                            <div className="dt-value">{splInput.dtDtlAmt}</div>
+                            <input
+                                className="dt-value"
+                                onChange={e => onChangeInpInput(e, info.mbrId)}
+                                value={Number(inpInput.dtlMap.get(info.mbrId)).toString()}
+                                type="number"
+                            />
                             <div className="dt-unit">원</div>
                         </div>
                     </div>
@@ -28,7 +33,12 @@ const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
             <div className="rmd">
                 <div className="rmd-label">나머지</div>
                 <div className="rmd-value">
-                    <div className="rmd-amt">{splInput.dtRmd}</div>
+                    <input
+                        className="rmd-amt"
+                        onChange={onChangrInpRmd}
+                        value={Number(inpInput.dtRmd).toString()}
+                        type="number"
+                    />
                     <div className="rmd-unit">원</div>
                 </div>
             </div>
@@ -36,12 +46,7 @@ const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
             <div className="sum-container">
                 <div className="sum-label">총 정산 금액</div>
                 <div className="sum-value">
-                    <input
-                        className="sum-amt"
-                        onChange={onChangeSplInput}
-                        value={Number(splInput.dtAmt).toString()}
-                        type="number"
-                    />
+                    <div className="sum-amt">{inpInput.dtAmt}</div>
                     <div className="sum-unit">원</div>
                 </div>
             </div>
@@ -76,7 +81,18 @@ const OptSecContainer = styled.div`
     }
 
     .rmd-amt {
-        margin-right: 3px;
+        width: 15px;
+        text-align: right;
+        border: none;
+        border-bottom: 1px solid black;
+        padding-right: 4px;
+        font-size: 16px;
+        height: 15px;
+        line-height: 15px;
+        font-family: 'line';
+    }
+    .rmd-amt:focus {
+        outline: none;
     }
     .border {
         margin: auto;
@@ -112,13 +128,9 @@ const OptSecContainer = styled.div`
         width: 80px;
         text-align: right;
         height: 24px;
-        border-bottom: 1px solid black;
         padding-right: 4px;
-        font-family: 'line';
     }
-    .sum-amt:focus {
-        outline: none;
-    }
+
     .paymt-container {
         display: flex;
         margin-top: 10px;
@@ -128,6 +140,10 @@ const OptSecContainer = styled.div`
         color: #626262;
         margin-bottom: 30px;
     }
+
+    .paymt-amt {
+        padding-right: 4px;
+    }
     .paymt-label {
         margin-left: 68px;
     }
@@ -136,9 +152,6 @@ const OptSecContainer = styled.div`
         font-size: 16px;
     }
 
-    .paymt-amt {
-        padding-right: 4px;
-    }
     .paymt-unit {
         margin-right: 20px;
         margin-left: 13px;
@@ -175,10 +188,21 @@ const DutchPayDtl = styled.div`
         position: relative;
     }
     .dt-value {
-        height: 26px;
+        border: none;
+        border-bottom: 1px solid black;
+        font-size: 20px;
+        font-weight: 700;
+        width: 100px;
+        text-align: right;
+        height: 25px;
         line-height: 25px;
         padding-right: 4px;
+        font-family: 'line';
     }
+    .dt-value:focus {
+        outline: none;
+    }
+
     .main-dt-container {
         display: flex;
         font-weight: 700;
@@ -191,4 +215,4 @@ const DutchPayDtl = styled.div`
     }
 `;
 
-export default DutchPayCreateOptSpl;
+export default DutchPayCreateOptInp;

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import DutchPayCreate from '../../components/dutchpay/DutchPayCreate';
-import { calcDutchPay, findDutchPay } from '../../api/dutchpay/dutchPay';
+import { calcDutchPay, findDutchPay, updateDutchPay } from '../../api/dutchpay/dutchPay';
 
 const DutchPayContainer = () => {
     const navigate = useNavigate();
@@ -18,10 +18,19 @@ const DutchPayContainer = () => {
     const [calcResponse, setCalcResponse] = useState({});
 
     // for SPLIT
-    const [dtAmt, setDtAmt] = useState(0);
-    const [dtDtlAmt, setDtDtlAmt] = useState(0);
-    const [rmd, setRmd] = useState(0);
-    const [mbrNum, setMbrNum] = useState(1);
+    const [splInput, setSplInput] = useState({
+        dtAmt: 0,
+        dtDtlAmt: 0,
+        dtRmd: 0,
+        mbrNum: 1,
+    });
+
+    // for INPUT
+    const [inpInput, setInpInput] = useState({
+        dtAmt: 0,
+        dtRmd: 0,
+        dtlMap: new Map(),
+    });
 
     const onClickOptBtn = e => {
         const selectedClass = 'selected';
@@ -32,8 +41,51 @@ const DutchPayContainer = () => {
         setOpt(e.target.id);
     };
 
-    const onClickBack = cartShareOrdId => {
-        navigate(`/cart-share-ord/${cartShareOrdId}/dutch-pay`);
+    const onClickBack = () => {
+        navigate(`/dutch-pay/${dutchPayId}`);
+    };
+
+    const onClickSave = e => {
+        let request = {
+            dutchPayRmd: 0,
+            dutchPayAmt: 0,
+            dutchPayDtlAmt: 0,
+            dutchPayOptCd: opt,
+            dutchPayDtlList: [],
+        };
+        switch (opt) {
+            case 'SECTION':
+                request.dutchPayRmd = calcResponse.dutchPayRmd;
+                request.dutchPayAmt = calcResponse.dutchPayAmt;
+                calcResponse.dutchPayDtlList.map((dtl, index) => {
+                    request.dutchPayDtlList.push({
+                        mbrId: dtl.mbrId,
+                        dutchPayDtlAmt: dtl.dutchPayDtlAmt,
+                        shppAmt: dtl.shppAmt,
+                        commAmt: dtl.commAmt,
+                        prAmt: dtl.prAmt,
+                    });
+                });
+                break;
+            case 'SPLIT':
+                request.dutchPayRmd = splInput.dtRmd;
+                request.dutchPayAmt = splInput.dtAmt;
+                request.dutchPayDtlAmt = splInput.dtDtlAmt;
+                break;
+            case 'INPUT':
+                request.dutchPayRmd = inpInput.dtRmd;
+                request.dutchPayAmt = inpInput.dtAmt;
+                inpInput.dtlMap.forEach((v, k) => {
+                    request.dutchPayDtlList.push({
+                        mbrId: k,
+                        dutchPayDtlAmt: v,
+                    });
+                });
+                break;
+        }
+        updateDutchPay(cookies.mbrId, dutchPayId, request).then(() => {
+            navigate(`/dutch-pay/${dutchPayId}`);
+        });
     };
 
     useEffect(() => {
@@ -42,21 +94,63 @@ const DutchPayContainer = () => {
         });
         findDutchPay(cookies.mbrId, dutchPayId).then(response => {
             setDutchPay(response.data.data);
-            setMbrNum(response.data.data.dutchPayDtlFindInfoList.length);
-            setDtAmt(response.data.data.paymtAmt);
-            setDtDtlAmt(parseInt(response.data.data.paymtAmt / response.data.data.dutchPayDtlFindInfoList.length));
-            setRmd(response.data.data.paymtAmt % response.data.data.dutchPayDtlFindInfoList.length);
+            setSplInput({
+                mbrNum: response.data.data.dutchPayDtlList.length,
+                dtAmt: response.data.data.paymtAmt,
+                dtDtlAmt: parseInt(response.data.data.paymtAmt / response.data.data.dutchPayDtlList.length),
+                dtRmd: response.data.data.paymtAmt % response.data.data.dutchPayDtlList.length,
+            });
+            response.data.data.dutchPayDtlList.map((info, index) => {
+                setInpInput({
+                    ...inpInput,
+                    dtlMap: new Map(inpInput.dtlMap.set(info.mbrId, 0)),
+                });
+            });
         });
     }, []);
 
     const calcSplit = n => {
-        setDtAmt(n);
-        setDtDtlAmt(parseInt(n / mbrNum));
-        setRmd(n % mbrNum);
+        setSplInput({
+            ...splInput,
+            dtAmt: n,
+            dtDtlAmt: parseInt(n / splInput.mbrNum),
+            dtRmd: n % splInput.mbrNum,
+        });
     };
 
-    const onChangeDtAmt = e => {
+    const onChangeSplInput = e => {
         calcSplit(Number(e.target.value));
+    };
+
+    const onChangeInpInput = (e, mbrId) => {
+        setInpInput({
+            ...inpInput,
+            dtlMap: new Map(inpInput.dtlMap.set(mbrId, Number(e.target.value))),
+        });
+
+        let sum = 0;
+        inpInput.dtlMap.forEach(v => {
+            sum += v;
+        });
+        sum += inpInput.dtRmd;
+        setInpInput({
+            ...inpInput,
+            dtAmt: sum,
+        });
+    };
+
+    const onChangeInpRmd = e => {
+        let sum = 0;
+        inpInput.dtlMap.forEach(v => {
+            sum += v;
+        });
+        sum += Number(e.target.value);
+        setInpInput({
+            ...inpInput,
+            dtRmd: Number(e.target.value),
+
+            dtAmt: sum,
+        });
     };
 
     return (
@@ -67,10 +161,12 @@ const DutchPayContainer = () => {
                 opt={opt}
                 calcResponse={calcResponse}
                 dutchPay={dutchPay}
-                dtAmt={dtAmt}
-                dtDtlAmt={dtDtlAmt}
-                rmd={rmd}
-                onChangeDtAmt={onChangeDtAmt}
+                splInput={splInput}
+                onChangeSplInput={onChangeSplInput}
+                inpInput={inpInput}
+                onChangeInpInput={onChangeInpInput}
+                onChangrInpRmd={onChangeInpRmd}
+                onClickSave={onClickSave}
             />
         </div>
     );

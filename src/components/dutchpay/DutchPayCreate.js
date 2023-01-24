@@ -4,7 +4,7 @@ import NavigationBar from '../cartshare/NavigationBar';
 import DutchPayNavigationBar from './DutchPayNavigationBar';
 import DutchPayCreateOptSec from '../../components/dutchpay/DutchPayCreateOptSec';
 import DutchPayCreateOptSpl from './DutchPayCreateOptSpl';
-import DutchPayCreateOptFR from '../../components/dutchpay/DutchPayCreateOptFR';
+import DutchPayCreateOptInp from './DutchPayCreateOptInp';
 
 const DutchPayCreate = ({
     onClickOptBtn,
@@ -12,10 +12,12 @@ const DutchPayCreate = ({
     opt,
     calcResponse,
     dutchPay,
-    dtAmt,
-    dtDtlAmt,
-    rmd,
-    onChangeDtAmt,
+    splInput,
+    onChangeSplInput,
+    inpInput,
+    onChangeInpInput,
+    onChangrInpRmd,
+    onClickSave,
 }) => {
     return (
         <>
@@ -24,7 +26,9 @@ const DutchPayCreate = ({
                     <img className="arrow-back" src={require('../../assets/arrow-back.png')} />
                 </div>
                 <div className="title">정산 내역 생성</div>
-                <div className="save-btn">저장</div>
+                <div className="save-btn" onClick={onClickSave}>
+                    저장
+                </div>
             </DutchPayCreateHeader>
             <DutchPayWrapper>
                 <DutchPayOptSelect>
@@ -42,17 +46,22 @@ const DutchPayCreate = ({
                     </div>
                 </DutchPayOptSelect>
                 <DutchPayInput>
-                    {opt === 'SECTION' && <DutchPayCreateOptSec calcResponse={calcResponse} />}
+                    {opt === 'SECTION' && <DutchPayCreateOptSec dutchPay={dutchPay} calcResponse={calcResponse} />}
                     {opt === 'SPLIT' && (
                         <DutchPayCreateOptSpl
                             dutchPay={dutchPay}
-                            dtAmt={dtAmt}
-                            dtDtlAmt={dtDtlAmt}
-                            rmd={rmd}
-                            onChangeDtAmt={onChangeDtAmt}
+                            splInput={splInput}
+                            onChangeSplInput={onChangeSplInput}
                         />
                     )}
-                    {opt === 'INPUT' && <DutchPayCreateOptFR />}
+                    {opt === 'INPUT' && (
+                        <DutchPayCreateOptInp
+                            dutchPay={dutchPay}
+                            inpInput={inpInput}
+                            onChangeInpInput={onChangeInpInput}
+                            onChangrInpRmd={onChangrInpRmd}
+                        />
+                    )}
                 </DutchPayInput>
             </DutchPayWrapper>
         </>

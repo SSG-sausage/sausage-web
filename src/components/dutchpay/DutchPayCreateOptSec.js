@@ -5,10 +5,10 @@ import DutchPayNavigationBar from './DutchPayNavigationBar';
 import Master from './Master';
 import Me from './Me';
 
-const DutchPayCreateOptSec = ({ calcResponse }) => {
+const DutchPayCreateOptSec = ({ dutchPay, calcResponse }) => {
     return (
         <OptSecContainer>
-            {calcResponse.dutchPayDtlCalcInfoList?.map((info, index) => (
+            {calcResponse.dutchPayDtlList?.map((info, index) => (
                 <DutchPayDtl key={info.mbrId}>
                     <div className="name-container">
                         {info.mastrYn && <Me />}
@@ -51,14 +51,14 @@ const DutchPayCreateOptSec = ({ calcResponse }) => {
             <div className="sum-container">
                 <div className="sum-label">총 정산 금액</div>
                 <div className="sum-value">
-                    <div className="sum-amt">{calcResponse.paymtAmt}</div>
+                    <div className="sum-amt">{calcResponse.dutchPayAmt}</div>
                     <div className="sum-unit">원</div>
                 </div>
             </div>
             <div className="paymt-container">
                 <div className="paymt-label">결제 금액</div>
                 <div className="paymt-value">
-                    <div className="paymt-amt">{calcResponse.paymtAmt}</div>
+                    <div className="paymt-amt">{dutchPay.paymtAmt}</div>
                     <div className="paymt-unit">원</div>
                 </div>
             </div>
@@ -73,6 +73,8 @@ const OptSecContainer = styled.div`
         justify-content: space-between;
         font-weight: 400;
         font-size: 16px;
+        height: 15px;
+        line-height: 15px;
     }
     .rmd-label {
         padding-left: 46px;
@@ -96,6 +98,8 @@ const OptSecContainer = styled.div`
         display: flex;
         margin-top: 26px;
         justify-content: space-between;
+        height: 24px;
+        line-height: 24px;
     }
     .sum-label {
         font-weight: 700;
@@ -107,13 +111,18 @@ const OptSecContainer = styled.div`
         font-weight: 700;
         font-size: 20px;
     }
+    .sum-amt {
+        font-weight: 700;
+        font-size: 24px;
+        padding-right: 4px;
+    }
     .sum-unit {
         margin-right: 20px;
         margin-left: 10px;
     }
     .paymt-container {
         display: flex;
-        margin-top: 30px;
+        margin-top: 10px;
         justify-content: space-between;
         font-weight: 400;
         font-size: 14px;
@@ -127,9 +136,12 @@ const OptSecContainer = styled.div`
         display: flex;
         font-size: 16px;
     }
+    .paymt-amt {
+        padding-right: 4px;
+    }
     .paymt-unit {
         margin-right: 20px;
-        margin-left: 10px;
+        margin-left: 13px;
     }
 `;
 const DutchPayDtl = styled.div`
@@ -151,6 +163,11 @@ const DutchPayDtl = styled.div`
     }
     .dt-container {
         position: relative;
+    }
+    .dt-value {
+        height: 26px;
+        line-height: 25px;
+        padding-right: 4px;
     }
     .main-dt-container {
         display: flex;
