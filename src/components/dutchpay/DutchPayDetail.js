@@ -6,11 +6,7 @@ import DutchPayNavigationBar from './DutchPayNavigationBar';
 const DutchPayDetail = () => {
     return (
         <>
-            <div>
-                <NavigationBar />
-            </div>
-            <DutchPayNavigationBar />
-            <DutchPayWrapper>
+            <DutchPayDetailContainer>
                 <div className="header">
                     <div className="opt">섹션별 계산</div>
                     <div className="opt-desc">적용 중</div>
@@ -34,12 +30,12 @@ const DutchPayDetail = () => {
                         </div>
                     </div>
                 </div>
-            </DutchPayWrapper>
+            </DutchPayDetailContainer>
         </>
     );
 };
 
-const DutchPayWrapper = styled.div`
+const DutchPayDetailContainer = styled.div`
     position: relative;
     height: 698px;
 

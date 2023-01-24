@@ -56,9 +56,9 @@ function App() {
                     <Route path="/cart-share" element={<CartSharePage />} />
                     <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/cart-share-ord/:cartShareOrdId/dutch-pay" element={<DutchPayPage />} />
-                    <Route path="/cart-share-ord/:cartShareOrdId/dutch-pay/create" element={<DutchPayCreatePage />} />
-                    <Route path="/cart-share-ord/:cartShareOrdId/dutch-pay/detail" element={<DutchPayDetailPage />} />
+                    <Route path="/dutch-pay/:dutchPayId" element={<DutchPayPage />} />
+                    <Route path="/dutch-pay/:dutchPayId/create" element={<DutchPayCreatePage />} />
+                    <Route path="/dutch-pay/:dutchPayId/update" element={<DutchPayDetailPage />} />
 
                     <Route element={<AuthLayout />}>
                         <Route path="/" element={<ItemListPage />} />

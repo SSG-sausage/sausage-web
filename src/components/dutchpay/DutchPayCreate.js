@@ -2,8 +2,21 @@
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
 import DutchPayNavigationBar from './DutchPayNavigationBar';
+import DutchPayCreateOptSec from '../../components/dutchpay/DutchPayCreateOptSec';
+import DutchPayCreateOptSpl from './DutchPayCreateOptSpl';
+import DutchPayCreateOptFR from '../../components/dutchpay/DutchPayCreateOptFR';
 
-const DutchPayCreate = ({ onClickOptBtn, onClickBack }) => {
+const DutchPayCreate = ({
+    onClickOptBtn,
+    onClickBack,
+    opt,
+    calcResponse,
+    dutchPay,
+    dtAmt,
+    dtDtlAmt,
+    rmd,
+    onChangeDtAmt,
+}) => {
     return (
         <>
             <DutchPayCreateHeader>
@@ -17,17 +30,30 @@ const DutchPayCreate = ({ onClickOptBtn, onClickBack }) => {
                 <DutchPayOptSelect>
                     <div className="title">정산 옵션</div>
                     <div className="opt-container">
-                        <div className="opt-btn selected" id="by-section" onClick={onClickOptBtn}>
+                        <div className="opt-btn selected" id="SECTION" onClick={onClickOptBtn}>
                             섹션별 계산
                         </div>
-                        <div className="opt-btn" id="divide-by-n" onClick={onClickOptBtn}>
+                        <div className="opt-btn" id="SPLIT" onClick={onClickOptBtn}>
                             1/N 계산
                         </div>
-                        <div className="opt-btn" id="free" onClick={onClickOptBtn}>
+                        <div className="opt-btn" id="INPUT" onClick={onClickOptBtn}>
                             직접 입력
                         </div>
                     </div>
                 </DutchPayOptSelect>
+                <DutchPayInput>
+                    {opt === 'SECTION' && <DutchPayCreateOptSec calcResponse={calcResponse} />}
+                    {opt === 'SPLIT' && (
+                        <DutchPayCreateOptSpl
+                            dutchPay={dutchPay}
+                            dtAmt={dtAmt}
+                            dtDtlAmt={dtDtlAmt}
+                            rmd={rmd}
+                            onChangeDtAmt={onChangeDtAmt}
+                        />
+                    )}
+                    {opt === 'INPUT' && <DutchPayCreateOptFR />}
+                </DutchPayInput>
             </DutchPayWrapper>
         </>
     );
@@ -70,7 +96,7 @@ const DutchPayOptSelect = styled.div`
     }
     .opt-btn {
         height: 27px;
-        line-height: 27px;
+        line-height: 31px;
         border-radius: 8px;
         width: fit-content;
         padding: 0px 8px;
@@ -90,5 +116,13 @@ const DutchPayOptSelect = styled.div`
 `;
 
 const DutchPayWrapper = styled.div``;
+const DutchPayInput = styled.div`
+    border: 2px solid #f5f5f5;
+    width: 356px;
+    max-height: 590px;
+    margin: auto;
+    margin-top: 22px;
+    overflow: auto;
+`;
 
 export default DutchPayCreate;

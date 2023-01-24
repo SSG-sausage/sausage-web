@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
+import DutchPayDetail from './DutchPayDetail';
 import DutchPayNavigationBar from './DutchPayNavigationBar';
 
-const DutchPay = ({ onClickCreate, cartShareOrdId }) => {
+const DutchPay = ({ onClickCreate, dutchPay, mbrId }) => {
     return (
         <>
             <div>
@@ -11,10 +12,16 @@ const DutchPay = ({ onClickCreate, cartShareOrdId }) => {
             </div>
             <DutchPayNavigationBar />
             <DutchPayWrapper>
-                <CreateDutchPayBtn onClick={() => onClickCreate(cartShareOrdId)}>
-                    함께쓱정산 <br />
-                    시작하기
-                </CreateDutchPayBtn>
+                {dutchPay.dutchPayStYn === false && dutchPay.mastrYn && (
+                    <CreateDutchPayBtn onClick={() => onClickCreate(dutchPay.dutchPayId)}>
+                        함께쓱정산 <br />
+                        시작하기
+                    </CreateDutchPayBtn>
+                )}
+                {dutchPay.dutchPayStYn === false && !dutchPay.mastrYn && (
+                    <EmptyDutchPay>정산 내역이 없습니다.</EmptyDutchPay>
+                )}
+                {dutchPay.dutchPayStYn && <DutchPayDetail />}
             </DutchPayWrapper>
         </>
     );
@@ -45,6 +52,17 @@ const CreateDutchPayBtn = styled.div`
     box-sizing: border-box;
     padding-top: 75px;
     cursor: pointer;
+`;
+
+const EmptyDutchPay = styled.div`
+    width: 390px;
+    text-align: center;
+    color: #888888;
+    font-weight: 400;
+    font-size: 24px;
+    position: absolute;
+
+    top: 257px;
 `;
 
 export default DutchPay;

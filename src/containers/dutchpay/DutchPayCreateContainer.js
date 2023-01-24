@@ -1,14 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import DutchPayCreateOptBS from '../../components/dutchpay/DutchPayCreateOptBS';
-import DutchPayCreateOptDN from '../../components/dutchpay/DutchPayCreateOptDN';
-import DutchPayCreateOptFR from '../../components/dutchpay/DutchPayCreateOptFR';
+import { useCookies } from 'react-cookie';
 import DutchPayCreate from '../../components/dutchpay/DutchPayCreate';
+import { calcDutchPay, findDutchPay } from '../../api/dutchpay/dutchPay';
 
 const DutchPayContainer = () => {
     const navigate = useNavigate();
-    const [opt, setOpt] = useState('by-section');
-    const optList = ['by-section', 'divide-by-n', 'free'];
+    const { dutchPayId } = useParams();
+    const optList = ['SECTION', 'SPLIT', 'INPUT'];
+
+    const [cookies, setCookie] = useCookies(['mbrId']);
+
+    const [opt, setOpt] = useState('SECTION');
+    const [dutchPay, setDutchPay] = useState({});
+
+    // for SECTION
+    const [calcResponse, setCalcResponse] = useState({});
+
+    // for SPLIT
+    const [dtAmt, setDtAmt] = useState(0);
+    const [dtDtlAmt, setDtDtlAmt] = useState(0);
+    const [rmd, setRmd] = useState(0);
+    const [mbrNum, setMbrNum] = useState(1);
 
     const onClickOptBtn = e => {
         const selectedClass = 'selected';
@@ -23,12 +36,42 @@ const DutchPayContainer = () => {
         navigate(`/cart-share-ord/${cartShareOrdId}/dutch-pay`);
     };
 
+    useEffect(() => {
+        calcDutchPay(dutchPayId).then(response => {
+            setCalcResponse(response.data.data);
+        });
+        findDutchPay(cookies.mbrId, dutchPayId).then(response => {
+            setDutchPay(response.data.data);
+            setMbrNum(response.data.data.dutchPayDtlFindInfoList.length);
+            setDtAmt(response.data.data.paymtAmt);
+            setDtDtlAmt(parseInt(response.data.data.paymtAmt / response.data.data.dutchPayDtlFindInfoList.length));
+            setRmd(response.data.data.paymtAmt % response.data.data.dutchPayDtlFindInfoList.length);
+        });
+    }, []);
+
+    const calcSplit = n => {
+        setDtAmt(n);
+        setDtDtlAmt(parseInt(n / mbrNum));
+        setRmd(n % mbrNum);
+    };
+
+    const onChangeDtAmt = e => {
+        calcSplit(Number(e.target.value));
+    };
+
     return (
         <div>
-            <DutchPayCreate onClickOptBtn={onClickOptBtn} onClickBack={onClickBack} />
-            {opt === 'by-section' && <DutchPayCreateOptBS />}
-            {opt === 'divide-by-n' && <DutchPayCreateOptDN />}
-            {opt === 'free' && <DutchPayCreateOptFR />}
+            <DutchPayCreate
+                onClickOptBtn={onClickOptBtn}
+                onClickBack={onClickBack}
+                opt={opt}
+                calcResponse={calcResponse}
+                dutchPay={dutchPay}
+                dtAmt={dtAmt}
+                dtDtlAmt={dtDtlAmt}
+                rmd={rmd}
+                onChangeDtAmt={onChangeDtAmt}
+            />
         </div>
     );
 };
