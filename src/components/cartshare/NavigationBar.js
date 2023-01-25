@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NavigationBar = () => {
+const NavigationBar = ({ nm, itemQty }) => {
     return (
         <>
             <NavigationBarLeft>
@@ -8,7 +8,8 @@ const NavigationBar = () => {
             </NavigationBarLeft>
             <NavigationBarMiddle>
                 <p id="title">
-                    <b>[함께장보기]</b>소시지(0개)
+                    <b>[함께장보기]</b>
+                    {nm}({itemQty}개)
                     <img id="polygon" src={require('../../assets/polygon.png')} />
                 </p>
             </NavigationBarMiddle>
@@ -24,7 +25,7 @@ const NavigationBar = () => {
 const NavigationBarMiddle = styled.div`
     float: left;
     height: 47px;
-    width: 150px;
+    width: 170px;
     text-align: center;
 
     #title {
@@ -42,7 +43,7 @@ const NavigationBarMiddle = styled.div`
 const NavigationBarLeft = styled.div`
     float: left;
     height: 47px;
-    width: 120px;
+    width: 110px;
 
     #arrow-back {
         margin-top: 14px;
@@ -54,11 +55,11 @@ const NavigationBarRight = styled.div`
     float: left;
     text-align: right;
     height: 47px;
-    width: 120px;
+    width: 110px;
 
     #invoice {
         margin-top: 10px;
-        margin-right: 10px;
+        margin-right: 5px;
     }
 
     #home {
@@ -68,7 +69,7 @@ const NavigationBarRight = styled.div`
 
     #magnifier {
         margin-top: 10px;
-        margin-right: 10px;
+        margin-right: 5px;
     }
 `;
 

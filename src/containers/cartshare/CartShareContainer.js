@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import { findCartShareList } from '../../api/cartshare/cartShare';
 import CartShare from '../../components/cartshare/CartShare';
 
 const CartShareContainer = () => {
     const navigate = useNavigate();
+    const [cookies, setCookie] = useCookies(['mbrId']);
     const [cartShareList, setCartShareList] = useState([]);
 
     const onClickCartShare = cartShareId => {
@@ -12,13 +14,9 @@ const CartShareContainer = () => {
     };
 
     const fetchCartShareList = async () => {
-        try {
-            const response = await findCartShareList();
-            const data = response.data.data;
-            setCartShareList(data.cartShareList);
-        } catch (error) {
-            alert('공유장바구니 리스트 조회 실패');
-        }
+        const response = await findCartShareList(cookies.mbrId);
+        const data = response.data.data;
+        setCartShareList(data.cartShareList);
     };
 
     useEffect(() => {
