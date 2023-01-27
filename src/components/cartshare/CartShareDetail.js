@@ -34,6 +34,8 @@ const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onCli
                         <div id="line1"></div>
                         <div id="order">주문내역</div>
                         <div id="line2"></div>
+                        <div id="scm">쓱총무</div>
+                        <div id="line3"></div>
                         <div id="setting">관리</div>
                     </div>
                 </CartShareInfo>
@@ -257,62 +259,89 @@ const CartShareInfo = styled.div`
 
     #menu {
         position: absolute;
-        width: 275px;
-        height: 38px;
+        width: 314px;
+        height: 30px;
         border: 1px solid #888888;
         border-radius: 20px;
-        left: 29.5px;
+        left: 10px;
         top: 163px;
         text-align: center;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 17px;
+        align-items: center;
+        text-align: center;
+        letter-spacing: -0.5px;
     }
 
     #invite {
-        padding-top: 11px;
         float: left;
-        width: 95.5px;
+        width: 77px;
         height: 20px;
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 17px;
-        letter-spacing: -0.5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     #order {
         padding-top: 11px;
-        width: 80px;
-        height: 20px;
         float: left;
-        font-size: 12px;
-        line-height: 17px;
-        letter-spacing: -0.5px;
-        color: #888888;
+        width: 77px;
+        height: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #scm {
+        padding-top: 11px;
+        float: left;
+        width: 77px;
+        height: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     #setting {
         padding-top: 11px;
         float: left;
-        width: 95.5px;
+        width: 77px;
         height: 20px;
-        font-size: 12px;
-        line-height: 17px;
-        letter-spacing: -0.5px;
-        color: #888888;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     #line1 {
         float: left;
         width: 0px;
-        height: 22px;
-        margin-top: 8px;
+        height: 21px;
+        margin-top: 4px;
         border: 1px solid #888888;
     }
 
     #line2 {
         float: left;
         width: 0px;
-        height: 22px;
-        left: 209px;
-        margin-top: 8px;
+        height: 21px;
+        margin-top: 4px;
+        border: 1px solid #888888;
+    }
+
+    #line3 {
+        float: left;
+        width: 0px;
+        height: 21px;
+        margin-top: 4px;
         border: 1px solid #888888;
     }
 `;
