@@ -1,8 +1,8 @@
 import { axiosInstance } from '../instance';
 
-export const findDutchPay = (mbrId, dutchPayId) =>
+export const findCartShareCal = (mbrId, cartShareCalId) =>
     axiosInstance
-        .get(`dutch-pay/api/dutch-pay/${dutchPayId}`, {
+        .get(`cart-share-calculation/api/cart-share-cal/${cartShareCalId}`, {
             headers: {
                 mbrId,
             },
@@ -11,14 +11,14 @@ export const findDutchPay = (mbrId, dutchPayId) =>
             alert('정산 조회 실패');
         });
 
-export const calcDutchPay = dutchPayId =>
-    axiosInstance.get(`dutch-pay/api/dutch-pay/${dutchPayId}/calc`, {}).catch(() => {
+export const calCartShareCal = cartShareCalId =>
+    axiosInstance.get(`cart-share-calculation/api/cart-share-cal/${cartShareCalId}/cal`, {}).catch(() => {
         alert('정산 계산 조회 실패');
     });
 
-export const updateDutchPay = (mbrId, dutchPayId, request) =>
+export const updateCartShareCal = (mbrId, cartShareCalId, request) =>
     axiosInstance
-        .put(`dutch-pay/api/dutch-pay/${dutchPayId}`, request, {
+        .put(`cart-share-calculation/api/cart-share-cal/${cartShareCalId}`, request, {
             headers: {
                 mbrId: mbrId,
             },
@@ -27,10 +27,10 @@ export const updateDutchPay = (mbrId, dutchPayId, request) =>
             alert('정산 수정 실패');
         });
 
-export const updateCmplYn = (mbrId, dutchPayId, dtlMbrId) =>
+export const updateCmplYn = (mbrId, cartShareCalId, dtlMbrId) =>
     axiosInstance
         .patch(
-            `dutch-pay/api/dutch-pay/${dutchPayId}/mbr-id/${dtlMbrId}/cmpl`,
+            `cart-share-calculation/api/cart-share-cal/${cartShareCalId}/mbr-id/${dtlMbrId}/cmpl`,
             {},
             {
                 headers: {

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
-import DutchPayNavigationBar from './DutchPayNavigationBar';
+import DutchPayNavigationBar from './CartShareCalNavigationBar';
 import Master from './Master';
 import Me from './Me';
 

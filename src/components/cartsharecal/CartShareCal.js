@@ -2,49 +2,46 @@
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
 import DutchPayDetailOptInp from './DutchPayDetailOptInp';
-import DutchPayDetailOptSec from './DutchPayDetailOptSec';
+import CartShareCalDetailOptSec from './CartShareCalDetailOptSec';
 import DutchPayDetailOptSpl from './DutchPayDetailOptSpl';
-import DutchPayNavigationBar from './DutchPayNavigationBar';
+import CartShareCalNavigationBar from './CartShareCalNavigationBar';
 
-const DutchPay = ({ onClickCreate, dutchPay, onClickCmplYn, onClickUpdate }) => {
+const CartShareCal = ({ onClickCreate, cartShareCal, onClickCmplYn, onClickUpdate }) => {
     return (
         <>
-            <div>
-                <NavigationBar />
-            </div>
-            <DutchPayNavigationBar />
+            <CartShareCalNavigationBar />
             <DutchPayWrapper>
-                {dutchPay.dutchPayStYn === false && dutchPay.mastrYn && (
-                    <CreateDutchPayBtn onClick={() => onClickCreate()}>
-                        함께쓱정산 <br />
-                        시작하기
-                    </CreateDutchPayBtn>
+                {cartShareCal.calStYn === false && cartShareCal.mastrYn && (
+                    <EmptyCartShareCal>
+                        정산 내역이 생성되지 않았습니다.
+                        <CreateCartShareCalBtn onClick={() => onClickCreate()}>쓱총무 도움받기</CreateCartShareCalBtn>
+                    </EmptyCartShareCal>
                 )}
-                {dutchPay.dutchPayStYn === false && !dutchPay.mastrYn && (
-                    <EmptyDutchPay>정산 내역이 없습니다.</EmptyDutchPay>
+                {cartShareCal.calStYn === false && !cartShareCal.mastrYn && (
+                    <EmptyCartShareCal>정산 내역이 생성되지 않았습니다.</EmptyCartShareCal>
                 )}
-                {dutchPay.dutchPayStYn && (
-                    <DutchPayDetail>
-                        <DutchPayDetailHeader>
-                            {dutchPay.dutchPayOptCd === 'SECTION' && <div className="opt">섹션별 계산</div>}
-                            {dutchPay.dutchPayOptCd === 'SPLIT' && <div className="opt">1/N 계산</div>}
-                            {dutchPay.dutchPayOptCd === 'INPUT' && <div className="opt">직접 입력</div>}
+                {cartShareCal.calStYn && (
+                    <CartShareCalDetail>
+                        <DetailHeader>
+                            {cartShareCal.calOptCd === 'SECTION' && <div className="opt">섹션별 계산</div>}
+                            {cartShareCal.calOptCd === 'SPLIT' && <div className="opt">1/N 계산</div>}
+                            {cartShareCal.calOptCd === 'INPUT' && <div className="opt">직접 입력</div>}
 
                             <div className="opt-desc">적용 중</div>
-                        </DutchPayDetailHeader>
-                        <DutchPayDetailContent>
-                            {dutchPay.dutchPayOptCd === 'SECTION' && (
-                                <DutchPayDetailOptSec dutchPay={dutchPay} onClickCmplYn={onClickCmplYn} />
+                        </DetailHeader>
+                        <DetailContent>
+                            {cartShareCal.calOptCd === 'SECTION' && (
+                                <CartShareCalDetailOptSec cartShareCal={cartShareCal} onClickCmplYn={onClickCmplYn} />
                             )}
-                            {dutchPay.dutchPayOptCd === 'SPLIT' && (
-                                <DutchPayDetailOptSpl dutchPay={dutchPay} onClickCmplYn={onClickCmplYn} />
+                            {cartShareCal.calOptCd === 'SPLIT' && (
+                                <DutchPayDetailOptSpl cartShareCal={cartShareCal} onClickCmplYn={onClickCmplYn} />
                             )}
-                            {dutchPay.dutchPayOptCd === 'INPUT' && (
-                                <DutchPayDetailOptInp dutchPay={dutchPay} onClickCmplYn={onClickCmplYn} />
+                            {cartShareCal.calOptCd === 'INPUT' && (
+                                <DutchPayDetailOptInp cartShareCal={cartShareCal} onClickCmplYn={onClickCmplYn} />
                             )}
-                        </DutchPayDetailContent>
-                        <DutchPayDetailFooter>
-                            {dutchPay.mastrYn && (
+                        </DetailContent>
+                        <DetailFooter>
+                            {cartShareCal.mastrYn && (
                                 <div>
                                     <button className="edit-btn" onClick={() => onClickUpdate()}>
                                         금액
@@ -61,8 +58,8 @@ const DutchPay = ({ onClickCreate, dutchPay, onClickCmplYn, onClickUpdate }) => 
                                     </div>
                                 </div>
                             )}
-                        </DutchPayDetailFooter>
-                    </DutchPayDetail>
+                        </DetailFooter>
+                    </CartShareCalDetail>
                 )}
             </DutchPayWrapper>
         </>
@@ -73,46 +70,36 @@ const DutchPayWrapper = styled.div`
     position: relative;
 `;
 
-const CreateDutchPayBtn = styled.div`
-    width: 227px;
-    height: 227px;
-    display: flex;
-    justify-content: center;
-    align-item: center;
+const CreateCartShareCalBtn = styled.div`
+    width: 390px;
+    height: 57px;
+    line-height: 57px;
     background: #3a94fa;
-    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
     font-weight: 700;
-    font-size: 32px;
+    font-size: 24px;
     text-align: center;
-    letter-spacing: -0.5px;
     color: #ffffff;
     position: absolute;
-    width: 227px;
-    height: 227px;
-    left: 82px;
-    top: 197px;
-    box-sizing: border-box;
-    padding-top: 75px;
+    bottom: 0;
     cursor: pointer;
 `;
 
-const EmptyDutchPay = styled.div`
+const EmptyCartShareCal = styled.div`
     width: 390px;
+    height: 750px;
     text-align: center;
     color: #888888;
     font-weight: 400;
-    font-size: 24px;
-    position: absolute;
-
-    top: 257px;
+    font-size: 20px;
+    line-height: 600px;
 `;
 
-const DutchPayDetail = styled.div`
+const CartShareCalDetail = styled.div`
     position: relative;
     height: 698px;
 `;
 
-const DutchPayDetailHeader = styled.div`
+const DetailHeader = styled.div`
     display: flex;
     padding-left: 10px;
     padding-top: 23px;
@@ -139,7 +126,7 @@ const DutchPayDetailHeader = styled.div`
     }
 `;
 
-const DutchPayDetailContent = styled.div`
+const DetailContent = styled.div`
     width: 356px;
     height: 436px;
     border: 2px solid #f5f5f5;
@@ -148,7 +135,7 @@ const DutchPayDetailContent = styled.div`
     overflow: auto;
 `;
 
-const DutchPayDetailFooter = styled.div`
+const DetailFooter = styled.div`
     .edit-btn {
         cursor: pointer;
         margin-top: 28px;
@@ -195,4 +182,4 @@ const DutchPayDetailFooter = styled.div`
     }
 `;
 
-export default DutchPay;
+export default CartShareCal;

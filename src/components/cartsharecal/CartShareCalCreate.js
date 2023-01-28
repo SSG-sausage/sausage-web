@@ -1,27 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
-import DutchPayNavigationBar from './DutchPayNavigationBar';
-import DutchPayCreateOptSec from '../../components/dutchpay/DutchPayCreateOptSec';
-import DutchPayCreateOptSpl from './DutchPayCreateOptSpl';
-import DutchPayCreateOptInp from './DutchPayCreateOptInp';
+import CalCreateOptSec from './CalCreateOptSec';
+import CalCreateOptSpl from './CalCreateOptSpl';
+import CalCreateOptInp from './CalCreateOptInp';
+import OrdBottomSheet from './OrdBottomSheet';
 
-const DutchPayCreate = ({
+const CartShareCalCreate = ({
     onClickOptBtn,
     onClickBack,
     opt,
     calcResponse,
-    dutchPay,
+    cartShareCal,
     splInput,
     onChangeSplInput,
     inpInput,
     onChangeInpInput,
     onChangeInpRmd,
     onClickSave,
+    openOrdSheet,
+    onClickOpenSheet,
+    onClickCloseSheet,
 }) => {
     return (
-        <>
-            <DutchPayCreateHeader>
+        <CreateContainer>
+            <CalCreateHeader>
                 <div onClick={onClickBack}>
                     <img className="arrow-back" src={require('../../assets/arrow-back.png')} />
                 </div>
@@ -29,9 +32,9 @@ const DutchPayCreate = ({
                 <div className="save-btn" onClick={onClickSave}>
                     저장
                 </div>
-            </DutchPayCreateHeader>
-            <DutchPayWrapper>
-                <DutchPayOptSelect>
+            </CalCreateHeader>
+            <CalContent>
+                <OptSelect>
                     <div className="title">정산 옵션</div>
                     <div className="opt-container">
                         <div
@@ -56,31 +59,40 @@ const DutchPayCreate = ({
                             직접 입력
                         </div>
                     </div>
-                </DutchPayOptSelect>
-                <DutchPayInput>
-                    {opt === 'SECTION' && <DutchPayCreateOptSec dutchPay={dutchPay} calcResponse={calcResponse} />}
+                </OptSelect>
+                <CalInput>
+                    {opt === 'SECTION' && <CalCreateOptSec cartShareCal={cartShareCal} calcResponse={calcResponse} />}
                     {opt === 'SPLIT' && (
-                        <DutchPayCreateOptSpl
-                            dutchPay={dutchPay}
+                        <CalCreateOptSpl
+                            cartShareCal={cartShareCal}
                             splInput={splInput}
                             onChangeSplInput={onChangeSplInput}
                         />
                     )}
                     {opt === 'INPUT' && (
-                        <DutchPayCreateOptInp
-                            dutchPay={dutchPay}
+                        <CalCreateOptInp
+                            cartShareCal={cartShareCal}
                             inpInput={inpInput}
                             onChangeInpInput={onChangeInpInput}
                             onChangeInpRmd={onChangeInpRmd}
                         />
                     )}
-                </DutchPayInput>
-            </DutchPayWrapper>
-        </>
+                </CalInput>
+            </CalContent>
+            <CalFooter>
+                <div onClick={onClickOpenSheet}>주문 상품 자세히 보기 > </div>
+            </CalFooter>
+            {openOrdSheet && (
+                <OrdBottomSheet cartShareOrdId={cartShareCal.cartShareOrdId} onClickCloseSheet={onClickCloseSheet} />
+            )}
+        </CreateContainer>
     );
 };
-
-const DutchPayCreateHeader = styled.div`
+const CreateContainer = styled.div`
+    position: absolute;
+    height: 797px;
+`;
+const CalCreateHeader = styled.div`
     width: 390px;
     height: 29px;
     display: flex;
@@ -103,7 +115,7 @@ const DutchPayCreateHeader = styled.div`
         cursor: pointer;
     }
 `;
-const DutchPayOptSelect = styled.div`
+const OptSelect = styled.div`
     .title {
         margin-top: 28px;
         text-align: center;
@@ -136,8 +148,8 @@ const DutchPayOptSelect = styled.div`
     }
 `;
 
-const DutchPayWrapper = styled.div``;
-const DutchPayInput = styled.div`
+const CalContent = styled.div``;
+const CalInput = styled.div`
     border: 2px solid #f5f5f5;
     width: 356px;
     max-height: 590px;
@@ -145,5 +157,13 @@ const DutchPayInput = styled.div`
     margin-top: 22px;
     overflow: auto;
 `;
+const CalFooter = styled.div`
+    margin-top: 40px;
+    color: #888888;
+    ont-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+`;
 
-export default DutchPayCreate;
+export default CartShareCalCreate;

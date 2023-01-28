@@ -1,5 +1,5 @@
 import React from 'react';
-import DutchPayContainer from '../../containers/dutchpay/DutchPayContainer';
+import DutchPayContainer from '../../containers/cartsharecal/CartShareCalContainer';
 
 const DutchPayPage = () => {
     return <DutchPayContainer />;

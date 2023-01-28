@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { findDutchPay, updateCmplYn } from '../../api/dutchpay/dutchPay';
+import { findDutchPay, updateCmplYn } from '../../api/cartsharecal/cartShareCal';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import DutchPay from '../../components/dutchpay/DutchPay';
+import DutchPay from '../../components/cartsharecal/CartShareCal';
 
-const DutchPayContainer = () => {
+const CartShareCalContainer = () => {
     const navigate = useNavigate();
     const { dutchPayId } = useParams();
     const [dutchPay, setDutchPay] = useState({});
@@ -40,4 +40,4 @@ const DutchPayContainer = () => {
     );
 };
 
-export default DutchPayContainer;
+export default CartShareCalContainer;

@@ -1,25 +1,43 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
-import DutchPayNavigationBar from './DutchPayNavigationBar';
+import DutchPayNavigationBar from './CartShareCalNavigationBar';
 import Master from './Master';
+import MastrCmplYn from './MastrCmplYn';
 import Me from './Me';
+import MbrCmplYn from './MbrCmplYn';
 
-const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
+const DutchPayDetailOptSpl = ({ dutchPay, onClickCmplYn }) => {
     return (
         <OptSecContainer>
             {dutchPay.dutchPayDtlList?.map((info, index) => (
                 <DutchPayDtl key={info.mbrId}>
                     <div className="name-container">
-                        {info.mastrYn && <Me />}
+                        {info.meYn && <Me />}
                         <div className="name">
                             {info.mbrNm}
                             {info.mastrYn && <Master />}
+                            {dutchPay.mastrYn && !info.mastrYn && (
+                                <MastrCmplYn
+                                    cmplYn={info.dutchPayCmplYn}
+                                    mbrId={info.mbrId}
+                                    dutchPayId={dutchPay.dutchPayId}
+                                    onClickCmplYn={onClickCmplYn}
+                                />
+                            )}
+                            {!dutchPay.mastrYn && !info.mastrYn && (
+                                <MbrCmplYn
+                                    cmplYn={info.dutchPayCmplYn}
+                                    mbrId={info.mbrId}
+                                    dutchPayId={dutchPay.dutchPayId}
+                                    onClickCmplYn={onClickCmplYn}
+                                />
+                            )}
                         </div>
                     </div>
                     <div className="dt-container">
                         <div className="main-dt-container">
-                            <div className="dt-value">{splInput.dtDtlAmt}</div>
+                            <div className="dt-value">{info.dutchPayDtlAmt}</div>
                             <div className="dt-unit">원</div>
                         </div>
                     </div>
@@ -28,7 +46,7 @@ const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
             <div className="rmd">
                 <div className="rmd-label">나머지</div>
                 <div className="rmd-value">
-                    <div className="rmd-amt">{splInput.dtRmd}</div>
+                    <div className="rmd-amt">{dutchPay.dutchPayRmd}</div>
                     <div className="rmd-unit">원</div>
                 </div>
             </div>
@@ -36,12 +54,7 @@ const DutchPayCreateOptSpl = ({ dutchPay, splInput, onChangeSplInput }) => {
             <div className="sum-container">
                 <div className="sum-label">총 정산 금액</div>
                 <div className="sum-value">
-                    <input
-                        className="sum-amt"
-                        onChange={onChangeSplInput}
-                        value={Number(splInput.dtAmt).toString()}
-                        type="number"
-                    />
+                    <div className="sum-amt">{dutchPay.dutchPayAmt}</div>
                     <div className="sum-unit">원</div>
                 </div>
             </div>
@@ -112,13 +125,10 @@ const OptSecContainer = styled.div`
         width: 80px;
         text-align: right;
         height: 24px;
-        border-bottom: 1px solid black;
         padding-right: 4px;
         font-family: 'line';
     }
-    .sum-amt:focus {
-        outline: none;
-    }
+
     .paymt-container {
         display: flex;
         margin-top: 10px;
@@ -191,4 +201,4 @@ const DutchPayDtl = styled.div`
     }
 `;
 
-export default DutchPayCreateOptSpl;
+export default DutchPayDetailOptSpl;

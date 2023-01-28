@@ -8,9 +8,9 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/mbr/LoginPage';
 import ItemListPage from './pages/item/ItemListPage';
 import ItemDetailPage from './pages/item/ItemDetailPage';
-import DutchPayPage from './pages/dutchpay/DutchPayPage';
-import DutchPayCreatePage from './pages/dutchpay/DutchPayCreatePage';
-import DutchPayUpdatePage from './pages/dutchpay/DutchPayUpdatePage';
+import CartShareCalPage from './pages/cartsharecal/CartShareCalPage';
+import CartShareCalCreatePage from './pages/cartsharecal/CartShareCalCreatePage';
+import CartShareCalUpdatePage from './pages/cartsharecal/CartShareCalUpdatePage';
 import AuthLayout from './containers/mbr/AuthLayout';
 import OrdListPage from './pages/ord/OrdListPage';
 import OrdSuccessPage from './pages/ord/OrdSuccessPage';
@@ -56,9 +56,9 @@ function App() {
                     <Route path="/cart-share" element={<CartSharePage />} />
                     <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/dutch-pay/:dutchPayId" element={<DutchPayPage />} />
-                    <Route path="/dutch-pay/:dutchPayId/create" element={<DutchPayCreatePage />} />
-                    <Route path="/dutch-pay/:dutchPayId/update" element={<DutchPayUpdatePage />} />
+                    <Route path="/cart-share-calculation/:cartShareCalId" element={<CartShareCalPage />} />
+                    <Route path="/cart-share-calculation/:cartShareCalId/create" element={<CartShareCalCreatePage />} />
+                    <Route path="/cart-share-calculation/:cartShareCalId/update" element={<CartShareCalUpdatePage />} />
 
                     <Route element={<AuthLayout />}>
                         <Route path="/" element={<ItemListPage />} />

@@ -1,30 +1,43 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
-import DutchPayNavigationBar from './DutchPayNavigationBar';
+import DutchPayNavigationBar from './CartShareCalNavigationBar';
 import Master from './Master';
+import MastrCmplYn from './MastrCmplYn';
 import Me from './Me';
+import MbrCmplYn from './MbrCmplYn';
 
-const DutchPayUpdateOptInp = ({ dutchPay, inpInput, onChangeInpInput, onChangeInpRmd }) => {
+const DutchPayDetailOptInp = ({ dutchPay, onClickCmplYn }) => {
     return (
         <OptSecContainer>
             {dutchPay.dutchPayDtlList?.map((info, index) => (
                 <DutchPayDtl key={info.mbrId}>
                     <div className="name-container">
-                        {info.mastrYn && <Me />}
+                        {info.meYn && <Me />}
                         <div className="name">
                             {info.mbrNm}
                             {info.mastrYn && <Master />}
+                            {dutchPay.mastrYn && !info.mastrYn && (
+                                <MastrCmplYn
+                                    cmplYn={info.dutchPayCmplYn}
+                                    mbrId={info.mbrId}
+                                    dutchPayId={dutchPay.dutchPayId}
+                                    onClickCmplYn={onClickCmplYn}
+                                />
+                            )}
+                            {!dutchPay.mastrYn && !info.mastrYn && (
+                                <MbrCmplYn
+                                    cmplYn={info.dutchPayCmplYn}
+                                    mbrId={info.mbrId}
+                                    dutchPayId={dutchPay.dutchPayId}
+                                    onClickCmplYn={onClickCmplYn}
+                                />
+                            )}
                         </div>
                     </div>
                     <div className="dt-container">
                         <div className="main-dt-container">
-                            <input
-                                className="dt-value"
-                                onChange={e => onChangeInpInput(e, info.mbrId)}
-                                value={Number(inpInput.dtlMap.get(info.mbrId)).toString()}
-                                type="number"
-                            />
+                            <div className="dt-value">{info.dutchPayDtlAmt}</div>
                             <div className="dt-unit">원</div>
                         </div>
                     </div>
@@ -33,12 +46,7 @@ const DutchPayUpdateOptInp = ({ dutchPay, inpInput, onChangeInpInput, onChangeIn
             <div className="rmd">
                 <div className="rmd-label">나머지</div>
                 <div className="rmd-value">
-                    <input
-                        className="rmd-amt"
-                        onChange={onChangeInpRmd}
-                        value={Number(inpInput.dtRmd).toString()}
-                        type="number"
-                    />
+                    <div className="rmd-amt">{dutchPay.dutchPayRmd}</div>
                     <div className="rmd-unit">원</div>
                 </div>
             </div>
@@ -46,7 +54,8 @@ const DutchPayUpdateOptInp = ({ dutchPay, inpInput, onChangeInpInput, onChangeIn
             <div className="sum-container">
                 <div className="sum-label">총 정산 금액</div>
                 <div className="sum-value">
-                    <div className="sum-amt">{inpInput.dtAmt}</div>
+                    <div className="sum-amt">{dutchPay.dutchPayAmt}</div>
+
                     <div className="sum-unit">원</div>
                 </div>
             </div>
@@ -84,7 +93,6 @@ const OptSecContainer = styled.div`
         width: 15px;
         text-align: right;
         border: none;
-        border-bottom: 1px solid black;
         padding-right: 4px;
         font-size: 16px;
         height: 15px;
@@ -188,8 +196,6 @@ const DutchPayDtl = styled.div`
         position: relative;
     }
     .dt-value {
-        border: none;
-        border-bottom: 1px solid black;
         font-size: 20px;
         font-weight: 700;
         width: 100px;
@@ -215,4 +221,4 @@ const DutchPayDtl = styled.div`
     }
 `;
 
-export default DutchPayUpdateOptInp;
+export default DutchPayDetailOptInp;
