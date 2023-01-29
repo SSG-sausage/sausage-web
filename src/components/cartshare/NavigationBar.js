@@ -1,14 +1,20 @@
 import styled from 'styled-components';
 import React, { useState, useEffect, useRef } from 'react';
 import { useCookies } from 'react-cookie';
+import { useParams, useNavigate } from 'react-router-dom';
 import * as stompjs from '@stomp/stompjs';
 import { findCartShareNotiCnt } from '../../api/cartshare/cartShare';
 
 const NavigationBar = ({ nm, itemQty }) => {
+    const navigate = useNavigate();
+
     const [notiCnt, setNotiCnt] = useState(0);
     const [cookies, setCookie] = useCookies(['mbrId']);
     const client = useRef({});
 
+    const onClickNoti = () => {
+        navigate(`/cart-share/noti`);
+    };
     const connect = () => {
         client.current = new stompjs.Client({
             brokerURL: 'ws://localhost:8082/ws',
@@ -51,7 +57,7 @@ const NavigationBar = ({ nm, itemQty }) => {
                 </p>
             </NavigationBarMiddle>
             <NavigationBarRight>
-                <NotiIcon>
+                <NotiIcon onClick={onClickNoti}>
                     <img id="bell" src={require('../../assets/bell.png')} />
                     <div className="cart-share-noti-cnt">{notiCnt}</div>
                 </NotiIcon>
@@ -118,6 +124,7 @@ const NavigationBarRight = styled.div`
 `;
 const NotiIcon = styled.div`
     position: relative;
+    cursor: pointer;
     .cart-share-noti-cnt {
         position: absolute;
         top: 10px;

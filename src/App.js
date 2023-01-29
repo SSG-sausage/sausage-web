@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Cookies } from 'react-cookie';
 import CartShareDetailPage from './pages/cartshare/CartShareDetailPage';
 import CartSharePage from './pages/cartshare/CartSharePage';
+import CartShareNotiPage from './pages/cartshare/CartShareNotiPage';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/mbr/LoginPage';
 import ItemListPage from './pages/item/ItemListPage';
@@ -55,6 +56,7 @@ function App() {
                 <Routes>
                     <Route path="/cart-share" element={<CartSharePage />} />
                     <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
+                    <Route path="/cart-share/noti" element={<CartShareNotiPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/cart-share-calculation/:cartShareCalId" element={<CartShareCalPage />} />
                     <Route path="/cart-share-calculation/:cartShareCalId/create" element={<CartShareCalCreatePage />} />

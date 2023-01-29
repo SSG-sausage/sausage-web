@@ -84,7 +84,7 @@ export const deleteCartShareItem = (mbrId, cartShareId, cartShareItemId) =>
             alert('장바구니 상품 삭제 실패');
         });
 
-export const findCartShareNoti = mbrId =>
+export const findCartShareNotiList = mbrId =>
     axiosInstance
         .get('/cart-share/api/cart-share/noti', {
             headers: {
