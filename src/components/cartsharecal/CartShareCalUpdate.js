@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CalUpdateOptInp from './update/CalUpdateOptInp';
 import CalUpdateOptSec from './update/CalUpdateOptSec';
 import CalUpdateOptSpl from './update/CalUpdateOptSpl';
+import OrdBottomSheet from './OrdBottomSheet';
 
 const CartShareCalUpdate = ({
     onClickSave,
@@ -16,7 +17,7 @@ const CartShareCalUpdate = ({
     onChangeSplInput,
     onChangeInpInput,
     onChangeInpRmd,
-    CartShareCalUpdate,
+    openOrdSheet,
     onClickOpenSheet,
     onClickCloseSheet,
 }) => {
@@ -77,10 +78,19 @@ const CartShareCalUpdate = ({
                     )}
                 </CalInput>
             </CalUpdateContent>
+            <CalFooter>
+                <div onClick={onClickOpenSheet}>주문 상품 자세히 보기 > </div>
+            </CalFooter>
+            {openOrdSheet && (
+                <OrdBottomSheet cartShareOrdId={cartShareCal.cartShareOrdId} onClickCloseSheet={onClickCloseSheet} />
+            )}
         </UpdateContainer>
     );
 };
-const UpdateContainer = styled.div``;
+const UpdateContainer = styled.div`
+    position: absolute;
+    height: 797px;
+`;
 const CalUpdateHeader = styled.div`
     width: 390px;
     height: 29px;
@@ -146,6 +156,14 @@ const CalInput = styled.div`
     margin: auto;
     margin-top: 22px;
     overflow: auto;
+`;
+const CalFooter = styled.div`
+    margin-top: 40px;
+    color: #888888;
+    ont-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
 `;
 
 export default CartShareCalUpdate;

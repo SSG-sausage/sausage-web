@@ -41,3 +41,18 @@ export const updateCmplYn = (mbrId, cartShareCalId, dtlMbrId) =>
         .catch(() => {
             alert('정산 완료여부 수정 실패');
         });
+
+export const saveCartShareNoti = (mbrId, cartShareCalId) =>
+    axiosInstance
+        .post(
+            `cart-share-calculation/api/cart-share-cal/${cartShareCalId}/noti`,
+            {},
+            {
+                headers: {
+                    mbrId: mbrId,
+                },
+            },
+        )
+        .catch(() => {
+            alert('정산 알림 생성 실패');
+        });

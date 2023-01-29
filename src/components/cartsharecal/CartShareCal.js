@@ -15,6 +15,7 @@ const CartShareCal = ({
     openOrdSheet,
     onClickOpenSheet,
     onClickCloseSheet,
+    onClickNoti,
 }) => {
     return (
         <>
@@ -58,7 +59,9 @@ const CartShareCal = ({
                         <DetailFooter>
                             {cartShareCal.mastrYn && (
                                 <div className="share-container">
-                                    <div className="nofi-btn">정산 알림 보내기</div>
+                                    <div className="nofi-btn" onClick={() => onClickNoti()}>
+                                        정산 알림 보내기
+                                    </div>
                                     <div className="share-btn">
                                         <div className="share-icon-container">
                                             <img className="share-icon" src={require('../../assets/share.png')} />
@@ -188,7 +191,7 @@ const Detail = styled.div`
 
 const DetailContent = styled.div`
     width: 356px;
-    height: 500px;
+    max-height: 500px;
     border: 2px solid #f5f5f5;
     margin: auto;
     margin-top: 9px;

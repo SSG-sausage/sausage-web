@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { findCartShareCal, updateCmplYn } from '../../api/cartsharecal/cartShareCal';
+import { findCartShareCal, updateCmplYn, saveCartShareNoti } from '../../api/cartsharecal/cartShareCal';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import CartShareCal from '../../components/cartsharecal/CartShareCal';
@@ -32,6 +32,11 @@ const CartShareCalContainer = () => {
     const onClickCloseSheet = () => {
         setOpenOrdSheet(false);
     };
+    const onClickNoti = () => {
+        saveCartShareNoti(cookies.mbrId, cartShareCalId).then(() => {
+            alert('알림 발송 성공');
+        });
+    };
 
     useEffect(() => {
         findCartShareCal(cookies.mbrId, cartShareCalId).then(response => {
@@ -47,6 +52,7 @@ const CartShareCalContainer = () => {
             openOrdSheet={openOrdSheet}
             onClickOpenSheet={onClickOpenSheet}
             onClickCloseSheet={onClickCloseSheet}
+            onClickNoti={onClickNoti}
         />
     );
 };
