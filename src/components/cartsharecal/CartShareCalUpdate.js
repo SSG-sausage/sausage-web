@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
-import DutchPayUpdateOptInp from './DutchPayUpdateOptInp';
-import DutchPayUpdateOptSec from './DutchPayUpdateOptSec';
-import DutchPayUpdateOptSpl from './DutchPayUpdateOptSpl';
+import CalUpdateOptInp from './update/CalUpdateOptInp';
+import CalUpdateOptSec from './update/CalUpdateOptSec';
+import CalUpdateOptSpl from './update/CalUpdateOptSpl';
 
-const DutchPayUpdate = ({
+const CartShareCalUpdate = ({
     onClickSave,
-    dutchPay,
+    cartShareCal,
     opt,
     onClickOptBtn,
     onClickBack,
@@ -16,10 +16,13 @@ const DutchPayUpdate = ({
     onChangeSplInput,
     onChangeInpInput,
     onChangeInpRmd,
+    CartShareCalUpdate,
+    onClickOpenSheet,
+    onClickCloseSheet,
 }) => {
     return (
-        <>
-            <DutchPayUpdateHeader>
+        <UpdateContainer>
+            <CalUpdateHeader>
                 <div onClick={onClickBack}>
                     <img className="arrow-back" src={require('../../assets/arrow-back.png')} />
                 </div>
@@ -27,9 +30,9 @@ const DutchPayUpdate = ({
                 <div className="save-btn" onClick={onClickSave}>
                     저장
                 </div>
-            </DutchPayUpdateHeader>
-            <DutchPayWrapper>
-                <DutchPayOptSelect>
+            </CalUpdateHeader>
+            <CalUpdateContent>
+                <OptSelect>
                     <div className="title">정산 옵션</div>
                     <div className="opt-container">
                         <div
@@ -54,31 +57,31 @@ const DutchPayUpdate = ({
                             직접 입력
                         </div>
                     </div>
-                </DutchPayOptSelect>
-                <DutchPayInput>
-                    {opt === 'SECTION' && <DutchPayUpdateOptSec dutchPay={dutchPay} calcResponse={calcResponse} />}
+                </OptSelect>
+                <CalInput>
+                    {opt === 'SECTION' && <CalUpdateOptSec cartShareCal={cartShareCal} calcResponse={calcResponse} />}
                     {opt === 'SPLIT' && (
-                        <DutchPayUpdateOptSpl
-                            dutchPay={dutchPay}
+                        <CalUpdateOptSpl
+                            cartShareCal={cartShareCal}
                             splInput={splInput}
                             onChangeSplInput={onChangeSplInput}
                         />
                     )}
                     {opt === 'INPUT' && (
-                        <DutchPayUpdateOptInp
-                            dutchPay={dutchPay}
+                        <CalUpdateOptInp
+                            cartShareCal={cartShareCal}
                             inpInput={inpInput}
                             onChangeInpInput={onChangeInpInput}
                             onChangeInpRmd={onChangeInpRmd}
                         />
                     )}
-                </DutchPayInput>
-            </DutchPayWrapper>
-        </>
+                </CalInput>
+            </CalUpdateContent>
+        </UpdateContainer>
     );
 };
-
-const DutchPayUpdateHeader = styled.div`
+const UpdateContainer = styled.div``;
+const CalUpdateHeader = styled.div`
     width: 390px;
     height: 29px;
     display: flex;
@@ -102,7 +105,7 @@ const DutchPayUpdateHeader = styled.div`
     }
 `;
 
-const DutchPayOptSelect = styled.div`
+const OptSelect = styled.div`
     .title {
         margin-top: 28px;
         text-align: center;
@@ -135,8 +138,8 @@ const DutchPayOptSelect = styled.div`
     }
 `;
 
-const DutchPayWrapper = styled.div``;
-const DutchPayInput = styled.div`
+const CalUpdateContent = styled.div``;
+const CalInput = styled.div`
     border: 2px solid #f5f5f5;
     width: 356px;
     max-height: 590px;
@@ -145,4 +148,4 @@ const DutchPayInput = styled.div`
     overflow: auto;
 `;
 
-export default DutchPayUpdate;
+export default CartShareCalUpdate;

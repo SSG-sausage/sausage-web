@@ -1,40 +1,49 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
-import NavigationBar from '../cartshare/NavigationBar';
-import DutchPayNavigationBar from './CartShareCalNavigationBar';
-import Master from './Master';
-import Me from './Me';
+import Master from '../Master';
+import Me from '../Me';
+import MastrCmplYn from '../MastrCmplYn';
+import MbrCmplYn from '../MbrCmplYn';
 
-const DutchPayUpdateOptSec = ({ dutchPay, calcResponse }) => {
+const CalDetailOptSec = ({ cartShareCal, onClickCmplYn }) => {
     return (
         <OptSecContainer>
-            {calcResponse.dutchPayDtlList?.map((info, index) => (
+            {cartShareCal.cartShareCalDtlList?.map((info, index) => (
                 <DutchPayDtl key={info.mbrId}>
                     <div className="name-container">
-                        {info.mastrYn && <Me />}
+                        {info.meYn && <Me />}
                         <div className="name">
                             {info.mbrNm}
                             {info.mastrYn && <Master />}
+                            {cartShareCal.mastrYn && !info.mastrYn && (
+                                <MastrCmplYn
+                                    cmplYn={info.calCmplYn}
+                                    mbrId={info.mbrId}
+                                    cartShareCalId={cartShareCal.cartShareCalId}
+                                    onClickCmplYn={onClickCmplYn}
+                                />
+                            )}
+                            {!cartShareCal.mastrYn && !info.mastrYn && <MbrCmplYn cmplYn={info.calCmplYn} />}
                         </div>
                     </div>
                     <div className="dt-container">
                         <div className="main-dt-container">
-                            <div className="dt-value">{info.dutchPayDtlAmt}</div>
+                            <div className="dt-value">{info.calDtlAmt.toLocaleString()}</div>
                             <div className="dt-unit">원</div>
                         </div>
                         <div className="dtl-dt-container">
                             <div className="dtl-dt-label">공동</div>
-                            <div className="dtl-dt-amt">{info.commAmt}</div>
+                            <div className="dtl-dt-amt">{info.commAmt.toLocaleString()}</div>
                             <div className="dtl-dt-unit">원</div>
                         </div>
                         <div className="dtl-dt-container">
                             <div className="dtl-dt-label">개별</div>
-                            <div className="dtl-dt-amt">{info.prAmt}</div>
+                            <div className="dtl-dt-amt">{info.perAmt.toLocaleString()}</div>
                             <div className="dtl-dt-unit">원</div>
                         </div>
                         <div className="dtl-dt-container">
                             <div className="dtl-dt-ship-label">배송비</div>
-                            <div className="dtl-dt-amt">{info.shppAmt}</div>
+                            <div className="dtl-dt-amt">{info.shppCst.toLocaleString()}</div>
                             <div className="dtl-dt-unit">원</div>
                         </div>
                     </div>
@@ -43,7 +52,7 @@ const DutchPayUpdateOptSec = ({ dutchPay, calcResponse }) => {
             <div className="rmd">
                 <div className="rmd-label">나머지</div>
                 <div className="rmd-value">
-                    <div className="rmd-amt">{calcResponse.dutchPayRmd}</div>
+                    <div className="rmd-amt">{cartShareCal.calRmd.toLocaleString()}</div>
                     <div className="rmd-unit">원</div>
                 </div>
             </div>
@@ -51,14 +60,14 @@ const DutchPayUpdateOptSec = ({ dutchPay, calcResponse }) => {
             <div className="sum-container">
                 <div className="sum-label">총 정산 금액</div>
                 <div className="sum-value">
-                    <div className="sum-amt">{calcResponse.dutchPayAmt}</div>
+                    <div className="sum-amt">{cartShareCal.calAmt.toLocaleString()}</div>
                     <div className="sum-unit">원</div>
                 </div>
             </div>
             <div className="paymt-container">
                 <div className="paymt-label">결제 금액</div>
                 <div className="paymt-value">
-                    <div className="paymt-amt">{dutchPay.paymtAmt}</div>
+                    <div className="paymt-amt">{cartShareCal.ttlPaymtAmt.toLocaleString()}</div>
                     <div className="paymt-unit">원</div>
                 </div>
             </div>
@@ -205,4 +214,4 @@ const DutchPayDtl = styled.div`
     }
 `;
 
-export default DutchPayUpdateOptSec;
+export default CalDetailOptSec;

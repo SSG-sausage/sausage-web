@@ -1,27 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
-import NameInfoCreate from './NameInfoCreate';
+import NameInfoDetail from './NameInfoDetail';
 
-const CalCreateOptSpl = ({ cartShareCal, splInput, onChangeSplInput }) => {
+const CalDetailOptSpl = ({ cartShareCal, onClickCmplYn }) => {
     return (
-        <OptSecContainer>
+        <OptSplContainer>
             {cartShareCal.cartShareCalDtlList?.map((info, index) => (
                 <CalDtl key={info.mbrId}>
-                    <CalDtlInfo>
-                        <NameInfoCreate info={info} />
-                        <div>
-                            <div className="main-cal">
-                                <div className="main-cal-amt">{splInput.calDtlAmt.toLocaleString()}</div>
-                                <div className="main-cal-unit">원</div>
-                            </div>
+                    <NameInfoDetail cartShareCal={cartShareCal} info={info} onClickCmplYn={onClickCmplYn} />
+                    <div className="dt-container">
+                        <div className="main-dt-container">
+                            <div className="dt-value">{info.calDtlAmt.toLocaleString()}</div>
+                            <div className="dt-unit">원</div>
                         </div>
-                    </CalDtlInfo>
+                    </div>
                 </CalDtl>
             ))}
             <div className="rmd">
                 <div className="rmd-label">나머지</div>
                 <div className="rmd-value">
-                    <div className="rmd-amt">{splInput.calRmd}</div>
+                    <div className="rmd-amt">{cartShareCal.calRmd.toLocaleString()}</div>
                     <div className="rmd-unit">원</div>
                 </div>
             </div>
@@ -29,11 +27,7 @@ const CalCreateOptSpl = ({ cartShareCal, splInput, onChangeSplInput }) => {
             <div className="sum">
                 <div className="sum-label">총 정산 금액</div>
                 <div className="sum-value">
-                    <input
-                        className="sum-amt"
-                        onChange={onChangeSplInput}
-                        value={Number(splInput.calAmt).toLocaleString()}
-                    />
+                    <div className="sum-amt">{cartShareCal.calAmt.toLocaleString()}</div>
                     <div className="sum-unit">원</div>
                 </div>
             </div>
@@ -44,19 +38,19 @@ const CalCreateOptSpl = ({ cartShareCal, splInput, onChangeSplInput }) => {
                     <div className="paymt-unit">원</div>
                 </div>
             </div>
-        </OptSecContainer>
+        </OptSplContainer>
     );
 };
 
-const OptSecContainer = styled.div`
+const OptSplContainer = styled.div`
     .rmd {
         margin-top: 32px;
         display: flex;
         justify-content: space-between;
         font-weight: 400;
         font-size: 16px;
-        height: 15px;
-        line-height: 15px;
+        height: 20px;
+        line-height: 20px;
     }
     .rmd-label {
         padding-left: 46px;
@@ -70,7 +64,6 @@ const OptSecContainer = styled.div`
     .rmd-amt {
         margin-right: 3px;
     }
-
     .border {
         margin: auto;
         margin-top: 24px;
@@ -102,16 +95,12 @@ const OptSecContainer = styled.div`
         font-weight: 700;
         font-size: 24px;
         border: none;
-        width: 100px;
+        width: 80px;
         text-align: right;
-        border-bottom: 1px solid black;
-        padding-right: 4px;
+        height: 24px;
         font-family: 'line';
-        box-sizing: border-box;
     }
-    .sum-amt:focus {
-        outline: none;
-    }
+
     .paymt {
         display: flex;
         margin-top: 15px;
@@ -120,7 +109,6 @@ const OptSecContainer = styled.div`
         font-size: 14px;
         color: #626262;
         margin-bottom: 30px;
-        box-sizing: border-box;
     }
     .paymt-label {
         margin-left: 68px;
@@ -135,7 +123,7 @@ const OptSecContainer = styled.div`
     }
     .paymt-unit {
         margin-right: 20px;
-        margin-left: 14px;
+        margin-left: 13px;
     }
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
@@ -151,26 +139,38 @@ const OptSecContainer = styled.div`
 const CalDtl = styled.div`
     margin-top: 20px;
     margin-bottom: 50px;
-`;
-
-const CalDtlInfo = styled.div`
     display: flex;
     justify-content: space-between;
-    .main-cal {
+
+    .name-container {
+        display: flex;
+        position: relative;
+    }
+    .name {
+        font-weight: 700;
+        font-size: 20px;
+        position: absolute;
+        left: 33px;
+        display: flex;
+    }
+    .dt-container {
+        position: relative;
+    }
+    .dt-value {
+        height: 26px;
+        line-height: 25px;
+        padding-right: 4px;
+    }
+    .main-dt-container {
         display: flex;
         font-weight: 700;
         font-size: 20px;
         margin-bottom: 8px;
-        height: 25px;
-        line-height: 25px;
     }
-
-    .main-cal-amt {
-    }
-
-    .main-cal-unit {
+    .dt-unit {
         margin-right: 14px;
         margin-left: 10px;
     }
 `;
-export default CalCreateOptSpl;
+
+export default CalDetailOptSpl;

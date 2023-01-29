@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 
-const MastrCmplYn = ({ cmplYn, dutchPayId, mbrId, onClickCmplYn }) => {
+const MastrCmplYn = ({ cmplYn, cartShareCalId, mbrId, onClickCmplYn }) => {
     return (
-        <CmplYnContainer onClick={() => onClickCmplYn(mbrId, dutchPayId)}>
+        <CmplYnContainer onClick={() => onClickCmplYn(mbrId, cartShareCalId)}>
             {!cmplYn && <div className="cmpl-n">정산 완료</div>}
             {cmplYn && <div className="cmpl-y">정산 완료</div>}
         </CmplYnContainer>

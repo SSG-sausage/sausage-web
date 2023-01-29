@@ -24,7 +24,7 @@ const OrdBottomSheet = ({ cartShareOrdId, onClickCloseSheet }) => {
 const SheetContainer = styled.div`
     position: absolute;
     bottom: 0px;
-    border-radius: 30px;
+    border-radius: 20px;
     width: 390px;
     height: 844px;
     background: transparent;
@@ -34,7 +34,7 @@ const Sheet = styled.div`
     width: 390px;
     height: 640px;
     background: white;
-    border-radius: 30px;
+    border-radius: 30px 30px 20px 20px;
     position: absolute;
     z-index: 1;
     bottom: 0px;

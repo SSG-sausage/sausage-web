@@ -9,6 +9,7 @@ const CartShareCalContainer = () => {
     const { cartShareCalId } = useParams();
     const [cartShareCal, setCartShareCal] = useState({});
     const [cookies, setCookie] = useCookies(['mbrId']);
+    const [openOrdSheet, setOpenOrdSheet] = useState(false);
 
     const onClickCreate = () => {
         navigate(`/cart-share-calculation/${cartShareCalId}/create`);
@@ -25,6 +26,13 @@ const CartShareCalContainer = () => {
         });
     };
 
+    const onClickOpenSheet = () => {
+        setOpenOrdSheet(true);
+    };
+    const onClickCloseSheet = () => {
+        setOpenOrdSheet(false);
+    };
+
     useEffect(() => {
         findCartShareCal(cookies.mbrId, cartShareCalId).then(response => {
             setCartShareCal(response.data.data);
@@ -36,6 +44,9 @@ const CartShareCalContainer = () => {
             cartShareCal={cartShareCal}
             onClickCmplYn={onClickCmplYn}
             onClickUpdate={onClickUpdate}
+            openOrdSheet={openOrdSheet}
+            onClickOpenSheet={onClickOpenSheet}
+            onClickCloseSheet={onClickCloseSheet}
         />
     );
 };

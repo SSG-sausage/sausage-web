@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
-import Master from './Master';
-import Me from './Me';
-const NameInfoCreate = ({ info }) => {
+import Master from '../Master';
+import Me from '../Me';
+const NameInfoUpdate = ({ info }) => {
     return (
         <NameInfoContainer>
             {info.mastrYn && <Me />}
@@ -28,4 +28,4 @@ const NameValue = styled.div`
     left: 33px;
     display: flex;
 `;
-export default NameInfoCreate;
+export default NameInfoUpdate;

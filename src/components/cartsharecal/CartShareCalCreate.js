@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
-import CalCreateOptSec from './CalCreateOptSec';
-import CalCreateOptSpl from './CalCreateOptSpl';
-import CalCreateOptInp from './CalCreateOptInp';
+import CalCreateOptSec from './create/CalCreateOptSec';
+import CalCreateOptSpl from './create/CalCreateOptSpl';
+import CalCreateOptInp from './create/CalCreateOptInp';
 import OrdBottomSheet from './OrdBottomSheet';
 
 const CartShareCalCreate = ({
@@ -33,7 +33,7 @@ const CartShareCalCreate = ({
                     저장
                 </div>
             </CalCreateHeader>
-            <CalContent>
+            <CalCreateContent>
                 <OptSelect>
                     <div className="title">정산 옵션</div>
                     <div className="opt-container">
@@ -78,7 +78,7 @@ const CartShareCalCreate = ({
                         />
                     )}
                 </CalInput>
-            </CalContent>
+            </CalCreateContent>
             <CalFooter>
                 <div onClick={onClickOpenSheet}>주문 상품 자세히 보기 > </div>
             </CalFooter>
@@ -148,7 +148,7 @@ const OptSelect = styled.div`
     }
 `;
 
-const CalContent = styled.div``;
+const CalCreateContent = styled.div``;
 const CalInput = styled.div`
     border: 2px solid #f5f5f5;
     width: 356px;

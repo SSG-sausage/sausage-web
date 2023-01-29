@@ -1,12 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 import NavigationBar from '../cartshare/NavigationBar';
-import DutchPayDetailOptInp from './DutchPayDetailOptInp';
-import CartShareCalDetailOptSec from './CartShareCalDetailOptSec';
-import DutchPayDetailOptSpl from './DutchPayDetailOptSpl';
+import CalDetailOptInp from './detail/CalDetailOptInp';
+import CalDetailOptSec from './detail/CalDetailOptSec';
+import CalDetailOptSpl from './detail/CalDetailOptSpl';
 import CartShareCalNavigationBar from './CartShareCalNavigationBar';
+import OrdBottomSheet from './OrdBottomSheet';
 
-const CartShareCal = ({ onClickCreate, cartShareCal, onClickCmplYn, onClickUpdate }) => {
+const CartShareCal = ({
+    onClickCreate,
+    cartShareCal,
+    onClickCmplYn,
+    onClickUpdate,
+    openOrdSheet,
+    onClickOpenSheet,
+    onClickCloseSheet,
+}) => {
     return (
         <>
             <CartShareCalNavigationBar />
@@ -22,44 +31,54 @@ const CartShareCal = ({ onClickCreate, cartShareCal, onClickCmplYn, onClickUpdat
                 )}
                 {cartShareCal.calStYn && (
                     <CartShareCalDetail>
-                        <DetailHeader>
-                            {cartShareCal.calOptCd === 'SECTION' && <div className="opt">섹션별 계산</div>}
-                            {cartShareCal.calOptCd === 'SPLIT' && <div className="opt">1/N 계산</div>}
-                            {cartShareCal.calOptCd === 'INPUT' && <div className="opt">직접 입력</div>}
+                        <Detail>
+                            <div className="detail-header-title">정산 내역</div>
+                            <div className="detail-header-opt">
+                                {cartShareCal.calOptCd === 'SECTION' && <div className="opt">섹션별 계산</div>}
+                                {cartShareCal.calOptCd === 'SPLIT' && <div className="opt">1/N 계산</div>}
+                                {cartShareCal.calOptCd === 'INPUT' && <div className="opt">직접 입력</div>}
 
-                            <div className="opt-desc">적용 중</div>
-                        </DetailHeader>
-                        <DetailContent>
-                            {cartShareCal.calOptCd === 'SECTION' && (
-                                <CartShareCalDetailOptSec cartShareCal={cartShareCal} onClickCmplYn={onClickCmplYn} />
-                            )}
-                            {cartShareCal.calOptCd === 'SPLIT' && (
-                                <DutchPayDetailOptSpl cartShareCal={cartShareCal} onClickCmplYn={onClickCmplYn} />
-                            )}
-                            {cartShareCal.calOptCd === 'INPUT' && (
-                                <DutchPayDetailOptInp cartShareCal={cartShareCal} onClickCmplYn={onClickCmplYn} />
-                            )}
-                        </DetailContent>
+                                <div className="opt-desc">적용 중</div>
+                            </div>
+                            <DetailContent>
+                                {cartShareCal.calOptCd === 'SECTION' && (
+                                    <CalDetailOptSec cartShareCal={cartShareCal} onClickCmplYn={onClickCmplYn} />
+                                )}
+                                {cartShareCal.calOptCd === 'SPLIT' && (
+                                    <CalDetailOptSpl cartShareCal={cartShareCal} onClickCmplYn={onClickCmplYn} />
+                                )}
+                                {cartShareCal.calOptCd === 'INPUT' && (
+                                    <CalDetailOptInp cartShareCal={cartShareCal} onClickCmplYn={onClickCmplYn} />
+                                )}
+                            </DetailContent>
+                            <div className="openSheet" onClick={() => onClickOpenSheet()}>
+                                주문 상품 자세히 보기 >
+                            </div>
+                        </Detail>
                         <DetailFooter>
                             {cartShareCal.mastrYn && (
-                                <div>
-                                    <button className="edit-btn" onClick={() => onClickUpdate()}>
-                                        금액
-                                        <br />
-                                        수정
-                                    </button>
-                                    <div className="share-container">
-                                        <div className="nofi-btn">정산 알림 보내기</div>
-                                        <div className="share-btn">
-                                            <div className="share-icon-container">
-                                                <img className="share-icon" src={require('../../assets/share.png')} />
-                                            </div>
+                                <div className="share-container">
+                                    <div className="nofi-btn">정산 알림 보내기</div>
+                                    <div className="share-btn">
+                                        <div className="share-icon-container">
+                                            <img className="share-icon" src={require('../../assets/share.png')} />
                                         </div>
                                     </div>
                                 </div>
                             )}
                         </DetailFooter>
+                        <div className="edit-btn" onClick={() => onClickUpdate()}>
+                            금액
+                            <br />
+                            수정
+                        </div>
                     </CartShareCalDetail>
+                )}
+                {openOrdSheet && (
+                    <OrdBottomSheet
+                        cartShareOrdId={cartShareCal.cartShareOrdId}
+                        onClickCloseSheet={onClickCloseSheet}
+                    />
                 )}
             </DutchPayWrapper>
         </>
@@ -68,6 +87,7 @@ const CartShareCal = ({ onClickCreate, cartShareCal, onClickCmplYn, onClickUpdat
 
 const DutchPayWrapper = styled.div`
     position: relative;
+    height: 750px;
 `;
 
 const CreateCartShareCalBtn = styled.div`
@@ -95,14 +115,43 @@ const EmptyCartShareCal = styled.div`
 `;
 
 const CartShareCalDetail = styled.div`
+    height: 750px;
     position: relative;
-    height: 698px;
+    .edit-btn {
+        cursor: pointer;
+        border-radius: 50%;
+        width: 73px;
+        height: 73px;
+        text-align: center;
+        border: none;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        font-weight: 700;
+        font-size: 16px;
+        background: #d9d9d9;
+        position: absolute;
+        bottom: 100px;
+        right: 20px;
+        padding-top: 20px;
+        box-sizing: border-box;
+    }
 `;
 
-const DetailHeader = styled.div`
-    display: flex;
-    padding-left: 10px;
+const Detail = styled.div`
+    height: 650px;
     padding-top: 23px;
+    position: relative;
+    .detail-header-title {
+        margin-top: 10px;
+        color: #3a94fa;
+        font-weight: 700;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .detail-header-opt {
+        display: flex;
+    }
 
     .opt {
         height: 27px;
@@ -115,6 +164,7 @@ const DetailHeader = styled.div`
         font-weight: 700;
         font-size: 16px;
         cursor: default;
+        margin-left: 10px;
     }
     .opt-desc {
         padding-top: 9px;
@@ -124,11 +174,21 @@ const DetailHeader = styled.div`
         color: #888888;
         cursor: default;
     }
+    .openSheet {
+        margin-top: 40px;
+        color: #888888;
+        font-weight: 400;
+        font-size: 12px;
+        text-align: center;
+        cursor: pointer;
+        margin-bottom: 30px;
+        z-index: 1;
+    }
 `;
 
 const DetailContent = styled.div`
     width: 356px;
-    height: 436px;
+    height: 500px;
     border: 2px solid #f5f5f5;
     margin: auto;
     margin-top: 9px;
@@ -136,18 +196,6 @@ const DetailContent = styled.div`
 `;
 
 const DetailFooter = styled.div`
-    .edit-btn {
-        cursor: pointer;
-        margin-top: 28px;
-        border-radius: 50%;
-        width: 73px;
-        height: 73px;
-        border: none;
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-        font-weight: 700;
-        font-size: 16px;
-        margin-left: 292px;
-    }
     .share-icon {
         width: 24px;
     }
@@ -156,6 +204,8 @@ const DetailFooter = styled.div`
         display: flex;
         background: white;
         border-radius: 0 0 20px 20px;
+        position: absolute;
+        bottom: 0px;
     }
     .nofi-btn {
         cursor: pointer;
@@ -167,6 +217,7 @@ const DetailFooter = styled.div`
         font-size: 20px;
         line-height: 58px;
         color: #ffffff;
+
         border-radius: 0 0 0 20px;
     }
     .share-btn {
