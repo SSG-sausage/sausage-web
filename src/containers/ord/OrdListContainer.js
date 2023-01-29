@@ -1,26 +1,20 @@
-import Ord from '../../components/ord/Ord';
+import OrdList from '../../components/ord/OrdList';
 import { useEffect, useState } from 'react';
+import { getOrdList } from '../../api/ord/ord';
 
 const OrdListContainer = () => {
-    const [isClickedSggShpp, setClickedSsgshpp] = useState(false);
-    const [isClickedTradersShpp, setClickedTradersShpp] = useState(false);
+    const [ordList, setOrdList] = useState([]);
 
-    const onClickSsgShpp = () => {
-        setClickedSsgshpp(!isClickedSggShpp);
-    };
+    let cartShareId = 1;
 
-    const onClickTradersShpp = () => {
-        setClickedTradersShpp(!isClickedTradersShpp);
-    };
+    useEffect(() => {
+        getOrdList(cartShareId).then(response => {
+            setOrdList(response.data.data.cartShareOdrList);
+            console.log(response.data.data.cartShareOdrList);
+        });
+    }, []);
 
-    return (
-        <Ord
-            isClickedSsg={isClickedSggShpp}
-            onClickSsgShpp={onClickSsgShpp}
-            isClickedTradersShpp={isClickedTradersShpp}
-            onClickTradersShpp={onClickTradersShpp}
-        />
-    );
+    return <OrdList ordList={ordList} />;
 };
 
 export default OrdListContainer;

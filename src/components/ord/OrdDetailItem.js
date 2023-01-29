@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
-const OrdDetailItem = () => {
+const OrdDetailItem = ({ itemId, itemNm, itemAmt, itemQty }) => {
     return (
         <Container>
             <img id="item" src="https://sitem.ssgcdn.com/76/82/32/item/1000518328276_i1_1100.jpg" />
 
             <ItemTitle>
-                <b>브랜드 이름</b> 상품명
+                <b>{itemNm}</b>
             </ItemTitle>
 
             <ItemAmt>
-                <p>5000</p>
-                <p>원</p>
+                <p>
+                    <b>{itemAmt}</b>원 &nbsp;{itemQty}개
+                </p>
             </ItemAmt>
         </Container>
     );
@@ -50,12 +51,7 @@ const ItemAmt = styled.div`
     padding-left: 20px;
 
     > p:first-child {
-        font-weight: bold;
         margin-right: 5px;
         font-size: 12px;
-    }
-
-    > p:nth-child(2) {
-        margin-bottom: 2px;
     }
 `;

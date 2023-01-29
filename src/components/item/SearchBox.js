@@ -17,7 +17,9 @@ const SearchContainer = styled.div`
 
     justify-content: space-around;
 
-    padding-top: 20px;
+    background-color: white;
+
+    padding-top: 13px;
 
     #logo {
         height: 18px;

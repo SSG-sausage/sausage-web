@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 import OrdDetailItem from './OrdDetailItem';
 
-const OrdDetailItemList = ({ mbrNm }) => {
+const OrdDetailItemList = ({ mbrNm, itemList }) => {
     return (
         <Container>
             <OrdMbr>{mbrNm}</OrdMbr>
             <OrdDetailItemGridContainer>
-                <OrdDetailItem />
-                <OrdDetailItem />
-                <OrdDetailItem />
-                <OrdDetailItem />
-                <OrdDetailItem />
-                <OrdDetailItem />
+                {itemList.map((it, index) => (
+                    <OrdDetailItem
+                        key={it.cartShareOrdItemId}
+                        itemNm={it.itemNm}
+                        itemId={it.itemId}
+                        itemAmt={it.itemAmt}
+                        itemQty={it.itemQty}
+                    />
+                ))}
             </OrdDetailItemGridContainer>
         </Container>
     );

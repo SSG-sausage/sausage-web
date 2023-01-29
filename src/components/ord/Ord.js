@@ -3,60 +3,68 @@ import OrdDetailItem from './OrdDetailItem';
 import OrdDetailItemList from './OrdDetailItemList';
 import OrdShppInfo from './OrdShppInfo';
 
-const Ord = ({ isSsgShpp, isClickedSsg, onClickSsgShpp, isClickedTradersShpp, onClickTradersShpp }) => {
+const Ord = ({
+    isClickedSggShpp,
+    onClickSsgShpp,
+    isClickedTradersShpp,
+    onClickTradersShpp,
+    regDts,
+    ttlPaymtAtm,
+    ssgShppOrdItemMap,
+    tradersShppOrdItemMap,
+}) => {
     return (
         <Container>
-            <TopNav>주문하기</TopNav>
+            <OrdTitle>
+                <div>
+                    <RegDts>{regDts}</RegDts>
+                    <p>함께 장보기</p>
+                </div>
+                <div>정산 내역 확인하기 {'>'}</div>
+            </OrdTitle>
+            <TtlPaymtAmt>결제금액 {ttlPaymtAtm}</TtlPaymtAmt>
 
-            <OrdContainer>
-                <OrdTitle>
-                    <div>2023.00.00 &nbsp;&nbsp; 함께 장보기</div>
-                    <div>정산 내역 확인하기 {'>'}</div>
-                </OrdTitle>
-                <TtlPaymtAmt>결제금액 17000원</TtlPaymtAmt>
+            <OrdItemTitle onClick={onClickSsgShpp}>
+                <div>
+                    <div>쓱</div>
+                    <div> 쓱배송</div>
+                </div>
+                <p>배송지 센터필드{'>'}</p>
+            </OrdItemTitle>
 
-                <OrdItemTitle onClick={onClickSsgShpp}>
-                    <div>
-                        <div>쓱</div>
-                        <div> 쓱배송</div>
-                    </div>
-                    <p>배송지 정상벽 {'>'}</p>
-                </OrdItemTitle>
+            {isClickedSggShpp ? (
+                <>
+                    <OrdShppInfo isSsgShpp={true} />
+                    <OrdItem>
+                        {Array.from(ssgShppOrdItemMap.keys()).map((it, index) => (
+                            <OrdDetailItemList key={it} mbrNm={it} itemList={ssgShppOrdItemMap.get(it)} />
+                        ))}
+                    </OrdItem>
+                </>
+            ) : (
+                <></>
+            )}
 
-                {isClickedSsg ? (
-                    <>
-                        <OrdShppInfo isSsgShpp={true} />
-                        <OrdItem>
-                            <OrdDetailItemList mbrNm="전미림" />
-                            <OrdDetailItemList mbrNm="정상벽" />
-                            <OrdDetailItemList mbrNm="정상벽" />
-                        </OrdItem>
-                    </>
-                ) : (
-                    <></>
-                )}
+            <OrdItemTitle onClick={onClickTradersShpp}>
+                <div>
+                    <div style={{ background: '#b3dc49' }}>T</div>
+                    <div> Emart Traders</div>
+                </div>
+                <p>배송지 센터필드 {'>'}</p>
+            </OrdItemTitle>
 
-                <OrdItemTitle onClick={onClickTradersShpp}>
-                    <div>
-                        <div style={{ background: '#b3dc49' }}>T</div>
-                        <div> Emart Traders</div>
-                    </div>
-                    <p>배송지 정상벽 {'>'}</p>
-                </OrdItemTitle>
-
-                {isClickedTradersShpp ? (
-                    <>
-                        <OrdShppInfo isSsgShpp={false} />
-                        <OrdItem>
-                            <OrdDetailItemList mbrNm="전미림" />
-                            <OrdDetailItemList mbrNm="정상벽" />
-                            <OrdDetailItemList mbrNm="정상벽" />
-                        </OrdItem>
-                    </>
-                ) : (
-                    <></>
-                )}
-            </OrdContainer>
+            {isClickedTradersShpp ? (
+                <>
+                    <OrdShppInfo isSsgShpp={false} />
+                    <OrdItem>
+                        {Array.from(tradersShppOrdItemMap.keys()).map((it, index) => (
+                            <OrdDetailItemList key={it} mbrNm={it} itemList={tradersShppOrdItemMap.get(it)} />
+                        ))}
+                    </OrdItem>
+                </>
+            ) : (
+                <></>
+            )}
         </Container>
     );
 };
@@ -64,28 +72,8 @@ const Ord = ({ isSsgShpp, isClickedSsg, onClickSsgShpp, isClickedTradersShpp, on
 export default Ord;
 
 const Container = styled.div`
-    justify-self: center;
-    height: 792px;
-    border-radius: 20px;
-    background-color: #f9f9f9;
-`;
-
-const TopNav = styled.div`
-    width: 100%;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    font-size: 15px;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-bottom: solid 2px #f2f2f2;
-`;
-
-const OrdContainer = styled.div`
-    height: 680px;
-    margin: 30px 0px 0px 0px;
+    height: fit-content;
+    margin: 0px 0px 30px 0px;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -98,23 +86,35 @@ const OrdTitle = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     margin: 30px 0px 10px 0px;
     border-bottom: solid 1px #f2f2f2;
 
     div:nth-child(1) {
         font-size: 15px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        padding-left: 15px;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 7px;
+
+        p {
+            font-size: 13px;
+        }
     }
 
     div:nth-child(2) {
         font-size: 7px;
         color: gray;
         align-self: center;
-        margin-bottom: 10px;
+        margin-bottom: 18px;
         padding-right: 15px;
+        cursor: pointer;
     }
+`;
+
+const RegDts = styled.div`
+    font-weight: bold;
+    margin-right: 10px;
 `;
 
 const TtlPaymtAmt = styled.div`

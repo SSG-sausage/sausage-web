@@ -53,12 +53,12 @@ function App() {
                     <Route path="/cart-share" element={<CartSharePage />} />
                     <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/order-list" element={<OrdListPage />} />
 
                     <Route element={<AuthLayout />}>
                         <Route path="/" element={<ItemListPage />} />
                         <Route path="/item-list" element={<ItemListPage />} />
                         <Route path="/item/:itemId" element={<ItemDetailPage />} />
+                        <Route path="/order-list" element={<OrdListPage />} />
                     </Route>
                 </Routes>
             </Container>
