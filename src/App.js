@@ -10,6 +10,7 @@ import ItemListPage from './pages/item/ItemListPage';
 import ItemDetailPage from './pages/item/ItemDetailPage';
 import AuthLayout from './containers/mbr/AuthLayout';
 import OrdListPage from './pages/ord/OrdListPage';
+import OrdSuccessPage from './pages/ord/OrdSuccessPage';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -59,6 +60,7 @@ function App() {
                         <Route path="/item-list" element={<ItemListPage />} />
                         <Route path="/item/:itemId" element={<ItemDetailPage />} />
                         <Route path="/order-list" element={<OrdListPage />} />
+                        <Route path="/order-success" element={<OrdSuccessPage />} />
                     </Route>
                 </Routes>
             </Container>
