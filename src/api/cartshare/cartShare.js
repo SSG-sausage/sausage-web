@@ -83,3 +83,25 @@ export const deleteCartShareItem = (mbrId, cartShareId, cartShareItemId) =>
         .catch(() => {
             alert('장바구니 상품 삭제 실패');
         });
+
+export const findCartShareNotiList = mbrId =>
+    axiosInstance
+        .get('/cart-share/api/cart-share/noti', {
+            headers: {
+                mbrId: mbrId,
+            },
+        })
+        .catch(() => {
+            alert('장바구니 알림 리스트 조회 실패');
+        });
+
+export const findCartShareNotiCnt = mbrId =>
+    axiosInstance
+        .get('/cart-share/api/cart-share/noti/cnt', {
+            headers: {
+                mbrId: mbrId,
+            },
+        })
+        .catch(() => {
+            alert('장바구니 신규 알림 개수 조회 실패');
+        });
