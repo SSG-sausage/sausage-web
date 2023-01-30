@@ -11,7 +11,11 @@ const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onCli
  }) => {
     return (
         <>
-            {isOrdModalOn ? <OrdModal changeOrdModalOn={changeOrdModalOn} /> : <></>}
+            {isOrdModalOn ? (
+                <OrdModal cartShareChoosingMbrCnt={cartShareData.cartShareMbrCnt} changeOrdModalOn={changeOrdModalOn} />
+            ) : (
+                <></>
+            )}
             <NavigationBar nm={cartShareData.cartShareNm} itemQty={cartShareData.cartShareItemQty} />
             <CartShareContainer>
                 <BackGround>
