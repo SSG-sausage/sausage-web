@@ -13,6 +13,8 @@ const OrdDetailItemList = ({ mbrNm, itemList }) => {
                         itemId={it.itemId}
                         itemAmt={it.itemAmt}
                         itemQty={it.itemQty}
+                        itemImgUrl={it.itemImgUrl}
+                        itemBrandNm={it.itemBrandNm}
                     />
                 ))}
             </OrdDetailItemGridContainer>

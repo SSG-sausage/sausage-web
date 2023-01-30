@@ -22,7 +22,7 @@ const OrdContainer = ({ cartShareOrdId, regDts, ttlPaymtAtm }) => {
         getOrdItemList(cartShareId, cartShareOrdId).then(response => {
             let orderItemList = response.data.data.cartShareOrdItemList;
             let ssgShppOrdItemList = orderItemList.filter(ordItem => ordItem.shppCd === 'SSG_SHPP');
-            let tradersShppOrdItemList = orderItemList.filter(ordItem => ordItem.shppCd === 'EMART_TRADERS_SHPP');
+            let tradersShppOrdItemList = orderItemList.filter(ordItem => ordItem.shppCd === 'SSG_TRADERS_SHPP');
 
             console.log(response.data.data.cartShareOrdItemList);
 
