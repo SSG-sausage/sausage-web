@@ -37,6 +37,9 @@ const NavigationBar = ({ nm, itemQty }) => {
         setNotiCnt(response.data.data.cnt);
     };
 
+    const onClickBack = () => {
+        navigate(`/`);
+    };
     useEffect(() => {
         connect();
 
@@ -45,7 +48,7 @@ const NavigationBar = ({ nm, itemQty }) => {
 
     return (
         <>
-            <NavigationBarLeft>
+            <NavigationBarLeft onClick={onClickBack}>
                 <img id="arrow-back" src={require('../../assets/arrow-back.png')} />
             </NavigationBarLeft>
             <NavigationBarMiddle>
@@ -98,6 +101,7 @@ const NavigationBarLeft = styled.div`
         margin-top: 14px;
         margin-left: 10px;
     }
+    cursor: pointer;
 `;
 
 const NavigationBarRight = styled.div`

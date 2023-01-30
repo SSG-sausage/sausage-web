@@ -17,7 +17,6 @@ const CartShareCalList = ({ cartShareCalList, onClickBack, onClickCal, onClickCr
             <CalList>
                 <div className="title">정산 History</div>
                 <div className="cal-list-content">
-                    {console.log(cartShareCalList)}
                     {cartShareCalList?.length === 0 && <div class="empty-content">정산 내역이 없습니다.</div>}
                     {cartShareCalList?.map((cal, index) => (
                         <CalItem key={cal} onClick={() => onClickCal(cal.cartShareCalId)}>

@@ -1,11 +1,18 @@
 import OrdList from '../../components/ord/OrdList';
 import { useEffect, useState } from 'react';
 import { getOrdList } from '../../api/ord/ord';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const OrdListContainer = () => {
+    const navigate = useNavigate();
+
     const [ordList, setOrdList] = useState([]);
 
     let cartShareId = 1;
+
+    const onClickCal = cartshareCalId => {
+        navigate(`/cart-share-cal/${cartshareCalId}`);
+    };
 
     useEffect(() => {
         getOrdList(cartShareId).then(response => {
@@ -14,7 +21,7 @@ const OrdListContainer = () => {
         });
     }, []);
 
-    return <OrdList ordList={ordList} />;
+    return <OrdList ordList={ordList} onClickCal={onClickCal} />;
 };
 
 export default OrdListContainer;

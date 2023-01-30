@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import OrdContainer from '../../containers/ord/OrdContainer';
 import SearchBox from '../item/SearchBox';
 
-const OrdList = ({ ordList, mbrIdList }) => {
+const OrdList = ({ ordList, onClickCal }) => {
     return (
         <Container>
             <SearchBox />
@@ -15,6 +15,7 @@ const OrdList = ({ ordList, mbrIdList }) => {
                     cartShareOrdId={it.cartShareOrdId}
                     ttlPaymtAtm={it.ttlPaymtAmt.toLocaleString() + '원'}
                     regDts={it.cartShareOrdRcpDts.split('T')[0]}
+                    onClickCal={onClickCal}
                 />
             ))}
         </Container>

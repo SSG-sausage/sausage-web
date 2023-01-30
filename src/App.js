@@ -22,18 +22,19 @@ const GlobalStyle = createGlobalStyle`
   * {
     padding: 0;
     margin: 0;
+    
   }
 
   body {
     word-break: keep-all;
     width: auto;
     height: 100vh;
-    background: #f2f2f2;
     font-family: 'line';
     align-content: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #333333;
   }
 `;
 

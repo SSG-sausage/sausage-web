@@ -12,6 +12,7 @@ const Ord = ({
     ttlPaymtAtm,
     ssgShppOrdItemMap,
     tradersShppOrdItemMap,
+    onClickCal,
 }) => {
     return (
         <Container>
@@ -20,7 +21,7 @@ const Ord = ({
                     <RegDts>{regDts}</RegDts>
                     <p>함께 장보기</p>
                 </div>
-                <div>정산 내역 확인하기 {'>'}</div>
+                <div onClick={() => onClickCal()}>정산 내역 확인하기 {'>'}</div>
             </OrdTitle>
             <TtlPaymtAmt>결제금액 {ttlPaymtAtm}</TtlPaymtAmt>
 

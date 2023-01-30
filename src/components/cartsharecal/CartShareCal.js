@@ -16,11 +16,12 @@ const CartShareCal = ({
     onClickOpenSheet,
     onClickCloseSheet,
     onClickNoti,
+    notiSuccess,
 }) => {
     return (
         <>
             <CartShareCalNavigationBar />
-            <DutchPayWrapper>
+            <CalWrapper>
                 {cartShareCal.calStYn === false && cartShareCal.mastrYn && (
                     <EmptyCartShareCal>
                         정산 내역이 생성되지 않았습니다.
@@ -59,12 +60,15 @@ const CartShareCal = ({
                         <DetailFooter>
                             {cartShareCal.mastrYn && (
                                 <div className="share-container">
-                                    <div className="noti-btn" onClick={() => onClickNoti()}>
-                                        정산 알림 보내기
-                                    </div>
-                                    <div className="share-btn">
-                                        <div className="share-icon-container">
-                                            <img className="share-icon" src={require('../../assets/share.png')} />
+                                    {notiSuccess && <div class="share-noti">멤버들에게 알림이 발송되었습니다.</div>}
+                                    <div class="share-btn-container">
+                                        <div className="noti-btn" onClick={() => onClickNoti()}>
+                                            정산 알림 보내기
+                                        </div>
+                                        <div className="share-btn">
+                                            <div className="share-icon-container">
+                                                <img className="share-icon" src={require('../../assets/share.png')} />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -83,12 +87,12 @@ const CartShareCal = ({
                         onClickCloseSheet={onClickCloseSheet}
                     />
                 )}
-            </DutchPayWrapper>
+            </CalWrapper>
         </>
     );
 };
 
-const DutchPayWrapper = styled.div`
+const CalWrapper = styled.div`
     position: relative;
     height: 750px;
 `;
@@ -204,11 +208,25 @@ const DetailFooter = styled.div`
     }
     .share-container {
         margin-top: 43px;
-        display: flex;
         background: white;
         border-radius: 0 0 20px 20px;
         position: absolute;
         bottom: 0px;
+    }
+    .share-noti {
+        background: rgba(0, 0, 0, 0.5);
+        width: 358px;
+        height: 48px;
+        border-radius: 10px;
+        color: white;
+        margin: auto;
+        text-align: center;
+        line-height: 48px;
+        margin-bottom: 15px;
+        font-size: 12px;
+    }
+    .share-btn-container {
+        display: flex;
     }
     .noti-btn {
         cursor: pointer;
