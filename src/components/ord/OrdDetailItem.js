@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
-const OrdDetailItem = ({ itemId, itemNm, itemAmt, itemQty }) => {
+const OrdDetailItem = ({ itemId, itemNm, itemAmt, itemQty, itemBrandNm, itemImgUrl }) => {
     return (
         <Container>
-            <img id="item" src="https://sitem.ssgcdn.com/76/82/32/item/1000518328276_i1_1100.jpg" />
+            <img id="item" src={itemImgUrl} />
 
             <ItemTitle>
-                <b>{itemNm}</b>
+                <div>
+                    <b>{itemBrandNm}</b> {itemNm}
+                </div>
             </ItemTitle>
 
             <ItemAmt>
@@ -21,7 +23,7 @@ const OrdDetailItem = ({ itemId, itemNm, itemAmt, itemQty }) => {
 export default OrdDetailItem;
 
 const Container = styled.div`
-    height: fit-content;
+    height: 150px;
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
@@ -36,9 +38,11 @@ const Container = styled.div`
 const ItemTitle = styled.div`
     display: flex;
     flex-direction: row;
+    text-align: start;
     padding-left: 20px;
     margin-top: 10px;
     font-size: 9px;
+    width: 100px;
 `;
 
 const ItemAmt = styled.div`
