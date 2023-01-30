@@ -38,7 +38,7 @@ const ItemRankingTitle = styled.p`
 
 const RankingContainer = styled.div`
     text-align: start;
-    height: 700px;
+    height: 630px;
 
     margin: 20px 0px 50px 0px;
     align-items: center;

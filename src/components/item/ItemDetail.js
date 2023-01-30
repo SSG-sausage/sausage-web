@@ -61,11 +61,12 @@ const ItemDetailContainer = styled.div`
 
 const ButtonContainer = styled.div`
     display: flex;
+    margin-top: 30px;
 `;
 
 const ItemImg = styled.img`
+    margin-top: 20px;
     width: 100%;
-    margin-top: 30px;
 `;
 
 const ShppCategory = styled.div`
@@ -99,7 +100,7 @@ const ItemAmt = styled.div`
 `;
 
 const PurchaseButton = styled.button`
-    width: 380px;
+    width: 390px;
     background-color: #eb4f47;
     padding: 13px;
     border: none;
@@ -107,6 +108,7 @@ const PurchaseButton = styled.button`
     color: white;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    margin-bottom: 52px;
 
     :hover {
         background-color: #ff3905;

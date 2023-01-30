@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
-const BottomContainer = ({ cartShareMbrId, mastrYn, cartShareItemQty, progStatCd, editPsblYn, onClickDone }) => {
+const BottomContainer = ({
+    cartShareMbrId,
+    mastrYn,
+    cartShareItemQty,
+    progStatCd,
+    editPsblYn,
+    onClickDone,
+    changeOrdModalOn,
+}) => {
     return (
         <>
             <Container>
@@ -8,11 +16,13 @@ const BottomContainer = ({ cartShareMbrId, mastrYn, cartShareItemQty, progStatCd
                 {mastrYn ? (
                     <>
                         {cartShareItemQty > 0 ? (
-                            <div class="right">주문하기</div>
-                        ) : (
-                            <div class="right" id="inactive">
+                            <div class="right" onClick={changeOrdModalOn}>
                                 주문하기
                             </div>
+                        ) : (
+                            <button class="right" id="inactive">
+                                주문하기
+                            </button>
                         )}
                     </>
                 ) : (
@@ -79,6 +89,7 @@ const Container = styled.div`
         letter-spacing: 0.5px;
         color: #ffffff;
         border-radius: 0 0 20px 0;
+        cursor: pointer;
     }
 
     #inactive {
