@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CartShareDetail from '../../components/cartshare/CartShareDetail';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import * as stompjs from '@stomp/stompjs';
 import {
@@ -12,6 +13,7 @@ import {
 } from '../../api/cartshare/cartShare';
 
 const CartShareDetailContainer = () => {
+    const navigate = useNavigate();
     const { cartShareId } = useParams();
     const client = useRef({});
     const [cookies, setCookie] = useCookies(['mbrId']);
@@ -98,6 +100,10 @@ const CartShareDetailContainer = () => {
         setCartShareData(data);
     };
 
+    const onClickCartshareCal = cartShareId => {
+        navigate(`/cart-share/${cartShareId}/cart-share-cal`);
+    };
+
     useEffect(() => {
         connect();
 
@@ -115,6 +121,7 @@ const CartShareDetailContainer = () => {
             onClickTrash={onClickTrash}
             isOrdModalOn={isOrdModalOn}
             changeOrdModalOn={changeOrdModalOn}
+            onClickCartshareCal={onClickCartshareCal}
         />
     );
 };

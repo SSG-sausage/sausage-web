@@ -7,15 +7,8 @@ import CommonSection from './CommonSection';
 import NavigationBar from './NavigationBar';
 import PersonalSection from './PersonalSection';
 
-const CartShareDetail = ({
-    cartShareData,
-    onClickDone,
-    onClickPlusOrMinus,
-    onClickCommOrMy,
-    onClickTrash,
-    isOrdModalOn,
-    changeOrdModalOn,
-}) => {
+const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onClickCommOrMy, onClickTrash, isOrdModalOn, changeOrdModalOn, onClickCartshareCal
+ }) => {
     return (
         <>
             {isOrdModalOn ? <OrdModal changeOrdModalOn={changeOrdModalOn} /> : <></>}
@@ -44,7 +37,9 @@ const CartShareDetail = ({
                         <div id="line1"></div>
                         <div id="order">주문내역</div>
                         <div id="line2"></div>
-                        <div id="scm">쓱총무</div>
+                        <div id="scm" onClick={() => onClickCartshareCal(cartShareData.cartShareId)}>
+                            쓱총무
+                        </div>
                         <div id="line3"></div>
                         <div id="setting">관리</div>
                     </div>
@@ -318,6 +313,7 @@ const CartShareInfo = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
     }
 
     #setting {

@@ -59,7 +59,7 @@ const CartShareCal = ({
                         <DetailFooter>
                             {cartShareCal.mastrYn && (
                                 <div className="share-container">
-                                    <div className="nofi-btn" onClick={() => onClickNoti()}>
+                                    <div className="noti-btn" onClick={() => onClickNoti()}>
                                         정산 알림 보내기
                                     </div>
                                     <div className="share-btn">
@@ -210,9 +210,9 @@ const DetailFooter = styled.div`
         position: absolute;
         bottom: 0px;
     }
-    .nofi-btn {
+    .noti-btn {
         cursor: pointer;
-        height: 58px;
+        height: 57px;
         width: 321px;
         background: #3a94fa;
         text-align: center;

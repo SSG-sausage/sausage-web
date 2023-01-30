@@ -28,7 +28,6 @@ const NavigationBar = ({ nm, itemQty }) => {
     const subscribe = () => {
         client.current.subscribe('/sub/mbr/' + cookies.mbrId, body => {
             const jsonBody = JSON.parse(body.body);
-            console.log('Hi');
             fetchCartShareCnt();
         });
     };
@@ -127,15 +126,15 @@ const NotiIcon = styled.div`
     cursor: pointer;
     .cart-share-noti-cnt {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 10.5px;
+        right: 10.5px;
         background: red;
         border-radius: 50%;
         width: 11px;
         height: 11px;
         color: #ffffff;
         font-size: 10px;
-        line-height: 12px;
+        line-height: 12.5px;
         text-align: center;
     }
 `;

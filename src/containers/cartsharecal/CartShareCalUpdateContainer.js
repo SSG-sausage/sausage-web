@@ -43,7 +43,7 @@ const CartShareCalUpdateContainer = () => {
     };
 
     const onClickBack = () => {
-        navigate(`/cart-share-calculation/${cartShareCalId}`);
+        navigate(`/cart-share-cal/${cartShareCalId}`);
     };
 
     const onClickOpenSheet = () => {
@@ -76,8 +76,6 @@ const CartShareCalUpdateContainer = () => {
                 });
                 break;
             case 'SPLIT':
-                console.log(splInput);
-
                 request.calRmd = splInput.calRmd;
                 request.calAmt = splInput.calAmt;
                 request.calDtlAmt = splInput.calDtlAmt;

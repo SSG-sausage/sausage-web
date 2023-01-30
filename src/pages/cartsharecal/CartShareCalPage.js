@@ -1,8 +1,8 @@
 import React from 'react';
-import DutchPayContainer from '../../containers/cartsharecal/CartShareCalContainer';
+import CartShareCalContainer from '../../containers/cartsharecal/CartShareCalContainer';
 
-const DutchPayPage = () => {
-    return <DutchPayContainer />;
+const CartShareCalPage = () => {
+    return <CartShareCalContainer />;
 };
 
-export default DutchPayPage;
+export default CartShareCalPage;

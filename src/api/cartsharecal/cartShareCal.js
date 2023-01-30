@@ -11,6 +11,17 @@ export const findCartShareCal = (mbrId, cartShareCalId) =>
             alert('정산 조회 실패');
         });
 
+export const findCartShareCalList = cartShareId =>
+    axiosInstance
+        .get(`cart-share-calculation/api/cart-share-cal`, {
+            params: {
+                cartShareId: cartShareId,
+            },
+        })
+        .catch(() => {
+            alert('정산 리스트 조회 실패');
+        });
+
 export const calCartShareCal = cartShareCalId =>
     axiosInstance.get(`cart-share-calculation/api/cart-share-cal/${cartShareCalId}/cal`, {}).catch(() => {
         alert('정산 계산 조회 실패');

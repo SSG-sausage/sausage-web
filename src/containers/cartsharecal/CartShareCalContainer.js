@@ -12,11 +12,11 @@ const CartShareCalContainer = () => {
     const [openOrdSheet, setOpenOrdSheet] = useState(false);
 
     const onClickCreate = () => {
-        navigate(`/cart-share-calculation/${cartShareCalId}/create`);
+        navigate(`/cart-share-cal/${cartShareCalId}/create`);
     };
 
     const onClickUpdate = () => {
-        navigate(`/cart-share-calculation/${cartShareCalId}/update`);
+        navigate(`/cart-share-cal/${cartShareCalId}/update`);
     };
     const onClickCmplYn = (mbrId, cartShareCalId) => {
         updateCmplYn(cookies.mbrId, cartShareCalId, mbrId).then(() => {

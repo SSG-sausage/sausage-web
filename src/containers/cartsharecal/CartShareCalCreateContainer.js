@@ -41,7 +41,7 @@ const CartShareCalCreateContainer = () => {
     };
 
     const onClickBack = () => {
-        navigate(`/cart-share-calculation/${cartShareCalId}`);
+        navigate(`/cart-share-cal/${cartShareCalId}`);
     };
 
     const onClickOpenSheet = () => {
@@ -90,7 +90,7 @@ const CartShareCalCreateContainer = () => {
                 break;
         }
         updateCartShareCal(cookies.mbrId, cartShareCalId, request).then(() => {
-            navigate(`/cart-share-calculation/${cartShareCalId}`);
+            navigate(`/cart-share-cal/${cartShareCalId}`);
         });
     };
 

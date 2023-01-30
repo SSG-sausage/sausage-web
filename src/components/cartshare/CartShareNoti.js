@@ -12,6 +12,9 @@ const CartShareNoti = ({ cartShareNotiList, onClickBack }) => {
                 <img className="home" src={require('../../assets/home.png')} />
             </NotiHeader>
             <NotiContent>
+                {cartShareNotiList.cartShareNotiList?.length === 0 && (
+                    <div className="empty-noti">새로운 알림이 없습니다.</div>
+                )}
                 {cartShareNotiList.cartShareNotiList?.map((noti, index) => (
                     <div key={noti.cartShareNotiId} className="noti">
                         <div class="noti-header">
@@ -117,6 +120,13 @@ const NotiContent = styled.div`
     .noti-tag-cart-share-cal {
         border: 1px solid #3a94fa;
         color: #3a94fa;
+    }
+    .empty-noti {
+        color: #888888;
+        font-weight: 400;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 207px;
     }
 `;
 
