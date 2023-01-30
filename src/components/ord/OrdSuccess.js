@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const OrdSuccess = ({ ordList, mbrIdList }) => {
+const OrdSuccess = ({}) => {
     return (
         <Container>
             <TopNav>주문완료</TopNav>

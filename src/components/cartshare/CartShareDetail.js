@@ -1,14 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
+import OrdModal from '../ord/OrdModal';
 import AmtInfo from './AmtInfo';
 import BottomContainer from './BottomContainer';
 import CommonSection from './CommonSection';
 import NavigationBar from './NavigationBar';
 import PersonalSection from './PersonalSection';
 
-const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onClickCommOrMy, onClickTrash }) => {
+const CartShareDetail = ({
+    cartShareData,
+    onClickDone,
+    onClickPlusOrMinus,
+    onClickCommOrMy,
+    onClickTrash,
+    isOrdModalOn,
+    changeOrdModalOn,
+}) => {
     return (
         <>
+            {isOrdModalOn ? <OrdModal changeOrdModalOn={changeOrdModalOn} /> : <></>}
             <NavigationBar nm={cartShareData.cartShareNm} itemQty={cartShareData.cartShareItemQty} />
             <CartShareContainer>
                 <BackGround>
@@ -78,6 +88,7 @@ const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onCli
                 progStatCd={cartShareData.progStatCd}
                 editPsblYn={cartShareData.editPsblYn}
                 onClickDone={onClickDone}
+                changeOrdModalOn={changeOrdModalOn}
             />
         </>
     );

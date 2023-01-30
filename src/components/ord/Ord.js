@@ -48,7 +48,7 @@ const Ord = ({
             <OrdItemTitle onClick={onClickTradersShpp}>
                 <div>
                     <div style={{ background: '#b3dc49' }}>T</div>
-                    <div> Emart Traders</div>
+                    <div> 쓱배송 Traders</div>
                 </div>
                 <p>배송지 센터필드 {'>'}</p>
             </OrdItemTitle>

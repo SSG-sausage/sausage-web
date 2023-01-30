@@ -49,6 +49,11 @@ const CartShareDetailContainer = () => {
         progStatCd: 'IN_PROGRESS',
         editPsblYn: true,
     });
+    const [isOrdModalOn, setOrdModalOn] = useState(false);
+
+    const changeOrdModalOn = () => {
+        setOrdModalOn(!isOrdModalOn);
+    };
 
     const connect = () => {
         client.current = new stompjs.Client({
@@ -108,6 +113,8 @@ const CartShareDetailContainer = () => {
             onClickPlusOrMinus={onClickPlusOrMinus}
             onClickCommOrMy={onClickCommOrMy}
             onClickTrash={onClickTrash}
+            isOrdModalOn={isOrdModalOn}
+            changeOrdModalOn={changeOrdModalOn}
         />
     );
 };
