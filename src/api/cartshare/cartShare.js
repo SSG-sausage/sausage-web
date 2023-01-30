@@ -105,3 +105,20 @@ export const findCartShareNotiCnt = mbrId =>
         .catch(() => {
             alert('장바구니 신규 알림 개수 조회 실패');
         });
+export const saveCartShareItem = (mbrId, cartShareId, itemId, itemQty) =>
+    axiosInstance
+        .post(
+            `/cart-share/api/cart-share/${cartShareId}/cart-share-item`,
+            {
+                itemId: itemId,
+                itemQty: itemQty,
+            },
+            {
+                headers: {
+                    mbrId: mbrId,
+                },
+            },
+        )
+        .catch(() => {
+            alert('공유 장바구니 상품 추가 실패');
+        });

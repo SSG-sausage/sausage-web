@@ -1,6 +1,7 @@
 import ItemDetail from '../../components/item/ItemDetail';
 import { useEffect, useState } from 'react';
-import { getItem, saveCartShareItem } from '../../api/item/item';
+import { getItem } from '../../api/item/item';
+import { saveCartShareItem } from '../../api/cartshare/cartShare';
 import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
@@ -29,8 +30,6 @@ const ItemDetailContainer = () => {
     };
 
     useEffect(() => {
-        console.log(itemId);
-
         getItem(itemId).then(response => {
             console.log(response.data.data);
             setItemImgUrl(response.data.data.itemImgUrl);
