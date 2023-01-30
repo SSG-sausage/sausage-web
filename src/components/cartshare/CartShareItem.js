@@ -18,7 +18,7 @@ const CartShareItem = ({
     return (
         <Container>
             <ShppContainer>
-                {shppCd === '이마트 트레이더스 배송' ? (
+                {shppCd === 'SSG_TRADERS_SHPP' ? (
                     <img id="tradersshpp" src={require('../../assets/tradersshpp.png')}></img>
                 ) : (
                     <img id="ssgshpp" src={require('../../assets/ssgshpp.png')}></img>
@@ -126,12 +126,14 @@ const ItemQtyWrapper = styled.div`
         position: absolute;
         justify-content: left;
         left: 0;
+        cursor: pointer;
     }
 
     #plus {
         position: absolute;
         text-align: right;
         right: 0;
+        cursor: pointer;
     }
 `;
 
@@ -145,12 +147,14 @@ const ItemEditWrapper = styled.div`
         position: absolute;
         top: 7px;
         right: 41px;
+        cursor: pointer;
     }
 
     #trash {
         position: absolute;
         top: 7px;
         right: 9px;
+        cursor: pointer;
     }
 `;
 
