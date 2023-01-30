@@ -20,9 +20,9 @@ const BottomContainer = ({
                                 주문하기
                             </div>
                         ) : (
-                            <button class="right" id="inactive">
+                            <div class="right" id="inactive">
                                 주문하기
-                            </button>
+                            </div>
                         )}
                     </>
                 ) : (

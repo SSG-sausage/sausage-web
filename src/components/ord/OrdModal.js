@@ -1,7 +1,21 @@
 import styled from 'styled-components';
 
-const OrdModal = ({ changeOrdModalOn }) => {
-    return (
+const OrdModal = ({ cartShareChoosingMbrCnt, changeOrdModalOn }) => {
+    return cartShareChoosingMbrCnt > 0 ? (
+        <Container>
+            <Modal>
+                <div>
+                    함께 장보기 참여 멤버가<br></br>아직 담기를 완료하지 않았습니다.<br></br>그래도 주문하시겠습니까?
+                </div>
+
+                <div>모든 멤버가 장보기를 완료했는지 확인해 주세요.</div>
+                <Buttons>
+                    <CancleBnt onClick={changeOrdModalOn}>취소</CancleBnt>
+                    <OrdBnt>주문하기</OrdBnt>
+                </Buttons>
+            </Modal>
+        </Container>
+    ) : (
         <Container>
             <Modal>
                 <div>
