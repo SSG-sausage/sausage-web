@@ -7,8 +7,17 @@ import CommonSection from './CommonSection';
 import NavigationBar from './NavigationBar';
 import PersonalSection from './PersonalSection';
 
-const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onClickCommOrMy, onClickTrash, isOrdModalOn, changeOrdModalOn, onClickCartshareCal
- }) => {
+const CartShareDetail = ({
+    cartShareData,
+    onClickDone,
+    onClickPlusOrMinus,
+    onClickCommOrMy,
+    onClickTrash,
+    isOrdModalOn,
+    changeOrdModalOn,
+    onClickCartshareCal,
+    onClickOrdList,
+}) => {
     return (
         <>
             {isOrdModalOn ? (
@@ -39,7 +48,9 @@ const CartShareDetail = ({ cartShareData, onClickDone, onClickPlusOrMinus, onCli
                     <div id="menu">
                         <div id="invite">친구초대</div>
                         <div id="line1"></div>
-                        <div id="order">주문내역</div>
+                        <div id="order" onClick={onClickOrdList}>
+                            주문내역
+                        </div>
                         <div id="line2"></div>
                         <div id="scm" onClick={() => onClickCartshareCal(cartShareData.cartShareId)}>
                             쓱총무
@@ -305,6 +316,7 @@ const CartShareInfo = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
     }
 
     #scm {

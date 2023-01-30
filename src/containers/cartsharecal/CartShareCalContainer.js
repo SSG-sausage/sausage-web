@@ -10,6 +10,7 @@ const CartShareCalContainer = () => {
     const [cartShareCal, setCartShareCal] = useState({});
     const [cookies, setCookie] = useCookies(['mbrId']);
     const [openOrdSheet, setOpenOrdSheet] = useState(false);
+    const [notiSuccess, setNotiSuccess] = useState(false);
 
     const onClickCreate = () => {
         navigate(`/cart-share-cal/${cartShareCalId}/create`);
@@ -34,7 +35,10 @@ const CartShareCalContainer = () => {
     };
     const onClickNoti = () => {
         saveCartShareNoti(cookies.mbrId, cartShareCalId).then(() => {
-            alert('알림 발송 성공');
+            setNotiSuccess(true);
+            setTimeout(function () {
+                setNotiSuccess(false);
+            }, 1500);
         });
     };
 
@@ -53,6 +57,7 @@ const CartShareCalContainer = () => {
             onClickOpenSheet={onClickOpenSheet}
             onClickCloseSheet={onClickCloseSheet}
             onClickNoti={onClickNoti}
+            notiSuccess={notiSuccess}
         />
     );
 };

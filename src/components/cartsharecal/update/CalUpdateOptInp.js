@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import NameInfoUpdate from './NameInfoUpdate';
 
-const DutchPayUpdateOptInp = ({ cartShareCal, inpInput, onChangeInpInput, onChangeInpRmd }) => {
+const CalUpdateOptInp = ({ cartShareCal, inpInput, onChangeInpInput, onChangeInpRmd }) => {
     return (
         <OptInpContainer>
             {cartShareCal.cartShareCalDtlList?.map((info, index) => (
@@ -189,4 +189,4 @@ const CalDtlInfo = styled.div`
     }
 `;
 
-export default DutchPayUpdateOptInp;
+export default CalUpdateOptInp;

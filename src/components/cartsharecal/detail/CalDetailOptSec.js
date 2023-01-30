@@ -9,7 +9,7 @@ const CalDetailOptSec = ({ cartShareCal, onClickCmplYn }) => {
     return (
         <OptSecContainer>
             {cartShareCal.cartShareCalDtlList?.map((info, index) => (
-                <DutchPayDtl key={info.mbrId}>
+                <CalDtl key={info.mbrId}>
                     <div className="name-container">
                         {info.meYn && <Me />}
                         <div className="name">
@@ -47,7 +47,7 @@ const CalDetailOptSec = ({ cartShareCal, onClickCmplYn }) => {
                             <div className="dtl-dt-unit">원</div>
                         </div>
                     </div>
-                </DutchPayDtl>
+                </CalDtl>
             ))}
             <div className="rmd">
                 <div className="rmd-label">나머지</div>
@@ -153,7 +153,7 @@ const OptSecContainer = styled.div`
         margin-left: 13px;
     }
 `;
-const DutchPayDtl = styled.div`
+const CalDtl = styled.div`
     margin-top: 20px;
     margin-bottom: 25px;
     display: flex;

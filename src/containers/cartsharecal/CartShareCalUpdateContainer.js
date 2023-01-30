@@ -92,7 +92,7 @@ const CartShareCalUpdateContainer = () => {
                 break;
         }
         updateCartShareCal(cookies.mbrId, cartShareCalId, request).then(() => {
-            navigate(`/cart-share-calculation/${cartShareCalId}`);
+            navigate(`/cart-share-cal/${cartShareCalId}`);
         });
     };
     const calcSplit = n => {

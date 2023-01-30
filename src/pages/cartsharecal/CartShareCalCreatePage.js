@@ -1,8 +1,8 @@
 import React from 'react';
-import DutchPayCreateContainer from '../../containers/cartsharecal/CartShareCalCreateContainer';
+import CartShareCalCreateContainer from '../../containers/cartsharecal/CartShareCalCreateContainer';
 
 const CartShareCalCreatePage = () => {
-    return <DutchPayCreateContainer />;
+    return <CartShareCalCreateContainer />;
 };
 
 export default CartShareCalCreatePage;

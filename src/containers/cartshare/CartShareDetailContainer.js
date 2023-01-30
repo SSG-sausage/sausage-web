@@ -74,6 +74,10 @@ const CartShareDetailContainer = () => {
         });
     };
 
+    const onClickOrdList = () => {
+        navigate(`/order-list`);
+    };
+
     const disconnect = () => {
         client.current.deactivate();
     };
@@ -122,6 +126,7 @@ const CartShareDetailContainer = () => {
             isOrdModalOn={isOrdModalOn}
             changeOrdModalOn={changeOrdModalOn}
             onClickCartshareCal={onClickCartshareCal}
+            onClickOrdList={onClickOrdList}
         />
     );
 };

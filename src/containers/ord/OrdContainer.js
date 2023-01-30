@@ -2,7 +2,7 @@ import Ord from '../../components/ord/Ord';
 import { useEffect, useState } from 'react';
 import { getOrdItemList } from '../../api/ord/ord';
 
-const OrdContainer = ({ cartShareOrdId, regDts, ttlPaymtAtm }) => {
+const OrdContainer = ({ cartShareOrdId, regDts, ttlPaymtAtm, onClickCal }) => {
     const [isClickedSggShpp, setClickedSsgshpp] = useState(false);
     const [isClickedTradersShpp, setClickedTradersShpp] = useState(false);
     const [ssgShppOrdItemMap, setSsgShppOrdItemMap] = useState(new Map());
@@ -77,6 +77,7 @@ const OrdContainer = ({ cartShareOrdId, regDts, ttlPaymtAtm }) => {
             ttlPaymtAtm={ttlPaymtAtm}
             ssgShppOrdItemMap={ssgShppOrdItemMap}
             tradersShppOrdItemMap={tradersShppOrdItemMap}
+            onClickCal={onClickCal}
         />
     );
 };
