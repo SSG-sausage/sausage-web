@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CartShareDetail from '../../components/cartshare/CartShareDetail';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import * as stompjs from '@stomp/stompjs';
 import {
@@ -11,6 +10,7 @@ import {
     updateCartShareItemQty,
     updateCartShareMbrProg,
 } from '../../api/cartshare/cartShare';
+import { cancelTmpOrd, createOrd, createTmpOrd } from '../../api/ord/ord';
 
 const CartShareDetailContainer = () => {
     const navigate = useNavigate();
@@ -54,6 +54,10 @@ const CartShareDetailContainer = () => {
     const [isOrdModalOn, setOrdModalOn] = useState(false);
 
     const changeOrdModalOn = () => {
+        if (isOrdModalOn === true) {
+            cancelTmpOrd(cartShareId);
+        }
+
         setOrdModalOn(!isOrdModalOn);
     };
 
@@ -104,6 +108,23 @@ const CartShareDetailContainer = () => {
         setCartShareData(data);
     };
 
+    const onClickOrdBnt = () => {
+        createTmpOrd(cartShareId);
+        changeOrdModalOn();
+    };
+
+    const onClickModalOrdBnt = () => {
+        createOrd(cartShareId).then(response => {
+            navigate(`/order-success`, {
+                state: {
+                    cartShareCalId: response.data.data.cartShareCalId,
+                    cartShareOrdId: response.data.data.cartShareOrdId,
+                    ttlPaymtAmt: response.data.data.ttlPaymtAmt,
+                },
+            });
+        });
+    };
+
     const onClickCartshareCal = cartShareId => {
         navigate(`/cart-share/${cartShareId}/cart-share-cal`);
     };
@@ -126,7 +147,8 @@ const CartShareDetailContainer = () => {
             isOrdModalOn={isOrdModalOn}
             changeOrdModalOn={changeOrdModalOn}
             onClickCartshareCal={onClickCartshareCal}
-            onClickOrdList={onClickOrdList}
+            onClickOrdBnt={onClickOrdBnt}
+            onClickModalOrdBnt={onClickModalOrdBnt}
         />
     );
 };

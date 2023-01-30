@@ -57,11 +57,12 @@ const ItemDetailContainer = styled.div`
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
+    overflow: auto;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
-    margin-top: 30px;
+    flex-direction: column;
 `;
 
 const ItemImg = styled.img`

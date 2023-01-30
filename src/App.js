@@ -73,6 +73,7 @@ function App() {
                         <Route path="/item/:itemId" element={<ItemDetailPage />} />
                         <Route path="/order-list" element={<OrdListPage />} />
                         <Route path="/order-success" element={<OrdSuccessPage />} />
+                        <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
                     </Route>
                 </Routes>
             </Container>
