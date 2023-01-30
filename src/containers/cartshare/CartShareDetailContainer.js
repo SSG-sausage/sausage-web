@@ -149,6 +149,7 @@ const CartShareDetailContainer = () => {
             onClickCartshareCal={onClickCartshareCal}
             onClickOrdBnt={onClickOrdBnt}
             onClickModalOrdBnt={onClickModalOrdBnt}
+            onClickOrdList={onClickOrdList}
         />
     );
 };

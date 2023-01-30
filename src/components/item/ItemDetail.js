@@ -63,6 +63,7 @@ const ItemDetailContainer = styled.div`
 const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
+    position: relative;
 `;
 
 const ItemImg = styled.img`

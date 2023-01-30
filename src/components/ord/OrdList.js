@@ -13,6 +13,7 @@ const OrdList = ({ ordList, onClickCal }) => {
                 <OrdContainer
                     key={it.cartShareOrdId}
                     cartShareOrdId={it.cartShareOrdId}
+                    cartShareCalId={it.cartShareCalId}
                     ttlPaymtAtm={it.ttlPaymtAmt.toLocaleString() + '원'}
                     regDts={it.cartShareOrdRcpDts.split('T')[0]}
                     onClickCal={onClickCal}

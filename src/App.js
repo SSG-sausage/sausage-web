@@ -64,7 +64,7 @@ function App() {
                     <Route path="/cart-share/:cartShareId/cart-share-cal" element={<CartShareCalListPage />} />
                     <Route path="/cart-share/:cartShareId/cart-share-cal/ord" element={<CartShareCalOrdListPage />} />
                     <Route path="/cart-share-cal/:cartShareCalId" element={<CartShareCalPage />} />
-                    <Route path="/cart-share-cal/:cartShareCalId/create" element={<CartShareCalCreatePage />} />
+
                     <Route path="/cart-share-cal/:cartShareCalId/update" element={<CartShareCalUpdatePage />} />
 
                     <Route element={<AuthLayout />}>
@@ -74,6 +74,7 @@ function App() {
                         <Route path="/order-list" element={<OrdListPage />} />
                         <Route path="/order-success" element={<OrdSuccessPage />} />
                         <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
+                        <Route path="/cart-share-cal/:cartShareCalId/create" element={<CartShareCalCreatePage />} />
                     </Route>
                 </Routes>
             </Container>

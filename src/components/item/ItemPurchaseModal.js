@@ -47,9 +47,11 @@ const ItemPurchaseModal = ({
 };
 
 const Modal = styled.div`
-    width: 100%;
-    height: fit-content;
-    z-index: 989;
+    width: 390px;
+    height: 190px;
+    position: absolute;
+    z-index: 3;
+    bottom: 61px;
     background-color: white;
     box-shadow: 0px -4px 7px -5px gray;
     border-radius: 20px;
