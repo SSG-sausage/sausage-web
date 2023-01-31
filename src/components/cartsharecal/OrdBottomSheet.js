@@ -1,7 +1,63 @@
 /** @jsxImportSource @emotion/react */
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { getOrdItemList } from '../../api/ord/ord';
+import OrdBottom from '../ord/OrdBottom';
 
 const OrdBottomSheet = ({ cartShareOrdId, onClickCloseSheet }) => {
+    const [ssgShppOrdItemMap, setSsgShppOrdItemMap] = useState(new Map());
+    const [tradersShppOrdItemMap, setTradersShppOrdItemMap] = useState(new Map());
+    let cartShareId = 1;
+
+    useEffect(() => {
+        getOrdItemList(cartShareId, cartShareOrdId).then(response => {
+            let orderItemList = response.data.data.cartShareOrdItemList;
+            let ssgShppOrdItemList = orderItemList.filter(ordItem => ordItem.shppCd === 'SSG_SHPP');
+            let tradersShppOrdItemList = orderItemList.filter(ordItem => ordItem.shppCd === 'SSG_TRADERS_SHPP');
+
+            console.log(response.data.data.cartShareOrdItemList);
+
+            let ssgShppItemMap = new Map();
+            let tradersShppItemMap = new Map();
+
+            ssgShppOrdItemList.forEach(item => {
+                let nm = item.mbrNm;
+
+                if (item.commYn === true) {
+                    nm = '공통';
+                }
+
+                if (ssgShppItemMap.has()) {
+                    let tmp = ssgShppItemMap.get(nm);
+                    tmp.push(item);
+                    ssgShppItemMap.set(nm, tmp);
+                } else {
+                    ssgShppItemMap.set(nm, new Array(item));
+                }
+            });
+
+            setSsgShppOrdItemMap(ssgShppItemMap);
+
+            tradersShppOrdItemList.forEach(item => {
+                let nm = item.mbrNm;
+
+                if (item.commYn === true) {
+                    nm = '공통';
+                }
+
+                if (tradersShppItemMap.has(nm)) {
+                    let tmp = tradersShppItemMap.get(nm);
+                    tmp.push(item);
+                    tradersShppItemMap.set(nm, tmp);
+                } else {
+                    tradersShppItemMap.set(nm, new Array(item));
+                }
+            });
+
+            setTradersShppOrdItemMap(tradersShppItemMap);
+        });
+    }, []);
+
     return (
         <>
             <SheetContainer onClick={onClickCloseSheet}></SheetContainer>
@@ -16,6 +72,7 @@ const OrdBottomSheet = ({ cartShareOrdId, onClickCloseSheet }) => {
                         <img src={require('../../assets/close.png')} />
                     </div>
                 </div>
+                <OrdBottom ssgShppOrdItemMap={ssgShppOrdItemMap} tradersShppOrdItemMap={tradersShppOrdItemMap} />
             </Sheet>
         </>
     );

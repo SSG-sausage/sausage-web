@@ -13,6 +13,7 @@ const Ord = ({
     ssgShppOrdItemMap,
     tradersShppOrdItemMap,
     onClickCal,
+    cartShareCalId,
 }) => {
     return (
         <Container>
@@ -21,7 +22,7 @@ const Ord = ({
                     <RegDts>{regDts}</RegDts>
                     <p>함께 장보기</p>
                 </div>
-                <div onClick={() => onClickCal()}>정산 내역 확인하기 {'>'}</div>
+                <div onClick={() => onClickCal(cartShareCalId)}>정산 내역 확인하기 {'>'}</div>
             </OrdTitle>
             <TtlPaymtAmt>결제금액 {ttlPaymtAtm}</TtlPaymtAmt>
 
@@ -37,9 +38,13 @@ const Ord = ({
                 <>
                     <OrdShppInfo isSsgShpp={true} />
                     <OrdItem>
-                        {Array.from(ssgShppOrdItemMap.keys()).map((it, index) => (
-                            <OrdDetailItemList key={it} mbrNm={it} itemList={ssgShppOrdItemMap.get(it)} />
-                        ))}
+                        {Array.from(ssgShppOrdItemMap.keys())
+                            .sort(function (a, b) {
+                                return a < b ? -1 : a > b ? 1 : 0;
+                            })
+                            .map((it, index) => (
+                                <OrdDetailItemList key={it} mbrNm={it} itemList={ssgShppOrdItemMap.get(it)} />
+                            ))}
                     </OrdItem>
                 </>
             ) : (
@@ -58,9 +63,13 @@ const Ord = ({
                 <>
                     <OrdShppInfo isSsgShpp={false} />
                     <OrdItem>
-                        {Array.from(tradersShppOrdItemMap.keys()).map((it, index) => (
-                            <OrdDetailItemList key={it} mbrNm={it} itemList={tradersShppOrdItemMap.get(it)} />
-                        ))}
+                        {Array.from(tradersShppOrdItemMap.keys())
+                            .sort(function (a, b) {
+                                return a < b ? -1 : a > b ? 1 : 0;
+                            })
+                            .map((it, index) => (
+                                <OrdDetailItemList key={it} mbrNm={it} itemList={tradersShppOrdItemMap.get(it)} />
+                            ))}
                     </OrdItem>
                 </>
             ) : (

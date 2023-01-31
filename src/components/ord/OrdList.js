@@ -4,21 +4,24 @@ import SearchBox from '../item/SearchBox';
 
 const OrdList = ({ ordList, onClickCal }) => {
     return (
-        <Container>
+        <>
             <SearchBox />
-            <TopNav>주문내역</TopNav>
-            <Space />
+            <Container>
+                <TopNav>주문내역</TopNav>
+                <Space />
 
-            {ordList.map((it, index) => (
-                <OrdContainer
-                    key={it.cartShareOrdId}
-                    cartShareOrdId={it.cartShareOrdId}
-                    ttlPaymtAtm={it.ttlPaymtAmt.toLocaleString() + '원'}
-                    regDts={it.cartShareOrdRcpDts.split('T')[0]}
-                    onClickCal={onClickCal}
-                />
-            ))}
-        </Container>
+                {ordList.map((it, index) => (
+                    <OrdContainer
+                        key={it.cartShareOrdId}
+                        cartShareOrdId={it.cartShareOrdId}
+                        cartShareCalId={it.cartShareCalId}
+                        ttlPaymtAtm={it.ttlPaymtAmt.toLocaleString() + '원'}
+                        regDts={it.cartShareOrdRcpDts.split('T')[0]}
+                        onClickCal={onClickCal}
+                    />
+                ))}
+            </Container>
+        </>
     );
 };
 
@@ -27,7 +30,9 @@ export default OrdList;
 const Container = styled.div`
     justify-self: center;
     height: 792px;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
     background-color: #f9f9f9;
     overflow: auto;
 `;

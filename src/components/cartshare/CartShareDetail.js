@@ -17,11 +17,17 @@ const CartShareDetail = ({
     changeOrdModalOn,
     onClickCartshareCal,
     onClickOrdList,
+    onClickOrdBnt,
+    onClickModalOrdBnt,
 }) => {
     return (
         <>
             {isOrdModalOn ? (
-                <OrdModal cartShareChoosingMbrCnt={cartShareData.cartShareMbrCnt} changeOrdModalOn={changeOrdModalOn} />
+                <OrdModal
+                    cartShareChoosingMbrCnt={cartShareData.cartShareMbrCnt}
+                    changeOrdModalOn={changeOrdModalOn}
+                    onClickModalOrdBnt={onClickModalOrdBnt}
+                />
             ) : (
                 <></>
             )}
@@ -99,6 +105,7 @@ const CartShareDetail = ({
                 editPsblYn={cartShareData.editPsblYn}
                 onClickDone={onClickDone}
                 changeOrdModalOn={changeOrdModalOn}
+                onClickOrdBnt={onClickOrdBnt}
             />
         </>
     );

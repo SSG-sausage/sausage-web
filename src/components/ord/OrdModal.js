@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const OrdModal = ({ cartShareChoosingMbrCnt, changeOrdModalOn }) => {
+const OrdModal = ({ cartShareChoosingMbrCnt, changeOrdModalOn, onClickModalOrdBnt }) => {
     return cartShareChoosingMbrCnt > 0 ? (
         <Container>
             <Modal>
@@ -11,7 +11,8 @@ const OrdModal = ({ cartShareChoosingMbrCnt, changeOrdModalOn }) => {
                 <div>모든 멤버가 장보기를 완료했는지 확인해 주세요.</div>
                 <Buttons>
                     <CancleBnt onClick={changeOrdModalOn}>취소</CancleBnt>
-                    <OrdBnt>주문하기</OrdBnt>
+
+                    <OrdBnt onClick={onClickModalOrdBnt}>주문하기</OrdBnt>
                 </Buttons>
             </Modal>
         </Container>
@@ -25,7 +26,7 @@ const OrdModal = ({ cartShareChoosingMbrCnt, changeOrdModalOn }) => {
                 <div>장바구니로 돌아가면 상품을 더 담을 수 있어요.</div>
                 <Buttons>
                     <CancleBnt onClick={changeOrdModalOn}>취소</CancleBnt>
-                    <OrdBnt>주문하기</OrdBnt>
+                    <OrdBnt onClick={onClickModalOrdBnt}>주문하기</OrdBnt>
                 </Buttons>
             </Modal>
         </Container>

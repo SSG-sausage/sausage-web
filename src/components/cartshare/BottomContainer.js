@@ -8,6 +8,7 @@ const BottomContainer = ({
     editPsblYn,
     onClickDone,
     changeOrdModalOn,
+    onClickOrdBnt,
 }) => {
     return (
         <>
@@ -16,7 +17,7 @@ const BottomContainer = ({
                 {mastrYn ? (
                     <>
                         {cartShareItemQty > 0 ? (
-                            <div class="right" onClick={changeOrdModalOn}>
+                            <div class="right" onClick={onClickOrdBnt}>
                                 주문하기
                             </div>
                         ) : (
