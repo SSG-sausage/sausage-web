@@ -1,12 +1,22 @@
 import styled from 'styled-components';
 import { useParams, useNavigate } from 'react-router-dom';
+
 const CartShareCalNavigationBar = () => {
     const navigate = useNavigate();
 
     const onClickBack = () => {
         // TODO
+        navigate(-1);
+    };
+
+    const onClickHome = () => {
         navigate(`/`);
     };
+
+    const onClickCartShare = () => {
+        navigate(`/cart-share/1`);
+    };
+
     return (
         <NavContainer>
             <div className="nav-left">
@@ -18,10 +28,10 @@ const CartShareCalNavigationBar = () => {
                 <div className="title">쓱총무 정산 내역</div>
             </div>
             <div className="nav-right">
-                <div>
+                <div onClick={onClickCartShare}>
                     <img className="cart-share" src={require('../../assets/cart-share.png')} />
                 </div>
-                <div>
+                <div onClick={onClickHome}>
                     <img className="home" src={require('../../assets/home.png')} />
                 </div>
             </div>
@@ -47,6 +57,7 @@ const NavContainer = styled.div`
     }
 
     img {
+        cursor: pointer;
         width: 24px;
     }
     .cart-share {

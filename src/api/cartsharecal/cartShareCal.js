@@ -12,15 +12,9 @@ export const findCartShareCal = (mbrId, cartShareCalId) =>
         });
 
 export const findCartShareCalList = cartShareId =>
-    axiosInstance
-        .get(`cart-share-calculation/api/cart-share-cal`, {
-            params: {
-                cartShareId: cartShareId,
-            },
-        })
-        .catch(() => {
-            alert('정산 리스트 조회 실패');
-        });
+    axiosInstance.get(`cart-share-calculation/api/cart-share-cal/cart-share/${cartShareId}`, {}).catch(() => {
+        alert('정산 리스트 조회 실패');
+    });
 
 export const calCartShareCal = cartShareCalId =>
     axiosInstance.get(`cart-share-calculation/api/cart-share-cal/${cartShareCalId}/cal`, {}).catch(() => {
@@ -41,7 +35,7 @@ export const updateCartShareCal = (mbrId, cartShareCalId, request) =>
 export const updateCmplYn = (mbrId, cartShareCalId, dtlMbrId) =>
     axiosInstance
         .patch(
-            `cart-share-calculation/api/cart-share-cal/${cartShareCalId}/mbr-id/${dtlMbrId}/cmpl`,
+            `cart-share-calculation/api/cart-share-cal/${cartShareCalId}/mbr/${dtlMbrId}/cmpl`,
             {},
             {
                 headers: {

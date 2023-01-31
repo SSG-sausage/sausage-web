@@ -74,11 +74,13 @@ const CartShareCal = ({
                                 </div>
                             )}
                         </DetailFooter>
-                        <div className="edit-btn" onClick={() => onClickUpdate()}>
-                            금액
-                            <br />
-                            수정
-                        </div>
+                        {cartShareCal.mastrYn && (
+                            <div className="edit-btn" onClick={() => onClickUpdate()}>
+                                금액
+                                <br />
+                                수정
+                            </div>
+                        )}
                     </CartShareCalDetail>
                 )}
                 {openOrdSheet && (
@@ -109,6 +111,7 @@ const CreateCartShareCalBtn = styled.div`
     position: absolute;
     bottom: 0;
     cursor: pointer;
+    border-radius: 0 0 20px 20px;
 `;
 
 const EmptyCartShareCal = styled.div`
@@ -226,11 +229,11 @@ const DetailFooter = styled.div`
         font-size: 12px;
     }
     .share-btn-container {
+        height: 58px;
         display: flex;
     }
     .noti-btn {
         cursor: pointer;
-        height: 57px;
         width: 321px;
         background: #3a94fa;
         text-align: center;
@@ -247,8 +250,7 @@ const DetailFooter = styled.div`
         margin-left: 1px;
         justify-content: center;
         align-items: center;
-        width: 64px;
-        height: 54px;
+        width: 65px;
         border: 2px solid #3a94fa;
         border-radius: 0 0 20px;
     }

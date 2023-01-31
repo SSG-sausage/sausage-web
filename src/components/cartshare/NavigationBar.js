@@ -15,6 +15,10 @@ const NavigationBar = ({ nm, itemQty }) => {
     const onClickNoti = () => {
         navigate(`/cart-share/noti`);
     };
+
+    const onClickHome = () => {
+        navigate(`/`);
+    };
     const connect = () => {
         client.current = new stompjs.Client({
             brokerURL: 'ws://localhost:8082/ws',
@@ -66,7 +70,7 @@ const NavigationBar = ({ nm, itemQty }) => {
                 <div>
                     <img id="magnifier" src={require('../../assets/magnifier.png')} />
                 </div>
-                <div>
+                <div onClick={onClickHome}>
                     <img id="home" src={require('../../assets/home.png')} />
                 </div>
             </NavigationBarRight>
@@ -118,11 +122,13 @@ const NavigationBarRight = styled.div`
     #home {
         margin-top: 10px;
         margin-right: 8px;
+        cursor: pointer;
     }
 
     #magnifier {
         margin-top: 10px;
         margin-right: 10px;
+        cursor: pointer;
     }
 `;
 const NotiIcon = styled.div`

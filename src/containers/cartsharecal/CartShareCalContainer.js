@@ -19,9 +19,9 @@ const CartShareCalContainer = () => {
     const onClickUpdate = () => {
         navigate(`/cart-share-cal/${cartShareCalId}/update`);
     };
-    const onClickCmplYn = (mbrId, cartShareCalId) => {
-        updateCmplYn(cookies.mbrId, cartShareCalId, mbrId).then(() => {
-            findCartShareCal(cookies.mbrId, cartShareCalId).then(response => {
+    const onClickCmplYn = (mbrId, calId) => {
+        updateCmplYn(cookies.mbrId, calId, mbrId).then(() => {
+            findCartShareCal(cookies.mbrId, calId).then(response => {
                 setCartShareCal(response.data.data);
             });
         });

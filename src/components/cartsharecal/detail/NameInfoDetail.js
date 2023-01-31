@@ -15,8 +15,8 @@ const NameInfoDetail = ({ cartShareCal, info, onClickCmplYn }) => {
                 {cartShareCal.mastrYn && !info.mastrYn && (
                     <MastrCmplYn
                         cmplYn={info.calCmplYn}
+                        cartShareCalId={cartShareCal.cartShareCalId}
                         mbrId={info.mbrId}
-                        carShareCalId={cartShareCal.carShareCalId}
                         onClickCmplYn={onClickCmplYn}
                     />
                 )}
