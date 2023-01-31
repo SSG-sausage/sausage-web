@@ -152,13 +152,13 @@ const CalUpdateContent = styled.div``;
 const CalInput = styled.div`
     border: 2px solid #f5f5f5;
     width: 356px;
-    max-height: 590px;
+    max-height: 560px;
     margin: auto;
     margin-top: 22px;
     overflow: auto;
 `;
 const CalFooter = styled.div`
-    margin-top: 40px;
+    margin-top: 30px;
     color: #888888;
     ont-weight: 400;
     font-size: 12px;
