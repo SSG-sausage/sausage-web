@@ -7,10 +7,6 @@ import { useLocation } from 'react-router-dom';
 const OrdSuccessContainer = () => {
     const location = useLocation();
 
-    // const { cartShareCalId, cartShareOrdId, ttlPaymtAmt } = useLocation();
-
-    console.log(location.state.cartShareCalId);
-
     return (
         <OrdSuccess
             cartShareOrdId={location.state.cartShareOrdId}

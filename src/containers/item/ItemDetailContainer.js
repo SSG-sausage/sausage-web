@@ -25,7 +25,8 @@ const ItemDetailContainer = () => {
 
     const onClickSaveCartShareButton = () => {
         saveCartShareItem(1, parseInt(itemId), itemQty).then(response => {
-            alert('장바구니 추가 성공');
+            console.log(response.data.data);
+            setPurchaseModalOn(false);
         });
     };
 

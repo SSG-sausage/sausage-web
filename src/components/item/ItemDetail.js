@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import SearchBox from './SearchBox';
 import ItemPurchaseModal from './ItemPurchaseModal';
+import { useNavigate } from 'react-router-dom';
 
 const ItemDetail = ({
     itemImgUrl,
@@ -14,10 +15,18 @@ const ItemDetail = ({
     minusItemQty,
     onClickSaveCartShareButton,
 }) => {
+    const navigate = useNavigate();
+
+    const backClick = () => {
+        navigate(-1);
+    };
+
     return (
         <ItemDetailContainer>
             <div>
                 <SearchBox />
+
+                <BackBnt className="arrow-back" src={require('../../assets/arrow-back.png')} onClick={backClick} />
 
                 <ItemImg src={itemImgUrl} />
 
@@ -54,10 +63,18 @@ const ItemDetail = ({
 
 const ItemDetailContainer = styled.div`
     display: flex;
+    position: relative;
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
     overflow: auto;
+`;
+
+const BackBnt = styled.img`
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    cursor: pointer;
 `;
 
 const ButtonContainer = styled.div`
