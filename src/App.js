@@ -57,8 +57,6 @@ function App() {
             <Container>
                 <img id="status-bar" src={require('./assets/status-bar.png')} />
                 <Routes>
-                    <Route path="/cart-share" element={<CartSharePage />} />
-
                     <Route path="/login" element={<LoginPage />} />
 
                     <Route element={<AuthLayout />}>
@@ -74,6 +72,7 @@ function App() {
                             path="/cart-share/:cartShareId/cart-share-cal/ord"
                             element={<CartShareCalOrdListPage />}
                         />
+                        <Route path="/cart-share" element={<CartSharePage />} />
                         <Route path="/cart-share-cal/:cartShareCalId" element={<CartShareCalPage />} />
                         <Route path="/cart-share/noti" element={<CartShareNotiPage />} />
                         <Route path="/cart-share-cal/:cartShareCalId/update" element={<CartShareCalUpdatePage />} />
