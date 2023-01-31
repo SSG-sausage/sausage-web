@@ -24,7 +24,7 @@ const CartShareDetail = ({
         <>
             {isOrdModalOn ? (
                 <OrdModal
-                    cartShareChoosingMbrCnt={cartShareData.cartShareMbrCnt}
+                    cartShareChoosingMbrCnt={cartShareData.cartShareChoosingMbrCnt}
                     changeOrdModalOn={changeOrdModalOn}
                     onClickModalOrdBnt={onClickModalOrdBnt}
                 />
