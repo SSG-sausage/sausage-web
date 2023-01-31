@@ -21,36 +21,36 @@ const OrdBottomSheet = ({ cartShareOrdId, onClickCloseSheet }) => {
             let tradersShppItemMap = new Map();
 
             ssgShppOrdItemList.forEach(item => {
-                let id = item.mbrId;
+                let nm = item.mbrNm;
 
                 if (item.commYn === true) {
-                    id = '공통';
+                    nm = '공통';
                 }
 
                 if (ssgShppItemMap.has()) {
-                    let tmp = ssgShppItemMap.get(id);
+                    let tmp = ssgShppItemMap.get(nm);
                     tmp.push(item);
-                    ssgShppItemMap.set(id, tmp);
+                    ssgShppItemMap.set(nm, tmp);
                 } else {
-                    ssgShppItemMap.set(id, new Array(item));
+                    ssgShppItemMap.set(nm, new Array(item));
                 }
             });
 
             setSsgShppOrdItemMap(ssgShppItemMap);
 
             tradersShppOrdItemList.forEach(item => {
-                let id = item.mbrId;
+                let nm = item.mbrNm;
 
                 if (item.commYn === true) {
-                    id = '공통';
+                    nm = '공통';
                 }
 
-                if (tradersShppItemMap.has(id)) {
-                    let tmp = tradersShppItemMap.get(id);
+                if (tradersShppItemMap.has(nm)) {
+                    let tmp = tradersShppItemMap.get(nm);
                     tmp.push(item);
-                    tradersShppItemMap.set(id, tmp);
+                    tradersShppItemMap.set(nm, tmp);
                 } else {
-                    tradersShppItemMap.set(id, new Array(item));
+                    tradersShppItemMap.set(nm, new Array(item));
                 }
             });
 

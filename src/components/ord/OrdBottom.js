@@ -14,9 +14,13 @@ const OrdBottom = ({ ssgShppOrdItemMap, tradersShppOrdItemMap }) => {
             </OrdItemTitle>
 
             <OrdItem>
-                {Array.from(ssgShppOrdItemMap.keys()).map((it, index) => (
-                    <OrdDetailItemList key={it} mbrNm={it} itemList={ssgShppOrdItemMap.get(it)} />
-                ))}
+                {Array.from(ssgShppOrdItemMap.keys())
+                    .sort(function (a, b) {
+                        return a < b ? -1 : a > b ? 1 : 0;
+                    })
+                    .map((it, index) => (
+                        <OrdDetailItemList key={it} mbrNm={it} itemList={ssgShppOrdItemMap.get(it)} />
+                    ))}
             </OrdItem>
 
             <OrdItemTitle>
@@ -27,9 +31,13 @@ const OrdBottom = ({ ssgShppOrdItemMap, tradersShppOrdItemMap }) => {
             </OrdItemTitle>
 
             <OrdItem>
-                {Array.from(tradersShppOrdItemMap.keys()).map((it, index) => (
-                    <OrdDetailItemList key={it} mbrNm={it} itemList={tradersShppOrdItemMap.get(it)} />
-                ))}
+                {Array.from(tradersShppOrdItemMap.keys())
+                    .sort(function (a, b) {
+                        return a < b ? -1 : a > b ? 1 : 0;
+                    })
+                    .map((it, index) => (
+                        <OrdDetailItemList key={it} mbrNm={it} itemList={tradersShppOrdItemMap.get(it)} />
+                    ))}
             </OrdItem>
         </Container>
     );

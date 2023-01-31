@@ -58,7 +58,7 @@ function App() {
                 <img id="status-bar" src={require('./assets/status-bar.png')} />
                 <Routes>
                     <Route path="/cart-share" element={<CartSharePage />} />
-                    <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
+
                     <Route path="/cart-share/noti" element={<CartShareNotiPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/cart-share/:cartShareId/cart-share-cal" element={<CartShareCalListPage />} />

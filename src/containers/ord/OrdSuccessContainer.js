@@ -14,7 +14,7 @@ const OrdSuccessContainer = () => {
     return (
         <OrdSuccess
             cartShareOrdId={location.state.cartShareOrdId}
-            ttlPaymtAmt={location.state.ttlPaymtAmt}
+            ttlPaymtAmt={location.state.ttlPaymtAmt.toLocaleString()}
             cartShareCalId={location.state.cartShareCalId}
         />
     );

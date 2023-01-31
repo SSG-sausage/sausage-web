@@ -30,36 +30,36 @@ const OrdContainer = ({ cartShareOrdId, cartShareCalId, regDts, ttlPaymtAtm, onC
             let tradersShppItemMap = new Map();
 
             ssgShppOrdItemList.forEach(item => {
-                let id = item.mbrId;
+                let mbrNm = item.mbrNm;
 
                 if (item.commYn === true) {
-                    id = '공통';
+                    mbrNm = '공동';
                 }
 
-                if (ssgShppItemMap.has()) {
-                    let tmp = ssgShppItemMap.get(id);
+                if (ssgShppItemMap.has(mbrNm)) {
+                    let tmp = ssgShppItemMap.get(mbrNm);
                     tmp.push(item);
-                    ssgShppItemMap.set(id, tmp);
+                    ssgShppItemMap.set(mbrNm, tmp);
                 } else {
-                    ssgShppItemMap.set(id, new Array(item));
+                    ssgShppItemMap.set(mbrNm, new Array(item));
                 }
             });
 
             setSsgShppOrdItemMap(ssgShppItemMap);
 
             tradersShppOrdItemList.forEach(item => {
-                let id = item.mbrId;
+                let mbrNm = item.mbrNm;
 
                 if (item.commYn === true) {
-                    id = '공통';
+                    mbrNm = '공동';
                 }
 
-                if (tradersShppItemMap.has(id)) {
-                    let tmp = tradersShppItemMap.get(id);
+                if (tradersShppItemMap.has(mbrNm)) {
+                    let tmp = tradersShppItemMap.get(mbrNm);
                     tmp.push(item);
-                    tradersShppItemMap.set(id, tmp);
+                    tradersShppItemMap.set(mbrNm, tmp);
                 } else {
-                    tradersShppItemMap.set(id, new Array(item));
+                    tradersShppItemMap.set(mbrNm, new Array(item));
                 }
             });
 
