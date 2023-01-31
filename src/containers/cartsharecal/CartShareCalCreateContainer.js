@@ -41,7 +41,7 @@ const CartShareCalCreateContainer = () => {
     };
 
     const onClickBack = () => {
-        navigate(`/cart-share-cal/${cartShareCalId}`);
+        navigate(-1);
     };
 
     const onClickOpenSheet = () => {

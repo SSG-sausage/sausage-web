@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import SearchBox from '../item/SearchBox';
-const CartShareCalList = ({ cartShareCalList, onClickBack, onClickCal, onClickCreate }) => {
+
+const CartShareCalList = ({ cartShareCalList, onClickBack, onClickCal, onClickCreate, mastrYn }) => {
     const formatDate = date => {
         return date.slice(0, 10).replaceAll('-', '.');
     };
@@ -41,7 +42,7 @@ const CartShareCalList = ({ cartShareCalList, onClickBack, onClickCal, onClickCr
                     ))}
                 </div>
             </CalList>
-            <CalFooter onClick={onClickCreate}>쓱총무 도움받기</CalFooter>
+            {mastrYn && <CalFooter onClick={onClickCreate}>쓱총무 도움받기</CalFooter>}
         </CalListContainer>
     );
 };
@@ -60,6 +61,9 @@ const CalHeader = styled.div`
         width: 24px;
         margin: 0px 14px;
     }
+    img {
+        cursor: pointer;
+    }
     div {
         display: flex;
         align-items: center;
@@ -69,7 +73,7 @@ const CalHeader = styled.div`
 `;
 const CalList = styled.div`
     overflow: auto;
-
+    height: 650px;
     .title {
         font-size: 16px;
         text-align: center;
@@ -86,9 +90,10 @@ const CalList = styled.div`
         text-align: center;
         margin-top: 207px;
     }
-    cursor: pointer;
 `;
 const CalItem = styled.div`
+    cursor: pointer;
+
     width: 356px;
     height: 137px;
     padding: 15px 23px;
@@ -96,6 +101,7 @@ const CalItem = styled.div`
     border-radius: 20px;
     box-sizing: border-box;
     margin: auto;
+    margin-bottom: 15px;
     color: #888888;
     display: flex;
     .cal-item-left {

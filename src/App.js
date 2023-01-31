@@ -57,15 +57,7 @@ function App() {
             <Container>
                 <img id="status-bar" src={require('./assets/status-bar.png')} />
                 <Routes>
-                    <Route path="/cart-share" element={<CartSharePage />} />
-
-                    <Route path="/cart-share/noti" element={<CartShareNotiPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/cart-share/:cartShareId/cart-share-cal" element={<CartShareCalListPage />} />
-                    <Route path="/cart-share/:cartShareId/cart-share-cal/ord" element={<CartShareCalOrdListPage />} />
-                    <Route path="/cart-share-cal/:cartShareCalId" element={<CartShareCalPage />} />
-
-                    <Route path="/cart-share-cal/:cartShareCalId/update" element={<CartShareCalUpdatePage />} />
 
                     <Route element={<AuthLayout />}>
                         <Route path="/" element={<ItemListPage />} />
@@ -75,6 +67,15 @@ function App() {
                         <Route path="/order-success" element={<OrdSuccessPage />} />
                         <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
                         <Route path="/cart-share-cal/:cartShareCalId/create" element={<CartShareCalCreatePage />} />
+                        <Route path="/cart-share/:cartShareId/cart-share-cal" element={<CartShareCalListPage />} />
+                        <Route
+                            path="/cart-share/:cartShareId/cart-share-cal/ord"
+                            element={<CartShareCalOrdListPage />}
+                        />
+                        <Route path="/cart-share" element={<CartSharePage />} />
+                        <Route path="/cart-share-cal/:cartShareCalId" element={<CartShareCalPage />} />
+                        <Route path="/cart-share/noti" element={<CartShareNotiPage />} />
+                        <Route path="/cart-share-cal/:cartShareCalId/update" element={<CartShareCalUpdatePage />} />
                     </Route>
                 </Routes>
             </Container>

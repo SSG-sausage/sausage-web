@@ -11,7 +11,7 @@ const CartShareCalOrdListContainer = () => {
     const [ordList, setOrdList] = useState([]);
 
     const onClickBack = () => {
-        navigate(`/cart-share/${cartShareId}/cart-share-cal`);
+        navigate(-1);
     };
 
     const onClickCal = cartShareCalId => {

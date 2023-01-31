@@ -114,3 +114,8 @@ export const saveCartShareItem = (cartShareId, itemId, itemQty) =>
         .catch(() => {
             alert('공유 장바구니 상품 추가 실패');
         });
+
+export const validateMastr = (cartShareId, mbrId) =>
+    axiosInstance.get(`/cart-share/api/cart-share/${cartShareId}/mbr/${mbrId}/mastr-validation`, {}).catch(() => {
+        alert('장바구니 마스터 권한 체크 실패');
+    });
