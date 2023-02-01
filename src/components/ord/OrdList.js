@@ -18,7 +18,7 @@ const OrdList = ({ ordList, onClickCal }) => {
                     <div>
                         <img className="arrow-back" src={require('../../assets/arrow-back.png')} onClick={backClick} />
                     </div>
-                    <div>결제하기</div>
+                    <div>주문내역</div>
                     <div></div>
                 </TopNav>
                 <Space />
