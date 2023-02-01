@@ -13,6 +13,10 @@ const OrdSuccess = ({ cartShareOrdId, cartShareCalId, ttlPaymtAmt }) => {
         navigate('/order-list');
     };
 
+    const onClickShopping = () => {
+        navigate('/item-list');
+    };
+
     return (
         <Container>
             <TopNav>주문완료</TopNav>
@@ -25,11 +29,11 @@ const OrdSuccess = ({ cartShareOrdId, cartShareCalId, ttlPaymtAmt }) => {
             </ShppInfo>
             <Space />
             <TtlPaymtAmt>
-                결제금액: <b>{ttlPaymtAmt}</b>원
+                결제금액:&nbsp;<b>{ttlPaymtAmt}</b>원
             </TtlPaymtAmt>
             <Space />
             <BntContainer>
-                <KeepShpBnt>계속 쇼핑하기</KeepShpBnt>
+                <KeepShpBnt onClick={onClickShopping}>계속 쇼핑하기</KeepShpBnt>
                 <BntSubContainer>
                     <button onClick={onClickOrd}>주문상품 상세보기</button>
                     <button onClick={onClickCal}>쓱총무 이용하기</button>

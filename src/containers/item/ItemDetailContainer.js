@@ -11,7 +11,11 @@ const ItemDetailContainer = () => {
     const [itemAmt, setIteAmt] = useState(0);
     const [itemQty, setItemQty] = useState(1);
     const [itemBrandNm, setItemBrandNm] = useState('');
+    const [shppCd, setShppCd] = useState('');
     const [isPurchaseModalOn, setPurchaseModalOn] = useState(false);
+    const [isNotiModalon, setIsNotiModalOn] = useState(false);
+    const [cartItemQty, setCartItemQty] = useState(1);
+    const [isNewItemYn, setIsNewItemYn] = useState(false);
 
     const plusItemQty = () => {
         setItemQty(itemQty + 1);
@@ -25,7 +29,19 @@ const ItemDetailContainer = () => {
 
     const onClickSaveCartShareButton = () => {
         saveCartShareItem(1, parseInt(itemId), itemQty).then(response => {
-            alert('장바구니 추가 성공');
+            console.log(response.data.data);
+
+            if (!response.data.data.newItemYn) {
+                setCartItemQty(response.data.data.itemQty);
+                setIsNewItemYn(true);
+            }
+
+            setPurchaseModalOn(false);
+            setIsNotiModalOn(true);
+            setTimeout(function () {
+                setIsNotiModalOn(false);
+                setIsNewItemYn(false);
+            }, 1500);
         });
     };
 
@@ -36,6 +52,7 @@ const ItemDetailContainer = () => {
             setItemNm(response.data.data.itemNm);
             setIteAmt(response.data.data.itemAmt);
             setItemBrandNm(response.data.data.itemBrandNm);
+            setShppCd(response.data.data.shppCd);
         });
     }, []);
 
@@ -51,6 +68,10 @@ const ItemDetailContainer = () => {
             plusItemQty={plusItemQty}
             minusItemQty={minusItemQty}
             onClickSaveCartShareButton={onClickSaveCartShareButton}
+            isNotiModalon={isNotiModalon}
+            cartItemQty={cartItemQty}
+            isNewItemYn={isNewItemYn}
+            shppCd={shppCd}
         />
     );
 };
