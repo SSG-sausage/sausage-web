@@ -100,6 +100,11 @@ const CartShareDetail = ({
                     );
                 })}
                 <AmtInfo cartShareAmtInfo={cartShareData.cartShareAmtInfo} />
+                {cartShareData.cartShareItemQty === 0 ? (
+                    <EmptyContainer>장바구니에 담긴 상품이 없습니다.</EmptyContainer>
+                ) : (
+                    <></>
+                )}
             </CartShareContainer>
             <BottomContainer
                 cartShareMbrId={cartShareData.cartShareMbrId}
@@ -114,6 +119,20 @@ const CartShareDetail = ({
         </>
     );
 };
+
+const EmptyContainer = styled.div`
+    width: 390px;
+    height: 200px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.5px;
+    color: rgba(0, 0, 0, 0.8);
+`;
 
 const CartShareContainer = styled.div`
     width: 390px;
