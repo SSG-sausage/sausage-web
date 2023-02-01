@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import OrdModal from '../ord/OrdModal';
 import AmtInfo from './AmtInfo';
 import BottomContainer from './BottomContainer';
+import CartShareModal from './CartShareModal';
 import CommonSection from './CommonSection';
 import NavigationBar from './NavigationBar';
 import PersonalSection from './PersonalSection';
@@ -15,6 +16,8 @@ const CartShareDetail = ({
     onClickTrash,
     isOrdModalOn,
     changeOrdModalOn,
+    isCartShareModalOn,
+    changeCartShareModalOn,
     onClickCartshareCal,
     onClickOrdList,
     onClickOrdBnt,
@@ -31,6 +34,7 @@ const CartShareDetail = ({
             ) : (
                 <></>
             )}
+            {isCartShareModalOn ? <CartShareModal changeCartShareModalOn={changeCartShareModalOn} /> : <></>}
             <NavigationBar nm={cartShareData.cartShareNm} itemQty={cartShareData.cartShareItemQty} />
             <CartShareContainer>
                 <BackGround>
