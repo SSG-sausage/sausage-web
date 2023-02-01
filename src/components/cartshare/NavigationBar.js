@@ -42,7 +42,7 @@ const NavigationBar = ({ nm, itemQty }) => {
     };
 
     const onClickBack = () => {
-        navigate(`/`);
+        navigate(-1);
     };
     useEffect(() => {
         connect();
