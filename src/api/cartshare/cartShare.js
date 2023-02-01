@@ -40,21 +40,17 @@ export const updateCartShareMbrProg = (mbrId, cartShareId, cartShareMbrId, progS
         });
 
 export const updateCartShareItemQty = (mbrId, cartShareId, cartShareItemId, qty) =>
-    axiosInstance
-        .patch(
-            `/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}/qty`,
-            {
-                qty: qty,
+    axiosInstance.patch(
+        `/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}/qty`,
+        {
+            qty: qty,
+        },
+        {
+            headers: {
+                mbrId: mbrId,
             },
-            {
-                headers: {
-                    mbrId: mbrId,
-                },
-            },
-        )
-        .catch(() => {
-            alert('장바구니 상품 수량 변경 실패');
-        });
+        },
+    );
 
 export const updateCartShareItemComm = (mbrId, cartShareId, cartShareItemId, commYn) =>
     axiosInstance
@@ -74,15 +70,11 @@ export const updateCartShareItemComm = (mbrId, cartShareId, cartShareItemId, com
         });
 
 export const deleteCartShareItem = (mbrId, cartShareId, cartShareItemId) =>
-    axiosInstance
-        .delete(`/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}`, {
-            headers: {
-                mbrId: mbrId,
-            },
-        })
-        .catch(() => {
-            alert('장바구니 상품 삭제 실패');
-        });
+    axiosInstance.delete(`/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}`, {
+        headers: {
+            mbrId: mbrId,
+        },
+    });
 
 export const findCartShareNotiList = mbrId =>
     axiosInstance
