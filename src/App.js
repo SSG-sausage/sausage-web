@@ -17,6 +17,7 @@ import CartShareCalUpdatePage from './pages/cartsharecal/CartShareCalUpdatePage'
 import AuthLayout from './containers/mbr/AuthLayout';
 import OrdListPage from './pages/ord/OrdListPage';
 import OrdSuccessPage from './pages/ord/OrdSuccessPage';
+import OrdPaymtPage from './pages/ord/OrdPaymtPage';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -64,6 +65,7 @@ function App() {
                         <Route path="/item-list" element={<ItemListPage />} />
                         <Route path="/item/:itemId" element={<ItemDetailPage />} />
                         <Route path="/order-list" element={<OrdListPage />} />
+                        <Route path="/order-paymt" element={<OrdPaymtPage />} />
                         <Route path="/order-success" element={<OrdSuccessPage />} />
                         <Route path="/cart-share/:cartShareId" element={<CartShareDetailPage />} />
                         <Route path="/cart-share-cal/:cartShareCalId/create" element={<CartShareCalCreatePage />} />

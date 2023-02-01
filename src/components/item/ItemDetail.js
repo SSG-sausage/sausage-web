@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import SearchBox from './SearchBox';
 import ItemPurchaseModal from './ItemPurchaseModal';
+import { useNavigate } from 'react-router-dom';
 
 const ItemDetail = ({
     itemImgUrl,
@@ -13,15 +14,35 @@ const ItemDetail = ({
     plusItemQty,
     minusItemQty,
     onClickSaveCartShareButton,
+    isNotiModalon,
+    cartItemQty,
+    isNewItemYn,
+    shppCd,
 }) => {
+    const navigate = useNavigate();
+
+    const backClick = () => {
+        navigate(-1);
+    };
+
     return (
         <ItemDetailContainer>
             <div>
                 <SearchBox />
 
+                <BackBnt className="arrow-back" src={require('../../assets/arrow-back.png')} onClick={backClick} />
+
                 <ItemImg src={itemImgUrl} />
 
-                <ShppCategory>쓱배송</ShppCategory>
+                {shppCd === 'SSG_SHPP' ? (
+                    <>
+                        <ShppCategory>쓱배송</ShppCategory>
+                    </>
+                ) : (
+                    <>
+                        <ShppCategory style={{ background: '#b3dc49' }}>traders</ShppCategory>
+                    </>
+                )}
 
                 <ItemTitle>
                     <div>{itemBrandNm}</div>
@@ -32,6 +53,26 @@ const ItemDetail = ({
                     <b>{itemAmt.toLocaleString()}</b> 원
                 </ItemAmt>
             </div>
+
+            {isNotiModalon === true ? (
+                <>
+                    {isNewItemYn === true ? (
+                        <>
+                            <Noti class="share-noti">
+                                한 번 더 담으셨네요!
+                                <br />
+                                담긴 수량이 {cartItemQty}개가 되었습니다.
+                            </Noti>
+                        </>
+                    ) : (
+                        <>
+                            <Noti class="share-noti">소시지에 상품을 담았습니다.</Noti>
+                        </>
+                    )}
+                </>
+            ) : (
+                <></>
+            )}
 
             <ButtonContainer>
                 {isPurchaseModalOn ? (
@@ -54,10 +95,18 @@ const ItemDetail = ({
 
 const ItemDetailContainer = styled.div`
     display: flex;
+    position: relative;
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
     overflow: auto;
+`;
+
+const BackBnt = styled.img`
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    cursor: pointer;
 `;
 
 const ButtonContainer = styled.div`
@@ -78,7 +127,7 @@ const ShppCategory = styled.div`
     margin-top: 7px;
     margin-left: 20px;
     background-color: #f7d047;
-    padding: 3px;
+    padding: 3px 7px 3px 7px;
     border-radius: 20px;
 `;
 
@@ -115,6 +164,22 @@ const PurchaseButton = styled.button`
     :hover {
         background-color: #ff3905;
     }
+`;
+
+const Noti = styled.div`
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    width: 358px;
+    height: 48px;
+    border-radius: 10px;
+    color: white;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 12px;
+    text-align: center;
+    justify-content: center;
 `;
 
 export default ItemDetail;

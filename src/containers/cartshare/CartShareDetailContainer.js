@@ -52,6 +52,7 @@ const CartShareDetailContainer = () => {
         editPsblYn: true,
     });
     const [isOrdModalOn, setOrdModalOn] = useState(false);
+    const [tmpOrdTtlPaymtAmt, setTmpOrdTtlPaymtAmt] = useState(0);
 
     const changeOrdModalOn = () => {
         if (isOrdModalOn === true) {
@@ -109,19 +110,20 @@ const CartShareDetailContainer = () => {
     };
 
     const onClickOrdBnt = () => {
-        createTmpOrd(cartShareId);
+        createTmpOrd(cartShareId).then(response => {
+            console.log(response);
+            console.log(response.data.data.ttlPaymtAmt);
+            setTmpOrdTtlPaymtAmt(response.data.data.ttlPaymtAmt);
+        });
         changeOrdModalOn();
     };
 
     const onClickModalOrdBnt = () => {
-        createOrd(cartShareId).then(response => {
-            navigate(`/order-success`, {
-                state: {
-                    cartShareCalId: response.data.data.cartShareCalId,
-                    cartShareOrdId: response.data.data.cartShareOrdId,
-                    ttlPaymtAmt: response.data.data.ttlPaymtAmt,
-                },
-            });
+        navigate(`/order-paymt`, {
+            state: {
+                cartShareId: cartShareId,
+                tmpOrdTtlPaymtAmt: tmpOrdTtlPaymtAmt,
+            },
         });
     };
 
