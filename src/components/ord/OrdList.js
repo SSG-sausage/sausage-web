@@ -13,14 +13,14 @@ const OrdList = ({ ordList, onClickCal }) => {
     return (
         <>
             <SearchBox />
+            <TopNav>
+                <div>
+                    <img className="arrow-back" src={require('../../assets/arrow-back.png')} onClick={backClick} />
+                </div>
+                <div>주문내역</div>
+                <div></div>
+            </TopNav>
             <Container>
-                <TopNav>
-                    <div>
-                        <img className="arrow-back" src={require('../../assets/arrow-back.png')} onClick={backClick} />
-                    </div>
-                    <div>주문내역</div>
-                    <div></div>
-                </TopNav>
                 <Space />
 
                 {ordList.length === 0 ? (
@@ -50,7 +50,8 @@ export default OrdList;
 
 const Container = styled.div`
     justify-self: center;
-    height: 792px;
+    /* height: 792px; */
+    height: 670px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
@@ -95,7 +96,7 @@ const EmptyOrd = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 650px;
+    height: 640px;
     background-color: white;
     font-size: 20px;
     color: #888888;

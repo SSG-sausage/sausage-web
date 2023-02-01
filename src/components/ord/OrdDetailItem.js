@@ -13,7 +13,7 @@ const OrdDetailItem = ({ itemId, itemNm, itemAmt, itemQty, itemBrandNm, itemImgU
 
             <ItemAmt>
                 <p>
-                    <b>{itemAmt}</b>원 &nbsp;{itemQty}개
+                    <b>{itemAmt.toLocaleString()}</b>원 &nbsp;{itemQty}개
                 </p>
             </ItemAmt>
         </Container>

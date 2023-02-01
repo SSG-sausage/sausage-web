@@ -66,7 +66,7 @@ const ItemDetail = ({
                         </>
                     ) : (
                         <>
-                            <Noti class="share-noti">소시지에 상품을 담았습니다.</Noti>
+                            <Noti class="share-noti">소시지팀에 상품을 담았습니다.</Noti>
                         </>
                     )}
                 </>
@@ -152,6 +152,7 @@ const ItemAmt = styled.div`
 
 const PurchaseButton = styled.button`
     width: 390px;
+    height: 55px;
     background-color: #eb4f47;
     padding: 13px;
     border: none;
@@ -160,6 +161,7 @@ const PurchaseButton = styled.button`
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     margin-bottom: 52px;
+    font-size: 20px;
 
     :hover {
         background-color: #ff3905;
