@@ -1,14 +1,37 @@
 import styled from 'styled-components';
 
-const Item = ({ index, itemNm, itemBrandNm, itemAmt, itemImgUrl, onClickItem, shppType }) => {
+const Item = ({
+    index,
+    itemId,
+    itemNm,
+    itemBrandNm,
+    itemAmt,
+    itemImgUrl,
+    onClickItem,
+    shppCd,
+    onClickSaveCartShareButton,
+}) => {
+    const onClickCart = () => {
+        onClickSaveCartShareButton(itemId);
+    };
+
     return (
-        <Container onClick={onClickItem}>
+        <Container>
             <p id="index">{index}</p>
-            <img id="item" src={itemImgUrl} />
+            <img id="item" src={itemImgUrl} onClick={onClickItem} />
 
             <ShppCategory>
-                <div>쓱배송</div>
-                <img src={require('../../assets/cart.png')} />
+                {shppCd === 'SSG_SHPP' ? (
+                    <>
+                        <div>쓱배송</div>
+                    </>
+                ) : (
+                    <>
+                        <div style={{ background: '#b3dc49' }}>traders</div>
+                    </>
+                )}
+
+                <CartShareImg src={require('../../assets/cart.png')} onClick={onClickCart} />
             </ShppCategory>
 
             <ItemLine />
@@ -63,7 +86,7 @@ const ShppCategory = styled.div`
 
     > div {
         background-color: #f7d047;
-        padding: 3px;
+        padding: 3px 7px 3px 7px;
         border-radius: 20px;
     }
 `;
@@ -100,4 +123,11 @@ const ItemLine = styled.div`
     height: 1px;
     margin-top: 10px;
     background-color: #f2f2f2;
+`;
+
+const CartShareImg = styled.img`
+    :hover {
+        background-color: #eb4f47;
+        border-radius: 4px;
+    }
 `;

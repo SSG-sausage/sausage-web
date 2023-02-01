@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import Item from './Item';
 import SearchBox from './SearchBox';
 
-const ItemList = ({ itemList, onClickItem }) => {
+const ItemList = ({ itemList, onClickItem, isNotiModalon, isNewItemYn, cartItemQty, onClickSaveCartShareButton }) => {
     return (
         <>
             <SearchBox />
-
             <ItemRankingTitle>상품 랭킹</ItemRankingTitle>
 
             <RankingContainer>
                 {itemList.map((it, index) => (
                     <Item
                         key={it.itemId}
+                        itemId={it.itemId}
                         index={index + 1}
                         itemNm={it.itemNm}
                         itemBrandNm={it.itemBrandNm}
@@ -21,9 +21,32 @@ const ItemList = ({ itemList, onClickItem }) => {
                         itemAmt={it.itemAmt.toLocaleString()}
                         onClickItem={() => onClickItem(it.itemId)}
                         brandNm={it.itemBrandNm}
+                        shppCd={it.shppCd}
+                        onClickSaveCartShareButton={onClickSaveCartShareButton}
                     />
                 ))}
             </RankingContainer>
+            <ModalContainer>
+                {isNotiModalon === true ? (
+                    <>
+                        {isNewItemYn === true ? (
+                            <>
+                                <Noti class="share-noti">
+                                    한 번 더 담으셨네요!
+                                    <br />
+                                    담긴 수량이 {cartItemQty}개가 되었습니다.
+                                </Noti>
+                            </>
+                        ) : (
+                            <>
+                                <Noti class="share-noti">소시지에 상품을 담았습니다.</Noti>
+                            </>
+                        )}
+                    </>
+                ) : (
+                    <></>
+                )}
+            </ModalContainer>
         </>
     );
 };
@@ -47,6 +70,29 @@ const RankingContainer = styled.div`
 
     grid-auto-rows: auto;
     overflow: scroll;
+`;
+
+const ModalContainer = styled.div`
+    position: relative;
+`;
+
+const Noti = styled.div`
+    position: absolute;
+    top: -90px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    width: 358px;
+    height: 48px;
+    border-radius: 10px;
+    color: white;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 12px;
+    text-align: center;
+    justify-content: center;
 `;
 
 export default ItemList;

@@ -31,7 +31,6 @@ const OrdContainer = ({ cartShareOrdId, cartShareCalId, regDts, ttlPaymtAtm, onC
 
             ssgShppOrdItemList.forEach(item => {
                 let mbrNm = item.mbrNm;
-
                 if (item.commYn === true) {
                     mbrNm = '공동';
                 }
