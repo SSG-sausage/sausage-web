@@ -1,11 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import styled from 'styled-components';
 import Item from './Item';
+import ItemModal from './ItemModal';
 import SearchBox from './SearchBox';
 
-const ItemList = ({ itemList, onClickItem, isNotiModalon, isNewItemYn, cartItemQty, onClickSaveCartShareButton }) => {
+const ItemList = ({
+    itemList,
+    onClickItem,
+    isNotiModalon,
+    isNewItemYn,
+    cartItemQty,
+    onClickSaveCartShareButton,
+    isItemModalOn,
+    changeItemModalOn,
+}) => {
     return (
         <>
+            {isItemModalOn ? <ItemModal changeItemModalOn={changeItemModalOn} /> : <></>}
             <SearchBox />
             <ItemRankingTitle>상품 랭킹</ItemRankingTitle>
 

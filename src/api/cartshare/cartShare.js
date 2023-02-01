@@ -97,15 +97,12 @@ export const findCartShareNotiCnt = mbrId =>
         .catch(() => {
             alert('장바구니 신규 알림 개수 조회 실패');
         });
+
 export const saveCartShareItem = (cartShareId, itemId, itemQty) =>
-    axiosInstance
-        .post(`/cart-share/api/cart-share/${cartShareId}/cart-share-item`, {
-            itemId: itemId,
-            itemQty: itemQty,
-        })
-        .catch(() => {
-            alert('공유 장바구니 상품 추가 실패');
-        });
+    axiosInstance.post(`/cart-share/api/cart-share/${cartShareId}/cart-share-item`, {
+        itemId: itemId,
+        itemQty: itemQty,
+    });
 
 export const validateMastr = (cartShareId, mbrId) =>
     axiosInstance.get(`/cart-share/api/cart-share/${cartShareId}/mbr/${mbrId}/mastr-validation`, {}).catch(() => {
