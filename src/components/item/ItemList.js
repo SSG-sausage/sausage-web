@@ -50,7 +50,7 @@ const ItemList = ({
                             </>
                         ) : (
                             <>
-                                <Noti class="share-noti">소시지에 상품을 담았습니다.</Noti>
+                                <Noti class="share-noti">소시지팀에 상품을 담았습니다.</Noti>
                             </>
                         )}
                     </>

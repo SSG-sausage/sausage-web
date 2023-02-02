@@ -24,8 +24,8 @@ const OrdSuccess = ({ cartShareOrdId, cartShareCalId, ttlPaymtAmt }) => {
             <Space />
             <ShppInfo>
                 <div>받는 분 정보</div>
-                <div>전미림/010-1023-1251</div>
-                <div>센터필드</div>
+                <div>김서현 / 010-1023-1251</div>
+                <div>서울특별시 강남구 테헤란로 231 (센터필드 EAST 21층)</div>
             </ShppInfo>
             <Space />
             <TtlPaymtAmt>

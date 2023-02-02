@@ -69,10 +69,6 @@ const OrdItemTitle = styled.div`
     margin: 5px 0 5px 0;
     cursor: pointer;
 
-    :hover {
-        background-color: #f6f6f6;
-    }
-
     div:nth-child(1) {
         display: flex;
         flex-direction: row;

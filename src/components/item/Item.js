@@ -127,7 +127,7 @@ const ItemLine = styled.div`
 
 const CartShareImg = styled.img`
     :hover {
-        background-color: #eb4f47;
+        background-color: #c9c9c9;
         border-radius: 4px;
     }
 `;
