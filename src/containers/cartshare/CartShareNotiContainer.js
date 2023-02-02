@@ -13,11 +13,15 @@ const CartShareNotiContainer = () => {
         navigate(`/cart-share/1`);
     };
 
+    const onClickHome = () => {
+        navigate(`/`);
+    };
+
     useEffect(() => {
         findCartShareNotiList(cookies.mbrId).then(res => {
             setCartShareNotiList(res.data.data);
         });
     }, []);
-    return <CartShareNoti cartShareNotiList={cartShareNotiList} onClickBack={onClickBack} />;
+    return <CartShareNoti cartShareNotiList={cartShareNotiList} onClickBack={onClickBack} onClickHome={onClickHome} />;
 };
 export default CartShareNotiContainer;
