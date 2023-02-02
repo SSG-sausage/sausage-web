@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
-const CartShareNoti = ({ cartShareNotiList, onClickBack }) => {
+const CartShareNoti = ({ cartShareNotiList, onClickBack, onClickHome }) => {
     const formatDate = date => {
         return date.slice(0, 10).replaceAll('-', '.');
     };
+
     return (
         <NotiContainer>
             <NotiHeader>
                 <img className="arrow-back" onClick={onClickBack} src={require('../../assets/arrow-back.png')} />
                 <div className="title">알림함</div>
-                <img className="home" src={require('../../assets/home.png')} />
+                <img className="home" onClick={onClickHome} src={require('../../assets/home.png')} />
             </NotiHeader>
             <NotiContent>
                 {cartShareNotiList.cartShareNotiList?.length === 0 && (
