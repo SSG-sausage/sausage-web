@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import SearchBox from './SearchBox';
 import ItemPurchaseModal from './ItemPurchaseModal';
 import { useNavigate } from 'react-router-dom';
+import ItemModal from './ItemModal';
 
 const ItemDetail = ({
     itemImgUrl,
@@ -18,6 +19,8 @@ const ItemDetail = ({
     cartItemQty,
     isNewItemYn,
     shppCd,
+    isItemModalOn,
+    changeItemModalOn,
 }) => {
     const navigate = useNavigate();
 
@@ -26,70 +29,74 @@ const ItemDetail = ({
     };
 
     return (
-        <ItemDetailContainer>
-            <div>
-                <SearchBox />
+        <>
+            {isItemModalOn ? <ItemModal changeItemModalOn={changeItemModalOn} /> : <></>}
+            <ItemDetailContainer>
+                <div>
+                    <SearchBox />
 
-                <BackBnt className="arrow-back" src={require('../../assets/arrow-back.png')} onClick={backClick} />
+                    <BackBnt className="arrow-back" src={require('../../assets/arrow-back.png')} onClick={backClick} />
 
-                <ItemImg src={itemImgUrl} />
+                    <ItemImg src={itemImgUrl} />
 
-                {shppCd === 'SSG_SHPP' ? (
-                    <>
-                        <ShppCategory>쓱배송</ShppCategory>
-                    </>
-                ) : (
-                    <>
-                        <ShppCategory style={{ background: '#b3dc49' }}>traders</ShppCategory>
-                    </>
-                )}
-
-                <ItemTitle>
-                    <div>{itemBrandNm}</div>
-                    <div>{itemNm}</div>
-                </ItemTitle>
-
-                <ItemAmt>
-                    <b>{itemAmt.toLocaleString()}</b> 원
-                </ItemAmt>
-            </div>
-
-            {isNotiModalon === true ? (
-                <>
-                    {isNewItemYn === true ? (
+                    {shppCd === 'SSG_SHPP' ? (
                         <>
-                            <Noti class="share-noti">
-                                한 번 더 담으셨네요!
-                                <br />
-                                담긴 수량이 {cartItemQty}개가 되었습니다.
-                            </Noti>
+                            <ShppCategory>쓱배송</ShppCategory>
                         </>
                     ) : (
                         <>
+                            <ShppCategory style={{ background: '#b3dc49' }}>traders</ShppCategory>
                             <Noti class="share-noti">소시지팀에 상품을 담았습니다.</Noti>
                         </>
                     )}
-                </>
-            ) : (
-                <></>
-            )}
 
-            <ButtonContainer>
-                {isPurchaseModalOn ? (
-                    <ItemPurchaseModal
-                        itemNm={itemNm}
-                        itemBrandNm={itemBrandNm}
-                        itemAmt={itemAmt}
-                        itemQty={itemQty}
-                        plusItemQty={plusItemQty}
-                        minusItemQty={minusItemQty}
-                        onClickSaveCartShareButton={onClickSaveCartShareButton}
-                    />
+                    <ItemTitle>
+                        <div>{itemBrandNm}</div>
+                        <div>{itemNm}</div>
+                    </ItemTitle>
+
+                    <ItemAmt>
+                        <b>{itemAmt.toLocaleString()}</b> 원
+                    </ItemAmt>
+                </div>
+
+                {isNotiModalon === true ? (
+                    <>
+                        {isNewItemYn === true ? (
+                            <>
+                                <Noti class="share-noti">
+                                    한 번 더 담으셨네요!
+                                    <br />
+                                    담긴 수량이 {cartItemQty}개가 되었습니다.
+                                </Noti>
+                            </>
+                        ) : (
+                            <>
+                                <Noti class="share-noti">소시지에 상품을 담았습니다.</Noti>
+                            </>
+                        )}
+                    </>
                 ) : (
-                    <PurchaseButton onClick={setPurchaseModalOn}>구매하기</PurchaseButton>
+                    <></>
                 )}
-            </ButtonContainer>
-        </ItemDetailContainer>
+
+                <ButtonContainer>
+                    {isPurchaseModalOn ? (
+                        <ItemPurchaseModal
+                            itemNm={itemNm}
+                            itemBrandNm={itemBrandNm}
+                            itemAmt={itemAmt}
+                            itemQty={itemQty}
+                            plusItemQty={plusItemQty}
+                            minusItemQty={minusItemQty}
+                            onClickSaveCartShareButton={onClickSaveCartShareButton}
+                        />
+                    ) : (
+                        <PurchaseButton onClick={setPurchaseModalOn}>구매하기</PurchaseButton>
+                    )}
+                </ButtonContainer>
+            </ItemDetailContainer>
+        </>
     );
 };
 

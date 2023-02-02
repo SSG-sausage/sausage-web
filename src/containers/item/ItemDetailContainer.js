@@ -16,6 +16,11 @@ const ItemDetailContainer = () => {
     const [isNotiModalon, setIsNotiModalOn] = useState(false);
     const [cartItemQty, setCartItemQty] = useState(1);
     const [isNewItemYn, setIsNewItemYn] = useState(false);
+    const [isItemModalOn, setItemModalOn] = useState(false);
+
+    const changeItemModalOn = () => {
+        setItemModalOn(!isItemModalOn);
+    };
 
     const plusItemQty = () => {
         setItemQty(itemQty + 1);
@@ -28,21 +33,29 @@ const ItemDetailContainer = () => {
     };
 
     const onClickSaveCartShareButton = () => {
-        saveCartShareItem(1, parseInt(itemId), itemQty).then(response => {
-            console.log(response.data.data);
+        saveCartShareItem(1, parseInt(itemId), itemQty)
+            .then(response => {
+                console.log(response.data.data);
 
-            if (!response.data.data.newItemYn) {
-                setCartItemQty(response.data.data.itemQty);
-                setIsNewItemYn(true);
-            }
+                if (!response.data.data.newItemYn) {
+                    setCartItemQty(response.data.data.itemQty);
+                    setIsNewItemYn(true);
+                }
 
-            setPurchaseModalOn(false);
-            setIsNotiModalOn(true);
-            setTimeout(function () {
-                setIsNotiModalOn(false);
-                setIsNewItemYn(false);
-            }, 1500);
-        });
+                setPurchaseModalOn(false);
+                setIsNotiModalOn(true);
+                setTimeout(function () {
+                    setIsNotiModalOn(false);
+                    setIsNewItemYn(false);
+                }, 1500);
+            })
+            .catch(error => {
+                console.log(error.response);
+                const message = error.response.data.message;
+                if (message === '공유장바구니멤버 진행 상태가 담기중 인 경우에만 수정 할 수 있습니다.') {
+                    setItemModalOn(true);
+                }
+            });
     };
 
     useEffect(() => {
@@ -72,6 +85,8 @@ const ItemDetailContainer = () => {
             cartItemQty={cartItemQty}
             isNewItemYn={isNewItemYn}
             shppCd={shppCd}
+            isItemModalOn={isItemModalOn}
+            changeItemModalOn={changeItemModalOn}
         />
     );
 };

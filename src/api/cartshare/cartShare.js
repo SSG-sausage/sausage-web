@@ -40,21 +40,17 @@ export const updateCartShareMbrProg = (mbrId, cartShareId, cartShareMbrId, progS
         });
 
 export const updateCartShareItemQty = (mbrId, cartShareId, cartShareItemId, qty) =>
-    axiosInstance
-        .patch(
-            `/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}/qty`,
-            {
-                qty: qty,
+    axiosInstance.patch(
+        `/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}/qty`,
+        {
+            qty: qty,
+        },
+        {
+            headers: {
+                mbrId: mbrId,
             },
-            {
-                headers: {
-                    mbrId: mbrId,
-                },
-            },
-        )
-        .catch(() => {
-            alert('장바구니 상품 수량 변경 실패');
-        });
+        },
+    );
 
 export const updateCartShareItemComm = (mbrId, cartShareId, cartShareItemId, commYn) =>
     axiosInstance
@@ -74,15 +70,11 @@ export const updateCartShareItemComm = (mbrId, cartShareId, cartShareItemId, com
         });
 
 export const deleteCartShareItem = (mbrId, cartShareId, cartShareItemId) =>
-    axiosInstance
-        .delete(`/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}`, {
-            headers: {
-                mbrId: mbrId,
-            },
-        })
-        .catch(() => {
-            alert('장바구니 상품 삭제 실패');
-        });
+    axiosInstance.delete(`/cart-share/api/cart-share/${cartShareId}/cart-share-item/${cartShareItemId}`, {
+        headers: {
+            mbrId: mbrId,
+        },
+    });
 
 export const findCartShareNotiList = mbrId =>
     axiosInstance
@@ -105,15 +97,12 @@ export const findCartShareNotiCnt = mbrId =>
         .catch(() => {
             alert('장바구니 신규 알림 개수 조회 실패');
         });
+
 export const saveCartShareItem = (cartShareId, itemId, itemQty) =>
-    axiosInstance
-        .post(`/cart-share/api/cart-share/${cartShareId}/cart-share-item`, {
-            itemId: itemId,
-            itemQty: itemQty,
-        })
-        .catch(() => {
-            alert('공유 장바구니 상품 추가 실패');
-        });
+    axiosInstance.post(`/cart-share/api/cart-share/${cartShareId}/cart-share-item`, {
+        itemId: itemId,
+        itemQty: itemQty,
+    });
 
 export const validateMastr = (cartShareId, mbrId) =>
     axiosInstance.get(`/cart-share/api/cart-share/${cartShareId}/mbr/${mbrId}/mastr-validation`, {}).catch(() => {

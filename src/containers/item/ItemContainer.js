@@ -13,9 +13,14 @@ const ItemListContainer = () => {
     const [isNotiModalon, setIsNotiModalOn] = useState(false);
     const [cartItemQty, setCartItemQty] = useState(1);
     const [isNewItemYn, setIsNewItemYn] = useState(false);
+    const [isItemModalOn, setItemModalOn] = useState(false);
 
     const onClickItem = itemId => {
         navigate(`/item/${itemId}`);
+    };
+
+    const changeItemModalOn = () => {
+        setItemModalOn(!isItemModalOn);
     };
 
     useEffect(() => {
@@ -29,20 +34,27 @@ const ItemListContainer = () => {
     }, []);
 
     const onClickSaveCartShareButton = nowClickedItem => {
-        saveCartShareItem(1, parseInt(nowClickedItem), 1).then(response => {
-            console.log(response.data.data);
+        saveCartShareItem(1, parseInt(nowClickedItem), 1)
+            .then(response => {
+                console.log(response.data.data);
 
-            if (!response.data.data.newItemYn) {
-                setCartItemQty(response.data.data.itemQty);
-                setIsNewItemYn(true);
-            }
+                if (!response.data.data.newItemYn) {
+                    setCartItemQty(response.data.data.itemQty);
+                    setIsNewItemYn(true);
+                }
 
-            setIsNotiModalOn(true);
-            setTimeout(function () {
-                setIsNotiModalOn(false);
-                setIsNewItemYn(false);
-            }, 1500);
-        });
+                setIsNotiModalOn(true);
+                setTimeout(function () {
+                    setIsNotiModalOn(false);
+                    setIsNewItemYn(false);
+                }, 1500);
+            })
+            .catch(error => {
+                const message = error.response.data.message;
+                if (message === '공유장바구니멤버 진행 상태가 담기중 인 경우에만 수정 할 수 있습니다.') {
+                    setItemModalOn(true);
+                }
+            });
     };
 
     return (
@@ -53,6 +65,8 @@ const ItemListContainer = () => {
             cartItemQty={cartItemQty}
             isNewItemYn={isNewItemYn}
             onClickSaveCartShareButton={onClickSaveCartShareButton}
+            isItemModalOn={isItemModalOn}
+            changeItemModalOn={changeItemModalOn}
         />
     );
 };
