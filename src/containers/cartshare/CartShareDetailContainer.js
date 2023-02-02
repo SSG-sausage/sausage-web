@@ -52,6 +52,7 @@ const CartShareDetailContainer = () => {
         editPsblYn: true,
     });
     const [isOrdModalOn, setOrdModalOn] = useState(false);
+    const [isCartShareModalOn, setCartShareModalOn] = useState(false);
     const [tmpOrdTtlPaymtAmt, setTmpOrdTtlPaymtAmt] = useState(0);
 
     const changeOrdModalOn = () => {
@@ -60,6 +61,10 @@ const CartShareDetailContainer = () => {
         }
 
         setOrdModalOn(!isOrdModalOn);
+    };
+
+    const changeCartShareModalOn = () => {
+        setCartShareModalOn(!isCartShareModalOn);
     };
 
     const connect = () => {
@@ -92,7 +97,11 @@ const CartShareDetailContainer = () => {
     };
 
     const onClickPlusOrMinus = async (cartShareItemId, qty) => {
-        await updateCartShareItemQty(cookies.mbrId, cartShareId, cartShareItemId, qty);
+        if (cartShareData.progStatCd === 'DONE') {
+            setCartShareModalOn(true);
+        } else {
+            await updateCartShareItemQty(cookies.mbrId, cartShareId, cartShareItemId, qty);
+        }
     };
 
     const onClickCommOrMy = async (cartShareItemId, commYn) => {
@@ -100,7 +109,11 @@ const CartShareDetailContainer = () => {
     };
 
     const onClickTrash = async cartShareItemId => {
-        await deleteCartShareItem(cookies.mbrId, cartShareId, cartShareItemId);
+        if (cartShareData.progStatCd === 'DONE') {
+            setCartShareModalOn(true);
+        } else {
+            await deleteCartShareItem(cookies.mbrId, cartShareId, cartShareItemId);
+        }
     };
 
     const fetchCartShare = async () => {
@@ -148,6 +161,8 @@ const CartShareDetailContainer = () => {
             onClickTrash={onClickTrash}
             isOrdModalOn={isOrdModalOn}
             changeOrdModalOn={changeOrdModalOn}
+            isCartShareModalOn={isCartShareModalOn}
+            changeCartShareModalOn={changeCartShareModalOn}
             onClickCartshareCal={onClickCartshareCal}
             onClickOrdBnt={onClickOrdBnt}
             onClickModalOrdBnt={onClickModalOrdBnt}

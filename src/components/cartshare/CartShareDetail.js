@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import OrdModal from '../ord/OrdModal';
 import AmtInfo from './AmtInfo';
 import BottomContainer from './BottomContainer';
+import CartShareModal from './CartShareModal';
 import CommonSection from './CommonSection';
 import NavigationBar from './NavigationBar';
 import PersonalSection from './PersonalSection';
@@ -15,6 +16,8 @@ const CartShareDetail = ({
     onClickTrash,
     isOrdModalOn,
     changeOrdModalOn,
+    isCartShareModalOn,
+    changeCartShareModalOn,
     onClickCartshareCal,
     onClickOrdList,
     onClickOrdBnt,
@@ -31,6 +34,7 @@ const CartShareDetail = ({
             ) : (
                 <></>
             )}
+            {isCartShareModalOn ? <CartShareModal changeCartShareModalOn={changeCartShareModalOn} /> : <></>}
             <NavigationBar nm={cartShareData.cartShareNm} itemQty={cartShareData.cartShareItemQty} />
             <CartShareContainer>
                 <BackGround>
@@ -96,6 +100,11 @@ const CartShareDetail = ({
                     );
                 })}
                 <AmtInfo cartShareAmtInfo={cartShareData.cartShareAmtInfo} />
+                {cartShareData.cartShareItemQty === 0 ? (
+                    <EmptyContainer>장바구니에 담긴 상품이 없습니다.</EmptyContainer>
+                ) : (
+                    <></>
+                )}
             </CartShareContainer>
             <BottomContainer
                 cartShareMbrId={cartShareData.cartShareMbrId}
@@ -110,6 +119,20 @@ const CartShareDetail = ({
         </>
     );
 };
+
+const EmptyContainer = styled.div`
+    width: 390px;
+    height: 200px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.5px;
+    color: rgba(0, 0, 0, 0.8);
+`;
 
 const CartShareContainer = styled.div`
     width: 390px;
