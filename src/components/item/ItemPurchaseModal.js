@@ -153,6 +153,7 @@ const CartShareButton = styled.button`
     cursor: pointer;
     color: white;
     height: 55px;
+    font-size: 20px;
 
     border-bottom-left-radius: 20px;
 
@@ -168,6 +169,7 @@ const PurchaseButton = styled.button`
     border: none;
     cursor: pointer;
     color: white;
+    font-size: 20px;
 
     border-bottom-right-radius: 20px;
 

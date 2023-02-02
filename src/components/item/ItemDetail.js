@@ -46,7 +46,6 @@ const ItemDetail = ({
                     ) : (
                         <>
                             <ShppCategory style={{ background: '#b3dc49' }}>traders</ShppCategory>
-                            <Noti class="share-noti">소시지팀에 상품을 담았습니다.</Noti>
                         </>
                     )}
 
