@@ -8,7 +8,7 @@ import MastrCmplYn from '../MastrCmplYn';
 const NameInfoDetail = ({ cartShareCal, info, onClickCmplYn }) => {
     return (
         <NameInfoContainer>
-            {info.mastrYn && <Me />}
+            {info.meYn && <Me />}
             <NameValue>
                 {info.mbrNm}
                 {info.mastrYn && <Master />}

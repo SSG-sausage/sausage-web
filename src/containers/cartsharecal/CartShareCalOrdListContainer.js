@@ -15,7 +15,7 @@ const CartShareCalOrdListContainer = () => {
     };
 
     const onClickCal = cartShareCalId => {
-        navigate(`/cart-share-cal/${cartShareCalId}`);
+        navigate(`/cart-share-cal/${cartShareCalId}/create`);
     };
 
     useEffect(() => {
