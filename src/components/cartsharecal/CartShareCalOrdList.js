@@ -16,6 +16,7 @@ const CartShareCalOrdList = ({ ordList, onClickBack, onClickCal }) => {
             </OrdHeader>
             <div className="desc">어느 주문에 대해 정산을 도와드릴까요?</div>
             <OrdContent>
+                {ordList?.length === 0 && <div class="empty-content">최근 3개월간 주문내역이 없습니다.</div>}
                 {ordList?.map((ord, index) => (
                     <div key={index}>
                         {ord.calStYn && (
@@ -149,6 +150,13 @@ const OrdContent = styled.div`
     }
     .cal-enable {
         cursor: pointer;
+    }
+    .empty-content {
+        color: #888888;
+        font-weight: 400;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 207px;
     }
 `;
 export default CartShareCalOrdList;
