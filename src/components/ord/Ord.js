@@ -11,6 +11,7 @@ const Ord = ({
     regDts,
     ttlPaymtAtm,
     ssgShppOrdItemMap,
+    cartShareOrdNo,
     tradersShppOrdItemMap,
     onClickCal,
     cartShareCalId,
@@ -18,11 +19,14 @@ const Ord = ({
     return (
         <Container>
             <OrdTitle>
-                <div>
-                    <RegDts>{regDts}</RegDts>
-                    <p>함께 장보기</p>
-                </div>
-                <div onClick={() => onClickCal(cartShareCalId)}>정산 내역 확인하기 {'>'}</div>
+                <LeftTitle>
+                    <div>
+                        <RegDts>{regDts}</RegDts>
+                        <p>함께 장보기</p>
+                    </div>
+                    <OrdNo id="OrdNo">주문번호 : {cartShareOrdNo}</OrdNo>
+                </LeftTitle>
+                <RightTitle onClick={() => onClickCal(cartShareCalId)}>정산 내역 확인하기 {'>'}</RightTitle>
             </OrdTitle>
             <TtlPaymtAmt>결제금액 {ttlPaymtAtm}</TtlPaymtAmt>
 
@@ -99,27 +103,39 @@ const OrdTitle = styled.div`
 
     margin: 30px 0px 10px 0px;
     border-bottom: solid 1px #f2f2f2;
+`;
 
-    div:nth-child(1) {
-        font-size: 15px;
-        padding-left: 10px;
+const LeftTitle = styled.div`
+    font-size: 15px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 7px;
+
+    div {
         display: flex;
         flex-direction: row;
-        margin-bottom: 7px;
-
-        p {
-            font-size: 13px;
-        }
     }
 
-    div:nth-child(2) {
-        font-size: 7px;
-        color: gray;
-        align-self: center;
-        margin-bottom: 18px;
-        padding-right: 15px;
-        cursor: pointer;
+    p {
+        font-size: 13px;
     }
+`;
+
+const OrdNo = styled.div`
+    font-size: 11px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    color: gray;
+`;
+
+const RightTitle = styled.div`
+    font-size: 7px;
+    color: gray;
+    align-self: center;
+    margin-bottom: 13px;
+    padding-right: 15px;
+    cursor: pointer;
 `;
 
 const RegDts = styled.div`
