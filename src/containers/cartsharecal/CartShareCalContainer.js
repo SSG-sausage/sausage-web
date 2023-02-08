@@ -44,6 +44,10 @@ const CartShareCalContainer = () => {
     };
 
     useEffect(() => {
+        if (cartShareCalId === 'null') {
+            navigate('/cart-share-cal/error');
+            return;
+        }
         findCartShareCal(cookies.mbrId, cartShareCalId).then(response => {
             setCartShareCal(response.data.data);
         });
