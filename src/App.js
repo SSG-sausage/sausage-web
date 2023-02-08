@@ -10,6 +10,7 @@ import LoginPage from './pages/mbr/LoginPage';
 import ItemListPage from './pages/item/ItemListPage';
 import ItemDetailPage from './pages/item/ItemDetailPage';
 import CartShareCalPage from './pages/cartsharecal/CartShareCalPage';
+import CartShareCalErrorPage from './pages/cartsharecal/CartShareCalErrorPage';
 import CartShareCalListPage from './pages/cartsharecal/CartShareCalListPage';
 import CartShareCalOrdListPage from './pages/cartsharecal/CartShareCalOrdListPage';
 import CartShareCalCreatePage from './pages/cartsharecal/CartShareCalCreatePage';
@@ -76,6 +77,7 @@ function App() {
                         />
                         <Route path="/cart-share" element={<CartSharePage />} />
                         <Route path="/cart-share-cal/:cartShareCalId" element={<CartShareCalPage />} />
+                        <Route path="/cart-share-cal/error" element={<CartShareCalErrorPage />} />
                         <Route path="/cart-share/noti" element={<CartShareNotiPage />} />
                         <Route path="/cart-share-cal/:cartShareCalId/update" element={<CartShareCalUpdatePage />} />
                     </Route>

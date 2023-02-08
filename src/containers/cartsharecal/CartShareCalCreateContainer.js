@@ -95,6 +95,11 @@ const CartShareCalCreateContainer = () => {
     };
 
     useEffect(() => {
+        console.log(cartShareCalId);
+        if (cartShareCalId === 'null') {
+            navigate('/cart-share-cal/error');
+            return;
+        }
         calCartShareCal(cartShareCalId).then(response => {
             setCalcResponse(response.data.data);
         });
